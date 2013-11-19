@@ -41,16 +41,16 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="0">
+  <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>TFG_Main.aux</file>
-      <file>TFG_Main-blx.bib</file>
+      <file>TFG_Main.bcf</file>
     </provides>
     <requires type="dynamic">
       <file>TFG_Main.bbl</file>
     </requires>
     <requires type="static">
+      <file>blx-dm.def</file>
       <file>blx-compat.def</file>
       <file>biblatex.def</file>
       <file>blx-natbib.def</file>
@@ -66,15 +66,14 @@
       <file>spanish.lbx</file>
     </requires>
   </internal>
-  <external package="biblatex" priority="5" active="0">
-    <generic>bibtex</generic>
+  <external package="biblatex" priority="5" active="1">
+    <generic>biber</generic>
     <cmdline>
-      <binary>bibtex</binary>
-      <option>-min-crossrefs 2</option>
+      <binary>biber</binary>
       <infile>TFG_Main</infile>
     </cmdline>
     <input>
-      <file>TFG_Main.aux</file>
+      <file>TFG_Main.bcf</file>
     </input>
     <output>
       <file>TFG_Main.bbl</file>
@@ -83,14 +82,10 @@
       <file>TFG_Main.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>TFG_Main.aux</file>
-      <file>TFG_Main-blx.bib</file>
+      <file>TFG_Main.bcf</file>
     </requires>
     <requires type="editable">
       <file>Bibliography.bib</file>
-    </requires>
-    <requires type="static">
-      <file>biblatex.bst</file>
     </requires>
   </external>
 </requests>
