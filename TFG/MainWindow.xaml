@@ -8,10 +8,10 @@
         <avalonDock:DockingManager x:Name="dockingManager">
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutPanel Orientation="Horizontal">
-                    <avalonDock:LayoutDocumentPaneGroup>
+                    <avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
                         <avalonDock:LayoutDocumentPane>
                             <avalonDock:LayoutDocument Title="Doc1">
-                                <TextBox/>
+                                <Button  Click="anadirDocumento" Name="AnadirDocumento" FontSize="15" >Add</Button>
                             </avalonDock:LayoutDocument>
                             <avalonDock:LayoutDocument Title="Doc2">
                                 <TextBox/>
@@ -53,11 +53,11 @@
                                     <StackPanel Orientation="Horizontal" Margin="0,0,10,10" VerticalAlignment="Bottom">
 
                                         <!-- Play button. -->
-                                        <Button  Click="OnMouseDownPlayMedia" Name="play" >[|>]</Button>
+                                        <Button  Click="OnMouseDownPlayMedia" Name="Play" FontSize="15" >[|>]</Button>
                                         <!-- Pause button. -->
-                                        <Button Click="OnMouseDownPauseMedia" Name="pause" >[II]</Button>
+                                        <Button Click="OnMouseDownPauseMedia" Name="Pause" FontSize="15">[II]</Button>
                                         <!-- Stop button. -->
-                                        <Button Click="OnMouseDownStopMedia" Name="Stop" >[#]</Button>
+                                        <Button Click="OnMouseDownStopMedia" Name="Stop" FontSize="15">[#]</Button>
                                         
                                         <!-- Volume slider. This slider allows a Volume range between 0 and 1. --><!--
                                         <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5"  >Volume</TextBlock>

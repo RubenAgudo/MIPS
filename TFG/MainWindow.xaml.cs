@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.AvalonDock;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace TFG
 {
@@ -19,8 +21,10 @@ namespace TFG
     /// </summary>
     public partial class MainWindow2 : Window
     {
+        private int docNumber;
         public MainWindow2()
         {
+            docNumber = 0;
             InitializeComponent();
         }
 
@@ -60,6 +64,23 @@ namespace TFG
         private void Element_MediaEnded(object sender, EventArgs e)
         {
             myMediaElement.Stop();
+        }
+
+        private void anadirDocumento(object sender, RoutedEventArgs e)
+        {
+            var documentPane = dockingManager.Layout.Descendents().OfType<LayoutDocumentPane>().FirstOrDefault();
+            
+            if (documentPane != null)
+            {
+                docNumber++;
+                LayoutDocument layoutDocument = new LayoutDocument { Title = "New Document " + docNumber };
+
+                //*********Here you could add whatever you want***********
+                layoutDocument.Content = new StackPanel();
+
+                //Add the new LayoutDocument to the existing array
+                documentPane.Children.Add(layoutDocument);
+            }
         }
 
     }
