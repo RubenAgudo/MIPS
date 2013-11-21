@@ -43,7 +43,7 @@
                                 <Grid>
                                     
                                     <MediaElement AllowDrop="True" Name="myMediaElement" 
-                                        Margin="11,0,9,106" Source="D:\Descargas\Torrent\Homeland.S03E08.HDTV.x264-2HD.mp4" 
+                                        Margin="11,0,9,106" 
                                         RenderTransformOrigin="0.5,0.5" LoadedBehavior="Manual">
                                         <MediaElement.RenderTransform>
                                             <TransformGroup>

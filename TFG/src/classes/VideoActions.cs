@@ -7,7 +7,7 @@ using Microsoft.Win32;
 
 namespace TFG.src.classes
 {
-    public static class Acciones
+    public static class VideoActions
     {
         public static string openFile()
         {

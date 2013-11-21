@@ -86,7 +86,18 @@ namespace TFG
 
         private void abrirVideo(object sender, RoutedEventArgs e)
         {
-            string path = Acciones.openFile();
+            try
+            {
+                Uri path = new Uri(VideoActions.openFile());
+                myMediaElement.Source = path;
+                
+            }
+            catch (ArgumentNullException exc)
+            {
+                Console.WriteLine(exc.StackTrace);
+            }
+           
+            
         }
 
     }
