@@ -11,7 +11,12 @@
                     <avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
                         <avalonDock:LayoutDocumentPane>
                             <avalonDock:LayoutDocument Title="Doc1">
-                                <Button  Click="anadirDocumento" Name="AnadirDocumento" FontSize="15" >Add</Button>
+                                <Grid>
+                                    <StackPanel>
+                                        <Button  Click="abrirVideo" Name="btnAbrirVideo" FontSize="15" >Abrir Video</Button>
+                                        <Button  Click="anadirDocumento" Name="AnadirDocumento" FontSize="15" >Add</Button>
+                                    </StackPanel>
+                                </Grid>
                             </avalonDock:LayoutDocument>
                             <avalonDock:LayoutDocument Title="Doc2">
                                 <TextBox/>

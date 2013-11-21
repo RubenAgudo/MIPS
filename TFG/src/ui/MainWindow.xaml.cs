@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
+using TFG.src.classes;
 
 namespace TFG
 {
@@ -81,6 +82,11 @@ namespace TFG
                 //Add the new LayoutDocument to the existing array
                 documentPane.Children.Add(layoutDocument);
             }
+        }
+
+        private void abrirVideo(object sender, RoutedEventArgs e)
+        {
+            string path = Acciones.openFile();
         }
 
     }
