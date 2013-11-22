@@ -14,58 +14,87 @@ using System.Windows.Shapes;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 using TFG.src.classes;
+using System.ComponentModel;
 
 namespace TFG
 {
     /// <summary>
     /// Lógica de interacción para MainWindow2.xaml
     /// </summary>
-    public partial class MainWindow2 : Window
+    public partial class MainWindow2 : Window, INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private int docNumber;
+        private PointCollection histogramValues;
+
+        #region Properties
+        public PointCollection HistogramValues
+        {
+            get
+            {
+                return this.histogramValues;
+            }
+            set
+            {
+                if (this.histogramValues != value)
+                {
+                    this.histogramValues = value;
+                    if (this.PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("HistogramValues"));
+                    }
+                }
+            }
+        }
+        #endregion
+
         public MainWindow2()
         {
             docNumber = 0;
             InitializeComponent();
+            this.DataContext = this;
         }
 
-      
-        // Play the media. 
-        void OnMouseDownPlayMedia(object sender, RoutedEventArgs args)
-        {
+        #region PlayBackControl
+            // Play the media. 
+            void OnMouseDownPlayMedia(object sender, RoutedEventArgs args)
+            {
 
-            // The Play method will begin the media if it is not currently active or  
-            // resume media if it is paused. This has no effect if the media is 
-            // already running.
-            myMediaElement.Play();
+                // The Play method will begin the media if it is not currently active or  
+                // resume media if it is paused. This has no effect if the media is 
+                // already running.
+                myMediaElement.Play();
 
-        }
+            }
 
-        // Pause the media. 
-        void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
-        {
+            // Pause the media. 
+            void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
+            {
 
-            // The Pause method pauses the media if it is currently running. 
-            // The Play method can be used to resume.
-            myMediaElement.Pause();
+                // The Pause method pauses the media if it is currently running. 
+                // The Play method can be used to resume.
+                myMediaElement.Pause();
 
-        }
+            }
 
-        // Stop the media. 
-        void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
-        {
+            // Stop the media. 
+            void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
+            {
 
-            // The Stop method stops and resets the media to be played from 
-            // the beginning.
-            myMediaElement.Stop();
+                // The Stop method stops and resets the media to be played from 
+                // the beginning.
+                myMediaElement.Stop();
 
-        }
+            }
 
-        // When the media playback is finished. Stop() the media to seek to media start. 
-        private void Element_MediaEnded(object sender, EventArgs e)
-        {
-            myMediaElement.Stop();
-        }
+            // When the media playback is finished. Stop() the media to seek to media start. 
+            private void Element_MediaEnded(object sender, EventArgs e)
+            {
+                myMediaElement.Stop();
+            }
+        #endregion
 
         private void anadirDocumento(object sender, RoutedEventArgs e)
         {
@@ -96,8 +125,12 @@ namespace TFG
             {
                 Console.WriteLine(exc.StackTrace);
             }
-           
-            
+
+        }
+
+        private void generarHistograma(object sender, RoutedEventArgs e)
+        {
+            myHistogram.Points = GraphicActions.getRandomNumbers();
         }
 
     }

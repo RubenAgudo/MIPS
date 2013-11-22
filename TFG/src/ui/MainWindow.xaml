@@ -14,7 +14,8 @@
                                 <Grid>
                                     <StackPanel>
                                         <Button  Click="abrirVideo" Name="btnAbrirVideo" FontSize="15" >Abrir Video</Button>
-                                        <Button  Click="anadirDocumento" Name="AnadirDocumento" FontSize="15" >Add</Button>
+                                        <Button  Click="anadirDocumento" Name="btnAnadirDocumento" FontSize="15" >Add</Button>
+                                        <Button  Click="generarHistograma" Name="btnHistograma">Añadir Histograma</Button>
                                     </StackPanel>
                                 </Grid>
                             </avalonDock:LayoutDocument>
@@ -32,7 +33,9 @@
                     <avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
                         <avalonDock:LayoutAnchorablePane>
                             <avalonDock:LayoutAnchorable Title="Tool 1">
-                                <TextBox/>
+                                <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="4">
+                                    <Polygon Name="myHistogram" Stretch="Fill" Fill="Black" Opacity="0.8" />
+                                </Border>
                             </avalonDock:LayoutAnchorable>
                             <avalonDock:LayoutAnchorable Title="Tool 2">
                                 <TextBox/>
@@ -42,17 +45,11 @@
                             <avalonDock:LayoutAnchorable Title="Tool 3">
                                 <Grid>
                                     
-                                    <MediaElement AllowDrop="True" Name="myMediaElement" 
-                                        Margin="11,0,9,106" 
-                                        RenderTransformOrigin="0.5,0.5" LoadedBehavior="Manual">
-                                        <MediaElement.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform AngleY="0.23"/>
-                                                <RotateTransform/>
-                                                <TranslateTransform Y="0.996"/>
-                                            </TransformGroup>
-                                        </MediaElement.RenderTransform>
+                                    <MediaElement AllowDrop="True" 
+                                                  Name="myMediaElement" 
+                                                  Margin="11,0,9,106" 
+                                                  RenderTransformOrigin="0.5,0.5" 
+                                                  LoadedBehavior="Manual">
                                     </MediaElement>
 
                                     <StackPanel Orientation="Horizontal" Margin="0,0,10,10" VerticalAlignment="Bottom">
@@ -63,7 +60,11 @@
                                         <Button Click="OnMouseDownPauseMedia" Name="Pause" FontSize="15">[II]</Button>
                                         <!-- Stop button. -->
                                         <Button Click="OnMouseDownStopMedia" Name="Stop" FontSize="15">[#]</Button>
-                                        
+                                        <Slider Minimum="0" Maximum="1" Width="100" 
+                                                Value="{Binding Path=Volume,ElementName=myMediaElement}" />
+
+
+
                                         <!-- Volume slider. This slider allows a Volume range between 0 and 1. --><!--
                                         <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5"  >Volume</TextBlock>
                                         <Slider Name="volumeSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaVolume" 
@@ -100,6 +101,7 @@
                 </avalonDock:LayoutRoot.LeftSide>
             </avalonDock:LayoutRoot>
         </avalonDock:DockingManager>
+        
 
     </Grid>
 </Window>

@@ -16,7 +16,8 @@ namespace TFG.src.classes
             OpenFileDialog dlg = new OpenFileDialog();
             //dlg.FileName = "Document"; // Default file name
             dlg.DefaultExt = ".avi"; // Default file extension
-            dlg.Filter = "Video Files (.avi)|*.avi"; // Filter files by extension
+            // Filter files by extension
+            dlg.Filter = "All Video Types|*.avi;*.m4v;*.mp4;*.mpg;*.mp4v"; 
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
