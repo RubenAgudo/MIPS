@@ -79,27 +79,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="src\ui\graphics.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="src\ui\VideoPlayer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\classes\GraphicActions.cs" />
     <Compile Include="src\classes\VideoActions.cs" />
-    <Compile Include="src\ui\graphics.xaml.cs">
-      <DependentUpon>graphics.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="src\ui\VideoPlayer.xaml.cs">
-      <DependentUpon>VideoPlayer.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Page Include="src\ui\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

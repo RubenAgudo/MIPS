@@ -15,42 +15,19 @@ using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 using TFG.src.classes;
 using System.ComponentModel;
+using Xceed.Wpf.AvalonDock.Themes;
 
 namespace TFG
 {
     /// <summary>
     /// Lógica de interacción para MainWindow2.xaml
     /// </summary>
-    public partial class MainWindow2 : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private int docNumber;
-        private PointCollection histogramValues;
 
-        #region Properties
-        public PointCollection HistogramValues
-        {
-            get
-            {
-                return this.histogramValues;
-            }
-            set
-            {
-                if (this.histogramValues != value)
-                {
-                    this.histogramValues = value;
-                    if (this.PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("HistogramValues"));
-                    }
-                }
-            }
-        }
-        #endregion
-
-        public MainWindow2()
+        public MainWindow()
         {
             docNumber = 0;
             InitializeComponent();
@@ -106,8 +83,10 @@ namespace TFG
                 LayoutDocument layoutDocument = new LayoutDocument { Title = "New Document " + docNumber };
 
                 //*********Here you could add whatever you want***********
-                layoutDocument.Content = new StackPanel();
-
+                StackPanel panel = new StackPanel();
+                panel.Children.Add(new TextBox());
+                layoutDocument.Content = panel;
+                
                 //Add the new LayoutDocument to the existing array
                 documentPane.Children.Add(layoutDocument);
             }
@@ -131,7 +110,41 @@ namespace TFG
         private void generarHistograma(object sender, RoutedEventArgs e)
         {
             myHistogram.Points = GraphicActions.getRandomNumbers();
+            
         }
 
+        private void anadirPanelVideo(object sender, RoutedEventArgs e)
+        {
+            LayoutAnchorablePane pane = dockingManager.Layout.Descendents().
+                OfType<LayoutAnchorablePane>().FirstOrDefault();
+
+            if (pane != null)
+            {
+                //TODO do something here
+            }
+        }
+
+        private void mnitAnadirPanelGrafico_Click(object sender, RoutedEventArgs e)
+        {
+            LayoutAnchorablePane pane = dockingManager.Layout.Descendents().
+                OfType<LayoutAnchorablePane>().FirstOrDefault();
+
+            if (pane != null)
+            {
+                LayoutAnchorable doc = new LayoutAnchorable();
+                doc.Title = "MyGraphPane";
+                Grid grid = new Grid();
+                Polyline pL = new Polyline();
+                pL.Points = GraphicActions.getRandomNumbers();
+                pL.Stroke = Brushes.Black;
+                pL.Stretch = Stretch.Fill;
+                pL.Name = "myPolyLine";
+                grid.Children.Add(pL);
+                doc.Content = grid;
+                pane.Children.Add(doc);
+
+            }
+            
+        }
     }
 }

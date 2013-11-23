@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{inputenc}
+%\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{url}
+
+
+\setmainfont{Helvetica Neue}
+
+
+\begin{document}
+
+\author{Rub\'{e}n Agudo Santos}
+\title{Trabajo de Fin de Grado}
+\date{6 de Junio del 2014}
+
+%\frontmatter
+\maketitle
+\tableofcontents
+\newpage
+%\mainmatter
+    
+   \include{./Chapters/Introduccion}
+   \include{./Chapters/Objetivos_del_proyecto}
+   \include{./Chapters/Antecedentes}
+   \include{./Chapters/Captura_de_requisitos}
+   \include{./Chapters/Analisis_y_Diseno}
+   \include{./Chapters/Verificacion_y_evaluacion}
+   \include{./Chapters/Conclusiones_y_trabajo_futuro}
+    
+    
+    
+%\backmatter
+    \bibliographystyle{amsplain}
+    \bibliography{./Bibliography/bibliografia}
+    
+% bibliography, glossary and index would go here.
+
+\end{document}

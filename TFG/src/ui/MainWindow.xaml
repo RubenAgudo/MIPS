@@ -1,106 +1,137 @@
-﻿<Window x:Class="TFG.MainWindow2"
+﻿<Window x:Class="TFG.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow2" Height="507" Width="854" 
+        Title="MainWindow" Height="507" Width="854" 
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock">
     
     <Grid>
-        <avalonDock:DockingManager x:Name="dockingManager">
-            <avalonDock:LayoutRoot>
-                <avalonDock:LayoutPanel Orientation="Horizontal">
-                    <avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
-                        <avalonDock:LayoutDocumentPane>
-                            <avalonDock:LayoutDocument Title="Doc1">
-                                <Grid>
-                                    <StackPanel>
-                                        <Button  Click="abrirVideo" Name="btnAbrirVideo" FontSize="15" >Abrir Video</Button>
-                                        <Button  Click="anadirDocumento" Name="btnAnadirDocumento" FontSize="15" >Add</Button>
-                                        <Button  Click="generarHistograma" Name="btnHistograma">Añadir Histograma</Button>
-                                    </StackPanel>
-                                </Grid>
-                            </avalonDock:LayoutDocument>
-                            <avalonDock:LayoutDocument Title="Doc2">
-                                <TextBox/>
-                            </avalonDock:LayoutDocument>
-                            
-                        </avalonDock:LayoutDocumentPane>
-                        <avalonDock:LayoutDocumentPane>
-                            <avalonDock:LayoutDocument Title="Doc3">
-                                <TextBox/>
-                            </avalonDock:LayoutDocument>
-                        </avalonDock:LayoutDocumentPane>
-                    </avalonDock:LayoutDocumentPaneGroup>
-                    <avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
-                        <avalonDock:LayoutAnchorablePane>
-                            <avalonDock:LayoutAnchorable Title="Tool 1">
-                                <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="4">
-                                    <Polygon Name="myHistogram" Stretch="Fill" Fill="Black" Opacity="0.8" />
-                                </Border>
-                            </avalonDock:LayoutAnchorable>
-                            <avalonDock:LayoutAnchorable Title="Tool 2">
-                                <TextBox/>
-                            </avalonDock:LayoutAnchorable>
-                        </avalonDock:LayoutAnchorablePane>
-                        <avalonDock:LayoutAnchorablePane>
-                            <avalonDock:LayoutAnchorable Title="Tool 3">
-                                <Grid>
-                                    
-                                    <MediaElement AllowDrop="True" 
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+                <MenuItem Header="_Tools">
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+                <MenuItem Header="_Add">
+                    <MenuItem Header="_GraphPanel" Name="mnitAnadirPanelGrafico" Click="mnitAnadirPanelGrafico_Click" />
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+            </Menu>
+
+            <avalonDock:DockingManager x:Name="dockingManager"
+                                       DockPanel.Dock="Bottom">
+                <avalonDock:LayoutRoot>
+                    <avalonDock:LayoutPanel Orientation="Horizontal">
+                        <avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
+                            <avalonDock:LayoutDocumentPane>
+                                <avalonDock:LayoutDocument Title="Doc1">
+                                    <Grid>
+                                        <StackPanel>
+                                            <Button  Click="abrirVideo" Name="btnAbrirVideo" FontSize="15" >Abrir Video</Button>
+                                            <Button  Click="anadirDocumento" Name="btnAnadirDocumento" FontSize="15" >Add</Button>
+                                            <Button  Click="generarHistograma" Name="btnHistograma" FontSize="15">Añadir Histograma</Button>
+                                            <Button  Click="anadirPanelVideo" Name="btnPanelVideo" FontSize="15">Panel Video</Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </avalonDock:LayoutDocument>
+                                <avalonDock:LayoutDocument Title="Doc2">
+                                    <TextBox/>
+                                </avalonDock:LayoutDocument>
+
+                            </avalonDock:LayoutDocumentPane>
+                            <avalonDock:LayoutDocumentPane>
+                                <avalonDock:LayoutDocument Title="Doc3">
+                                    <TextBox/>
+                                </avalonDock:LayoutDocument>
+                            </avalonDock:LayoutDocumentPane>
+                        </avalonDock:LayoutDocumentPaneGroup>
+                        <avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
+                            <avalonDock:LayoutAnchorablePane>
+                                <avalonDock:LayoutAnchorable Title="Tool 1">
+                                    <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="4">
+                                        <Polygon Name="myHistogram" Stretch="Fill" Fill="Black" Opacity="0.8" />
+                                    </Border>
+                                </avalonDock:LayoutAnchorable>
+                                <avalonDock:LayoutAnchorable Title="Tool 2">
+                                    <TextBox/>
+                                </avalonDock:LayoutAnchorable>
+                            </avalonDock:LayoutAnchorablePane>
+                            <avalonDock:LayoutAnchorablePane>
+                                <avalonDock:LayoutAnchorable Title="Tool 3">
+                                    <Grid>
+
+                                        <MediaElement AllowDrop="True" 
                                                   Name="myMediaElement" 
                                                   Margin="11,0,9,106" 
                                                   RenderTransformOrigin="0.5,0.5" 
                                                   LoadedBehavior="Manual">
-                                    </MediaElement>
+                                        </MediaElement>
 
-                                    <StackPanel Orientation="Horizontal" Margin="0,0,10,10" VerticalAlignment="Bottom">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,10,10" VerticalAlignment="Bottom">
 
-                                        <!-- Play button. -->
-                                        <Button  Click="OnMouseDownPlayMedia" Name="Play" FontSize="15" >[|>]</Button>
-                                        <!-- Pause button. -->
-                                        <Button Click="OnMouseDownPauseMedia" Name="Pause" FontSize="15">[II]</Button>
-                                        <!-- Stop button. -->
-                                        <Button Click="OnMouseDownStopMedia" Name="Stop" FontSize="15">[#]</Button>
-                                        <Slider Minimum="0" Maximum="1" Width="100" 
+                                            <!-- Play button. -->
+                                            <Button  Click="OnMouseDownPlayMedia" Name="Play" FontSize="15" >[|>]</Button>
+                                            <!-- Pause button. -->
+                                            <Button Click="OnMouseDownPauseMedia" Name="Pause" FontSize="15">[II]</Button>
+                                            <!-- Stop button. -->
+                                            <Button Click="OnMouseDownStopMedia" Name="Stop" FontSize="15">[#]</Button>
+                                            <Slider Minimum="0" Maximum="1" Width="100" 
                                                 Value="{Binding Path=Volume,ElementName=myMediaElement}" />
 
 
 
-                                        <!-- Volume slider. This slider allows a Volume range between 0 and 1. --><!--
+                                            <!-- Volume slider. This slider allows a Volume range between 0 and 1. -->
+                                            <!--
                                         <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5"  >Volume</TextBlock>
                                         <Slider Name="volumeSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaVolume" 
                                             Minimum="0" Maximum="1" Value="0.5" Width="70"/>
 
-                                        --><!-- Volume slider. This slider allows you to change the speed of the media playback. --><!--
+                                        -->
+                                            <!-- Volume slider. This slider allows you to change the speed of the media playback. -->
+                                            <!--
                                         <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Speed</TextBlock>
                                         <Slider Name="speedRatioSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaSpeedRatio" 
                                             Value="1" Width="70" />
 
-                                        --><!-- Seek to slider. Ths slider allows you to jump to different parts of the media playback. --><!--
+                                        -->
+                                            <!-- Seek to slider. Ths slider allows you to jump to different parts of the media playback. -->
+                                            <!--
                                         <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Seek To</TextBlock>
                                         <Slider Name="timelineSlider" Margin="5,20" ValueChanged="SeekToMediaPosition" Width="70"/>-->
 
-                                    </StackPanel>
-                                </Grid>
+                                        </StackPanel>
+                                    </Grid>
 
 
-                            </avalonDock:LayoutAnchorable>
-                            <avalonDock:LayoutAnchorable Title="Tool 4">
-                                <TextBox/>
-                            </avalonDock:LayoutAnchorable>
-                        </avalonDock:LayoutAnchorablePane>
-                    </avalonDock:LayoutAnchorablePaneGroup>
-                </avalonDock:LayoutPanel>
-                <avalonDock:LayoutRoot.LeftSide>
-                    <avalonDock:LayoutAnchorSide>
-                        <avalonDock:LayoutAnchorGroup>
-                            <avalonDock:LayoutAnchorable Title="Autohidden Content">
-                                <TextBox/>
-                            </avalonDock:LayoutAnchorable>
-                        </avalonDock:LayoutAnchorGroup>
-                    </avalonDock:LayoutAnchorSide>
-                </avalonDock:LayoutRoot.LeftSide>
-            </avalonDock:LayoutRoot>
-        </avalonDock:DockingManager>
+                                </avalonDock:LayoutAnchorable>
+                                <avalonDock:LayoutAnchorable Title="Tool 4">
+                                    <TextBox/>
+                                </avalonDock:LayoutAnchorable>
+                            </avalonDock:LayoutAnchorablePane>
+                        </avalonDock:LayoutAnchorablePaneGroup>
+                    </avalonDock:LayoutPanel>
+                    <avalonDock:LayoutRoot.LeftSide>
+                        <avalonDock:LayoutAnchorSide>
+                            <avalonDock:LayoutAnchorGroup>
+                                <avalonDock:LayoutAnchorable Title="Autohidden Content">
+                                    <TextBox/>
+                                </avalonDock:LayoutAnchorable>
+                            </avalonDock:LayoutAnchorGroup>
+                        </avalonDock:LayoutAnchorSide>
+                    </avalonDock:LayoutRoot.LeftSide>
+                </avalonDock:LayoutRoot>
+            </avalonDock:DockingManager>
+
+        </DockPanel>
+
+        
         
 
     </Grid>
