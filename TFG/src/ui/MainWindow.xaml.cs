@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 using TFG.src.classes;
+using TFG.src.ui.userControls;
 using System.ComponentModel;
 using Xceed.Wpf.AvalonDock.Themes;
 
@@ -34,75 +35,21 @@ namespace TFG
             this.DataContext = this;
         }
 
-        #region PlayBackControl
-            // Play the media. 
-            void OnMouseDownPlayMedia(object sender, RoutedEventArgs args)
-            {
 
-                // The Play method will begin the media if it is not currently active or  
-                // resume media if it is paused. This has no effect if the media is 
-                // already running.
-                myMediaElement.Play();
-
-            }
-
-            // Pause the media. 
-            void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
-            {
-
-                // The Pause method pauses the media if it is currently running. 
-                // The Play method can be used to resume.
-                myMediaElement.Pause();
-
-            }
-
-            // Stop the media. 
-            void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
-            {
-
-                // The Stop method stops and resets the media to be played from 
-                // the beginning.
-                myMediaElement.Stop();
-
-            }
-
-            // When the media playback is finished. Stop() the media to seek to media start. 
-            private void Element_MediaEnded(object sender, EventArgs e)
-            {
-                myMediaElement.Stop();
-            }
-        #endregion
-
-        private void anadirDocumento(object sender, RoutedEventArgs e)
+        private void anadirVideo(object sender, RoutedEventArgs e)
         {
-            var documentPane = dockingManager.Layout.Descendents().OfType<LayoutDocumentPane>().FirstOrDefault();
-            
-            if (documentPane != null)
-            {
-                docNumber++;
-                LayoutDocument layoutDocument = new LayoutDocument { Title = "New Document " + docNumber };
+            LayoutAnchorablePane pane = dockingManager.Layout.Descendents().
+                OfType<LayoutAnchorablePane>().FirstOrDefault();
 
-                //*********Here you could add whatever you want***********
-                StackPanel panel = new StackPanel();
-                panel.Children.Add(new TextBox());
-                layoutDocument.Content = panel;
-                
-                //Add the new LayoutDocument to the existing array
-                documentPane.Children.Add(layoutDocument);
-            }
-        }
+            if (pane != null)
+            {
+                LayoutAnchorable doc = new LayoutAnchorable();
+                doc.Title = "VideoTest";
 
-        private void abrirVideo(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Uri path = new Uri(VideoActions.openFile());
-                myMediaElement.Source = path;
-                
-            }
-            catch (ArgumentNullException exc)
-            {
-                Console.WriteLine(exc.StackTrace);
+                UserControl Video = new UC_VideoPlayer();
+                doc.Content = Video;
+                pane.Children.Add(doc);
+
             }
 
         }
@@ -132,7 +79,8 @@ namespace TFG
             if (pane != null)
             {
                 LayoutAnchorable doc = new LayoutAnchorable();
-                doc.Title = "MyGraphPane";
+                doc.Title = "MyGraphPane"; 
+                
                 Grid grid = new Grid();
                 Polyline pL = new Polyline();
                 pL.Points = GraphicActions.getRandomNumbers();
@@ -146,5 +94,14 @@ namespace TFG
             }
             
         }
+
+        private void btnPruebas_Click(object sender, RoutedEventArgs e)
+        {
+            Button b1 = new Button();
+            b1.Name = "test";
+            
+        }
+
+
     }
 }
