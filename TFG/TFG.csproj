@@ -88,10 +88,18 @@
     </Compile>
     <Compile Include="src\classes\GraphicActions.cs" />
     <Compile Include="src\classes\VideoActions.cs" />
+    <Compile Include="src\interfaces\ISynchronizable.cs" />
+    <Compile Include="src\ui\userControls\UC_DataVisualizer.xaml.cs">
+      <DependentUpon>UC_DataVisualizer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\ui\userControls\UC_VideoPlayer.xaml.cs">
       <DependentUpon>UC_VideoPlayer.xaml</DependentUpon>
     </Compile>
     <Page Include="src\ui\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\ui\userControls\UC_DataVisualizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TFG.src.classes;
+using TFG.src.interfaces;
 using System.Windows.Threading;
 
 namespace TFG.src.ui.userControls
@@ -20,7 +21,7 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_VideoPlayer.xaml
     /// </summary>
-    public partial class UC_VideoPlayer : UserControl
+    public partial class UC_VideoPlayer : UserControl, ISynchronizable
     {
         private DispatcherTimer timer;
         private int seconds;
@@ -30,9 +31,9 @@ namespace TFG.src.ui.userControls
             seconds = 0;
         }
 
-        #region PlayBackControl
+        #region PlayBackControlEvents
         // Play the media. 
-        void OnMouseDownPlayMedia(object sender, RoutedEventArgs args)
+        private void OnMouseDownPlayMedia(object sender, RoutedEventArgs args)
         {
 
             // The Play method will begin the media if it is not currently active or  
@@ -48,7 +49,7 @@ namespace TFG.src.ui.userControls
         }
 
         // Pause the media. 
-        void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
+        private void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
         {
 
             // The Pause method pauses the media if it is currently running. 
@@ -58,7 +59,7 @@ namespace TFG.src.ui.userControls
         }
 
         // Stop the media. 
-        void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
+        private void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
         {
 
             // The Stop method stops and resets the media to be played from 
@@ -71,6 +72,18 @@ namespace TFG.src.ui.userControls
         private void Element_MediaEnded(object sender, EventArgs e)
         {
             myMediaElement.Stop();
+        }
+        #endregion
+
+        #region PlayBackControl
+        public void pause()
+        {
+            myMediaElement.Pause();
+        }
+
+        public void play()
+        {
+            myMediaElement.Play();
         }
         #endregion
 
@@ -113,11 +126,22 @@ namespace TFG.src.ui.userControls
             }
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             seconds += 1;
             myMediaElement.Position = new TimeSpan(0,0,seconds);
         }
 
+        public void sync(TimeSpan position)
+        {
+            myMediaElement.Position = position;
+            
+        }
+
+
+        public TimeSpan position()
+        {
+            return myMediaElement.Position;
+        }
     }
 }

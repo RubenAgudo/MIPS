@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="507" Width="854" 
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock">
-    
-    <Grid>
+
+    <Grid x:Name="grid" x:FieldModifier="private">
 
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -21,6 +21,7 @@
                 <MenuItem Header="_Add">
                     <MenuItem Header="_GraphPanel" Name="mnitAnadirPanelGrafico" Click="mnitAnadirPanelGrafico_Click" />
                     <MenuItem Header="_Añadir Video" Name="mnitAnadirVideo" Click="anadirVideo" />
+                    <MenuItem Header="_Sync" Name="mnitSync" IsCheckable="True" Click="mnitSync_Click" />
                     <MenuItem Header="_Close"/>
                     <MenuItem Header="_Save"/>
                 </MenuItem>
@@ -29,36 +30,29 @@
             <avalonDock:DockingManager x:Name="dockingManager"
                                        DockPanel.Dock="Bottom">
                 <avalonDock:LayoutRoot>
-                    <avalonDock:LayoutPanel Orientation="Horizontal">
-                        <avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
-                            <avalonDock:LayoutDocumentPane x:Name="prueba2">
-                                <avalonDock:LayoutDocument Title="Doc1" x:Name="doc1">
-                                    <Grid>
-                                        <StackPanel>
-                                            <Button  Click="generarHistograma" Name="btnHistograma" FontSize="15">Añadir Histograma</Button>
-                                            <Button  Click="anadirPanelVideo" Name="btnPanelVideo" FontSize="15">Panel Video</Button>
-                                            <Button  Click="btnPruebas_Click" Name="btnPruebas" FontSize="15">Pruebas</Button>
-                                        </StackPanel>
-                                    </Grid>
-                                </avalonDock:LayoutDocument>
-                                <avalonDock:LayoutDocument Title="Doc2">
-                                    <TextBox/>
-                                </avalonDock:LayoutDocument>
 
-                            </avalonDock:LayoutDocumentPane>
-                            
-                        </avalonDock:LayoutDocumentPaneGroup>
+                    <avalonDock:LayoutPanel Orientation="Horizontal">
+                        
                         <avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
-                            <avalonDock:LayoutAnchorablePane>
-                                <avalonDock:LayoutAnchorable Title="Tool 1">
-                                    <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="4">
-                                        <Polygon Name="myHistogram" Stretch="Fill" Fill="Black" Opacity="0.8" />
-                                    </Border>
-                                </avalonDock:LayoutAnchorable>
-                                
+                            
+                            <avalonDock:LayoutAnchorablePane x:Name="mainPanel">
+
+
                             </avalonDock:LayoutAnchorablePane>
+
+                        
                             
                         </avalonDock:LayoutAnchorablePaneGroup>
+
+
+                        <!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
+
+                            
+
+                            
+                            
+                            </avalonDock:LayoutDocumentPaneGroup>-->
+
                     </avalonDock:LayoutPanel>
                     
                     
@@ -72,6 +66,7 @@
                             </avalonDock:LayoutAnchorGroup>
                         </avalonDock:LayoutAnchorSide>
                     </avalonDock:LayoutRoot.LeftSide>
+                    
                 </avalonDock:LayoutRoot>
             </avalonDock:DockingManager>
 

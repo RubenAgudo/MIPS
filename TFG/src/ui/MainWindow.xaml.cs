@@ -26,82 +26,104 @@ namespace TFG
     public partial class MainWindow : Window
     {
 
-        private int docNumber;
+        private int paneNumber;
+        LinkedList<UC_VideoPlayer> videoPanes;
 
         public MainWindow()
         {
-            docNumber = 0;
             InitializeComponent();
             this.DataContext = this;
+            paneNumber = 0;
+            videoPanes = new LinkedList<UC_VideoPlayer>();
         }
 
 
         private void anadirVideo(object sender, RoutedEventArgs e)
         {
-            LayoutAnchorablePane pane = dockingManager.Layout.Descendents().
-                OfType<LayoutAnchorablePane>().FirstOrDefault();
-
-            if (pane != null)
+            try
             {
-                LayoutAnchorable doc = new LayoutAnchorable();
-                doc.Title = "VideoTest";
-
-                UserControl Video = new UC_VideoPlayer();
-                doc.Content = Video;
-                pane.Children.Add(doc);
+                UC_VideoPlayer video = new UC_VideoPlayer();
+                videoPanes.AddLast(video);
+                addToAnchorablePane(video);
 
             }
-
-        }
-
-        private void generarHistograma(object sender, RoutedEventArgs e)
-        {
-            myHistogram.Points = GraphicActions.getRandomNumbers();
-            
-        }
-
-        private void anadirPanelVideo(object sender, RoutedEventArgs e)
-        {
-            LayoutAnchorablePane pane = dockingManager.Layout.Descendents().
-                OfType<LayoutAnchorablePane>().FirstOrDefault();
-
-            if (pane != null)
+            catch(NotImplementedException ex)
             {
-                //TODO do something here
+                System.Console.WriteLine(ex.StackTrace);
+                
             }
+                
+
         }
 
         private void mnitAnadirPanelGrafico_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                UC_DataVisualizer dataVisualizer = new UC_DataVisualizer();
+                addToAnchorablePane(dataVisualizer);
+            }
+            catch(NotImplementedException ex)
+            {
+                System.Console.WriteLine(ex.StackTrace);
+            }
+        }
+
+        
+
+         /// <summary>
+         /// This method add a UserControl to an AnchorablePane
+         /// </summary>
+         /// <param name="objectToAdd">The UserControl you want to add</param>
+         /// <exception cref="NotImplementedException"></exception>
+        private void addToAnchorablePane(UserControl objectToAdd)
+        {
             LayoutAnchorablePane pane = dockingManager.Layout.Descendents().
-                OfType<LayoutAnchorablePane>().FirstOrDefault();
+                 OfType<LayoutAnchorablePane>().FirstOrDefault();
 
             if (pane != null)
             {
                 LayoutAnchorable doc = new LayoutAnchorable();
-                doc.Title = "MyGraphPane"; 
-                
-                Grid grid = new Grid();
-                Polyline pL = new Polyline();
-                pL.Points = GraphicActions.getRandomNumbers();
-                pL.Stroke = Brushes.Black;
-                pL.Stretch = Stretch.Fill;
-                pL.Name = "myPolyLine";
-                grid.Children.Add(pL);
-                doc.Content = grid;
+                doc.Title = "Pane " + ++paneNumber;
+                doc.Content = objectToAdd;
                 pane.Children.Add(doc);
 
             }
-            
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        private void btnPruebas_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// This method syncs all the video panes in fact reset all. All the videos must have the same lenght.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnitSync_Click(object sender, RoutedEventArgs e)
         {
-            Button b1 = new Button();
-            b1.Name = "test";
-            
+            bool first = true;
+            UC_VideoPlayer baseVideo = null;
+            //UC_VideoPlayer video;
+            foreach (UC_VideoPlayer actualVideo in videoPanes)
+            {
+               
+                if(first)
+                {
+                    baseVideo = actualVideo;
+                    first = false;
+                } 
+                
+                actualVideo.pause();
+                actualVideo.sync(baseVideo.position());
+                //baseVideo = actualVideo;
+                 
+            }
+
+            foreach (UC_VideoPlayer actualVideo in videoPanes)
+            {
+                actualVideo.play();
+            }
         }
-
-
     }
 }
