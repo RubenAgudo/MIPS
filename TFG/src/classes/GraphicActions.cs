@@ -1,5 +1,4 @@
-﻿using AForge.Imaging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,11 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using TFG.src.ui.userControls;
+using TFG.src.interfaces;
 
 namespace TFG.src.classes
 {
-    public static class GraphicActions
+    public class GraphicActions
     {
+
+        LinkedList<UC_DataVisualizer> data;
+
+        public GraphicActions()
+        {
+            data = new LinkedList<UC_DataVisualizer>();
+        }
 
         private static PointCollection drawHistogram(int[] data)
         {
@@ -46,6 +54,19 @@ namespace TFG.src.classes
             }
             return drawHistogram(data);
             
+        }
+
+        public void sync()
+        {
+            foreach (UC_DataVisualizer datav in data)
+            {
+                datav.sync(new TimeSpan());
+            }
+        }
+
+        public void addLast(UC_DataVisualizer dataVisualizer)
+        {
+            this.data.AddLast(dataVisualizer);
         }
 
     }

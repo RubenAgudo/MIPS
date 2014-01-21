@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTesting
 {
     [TestClass]
-    public class Unit
+    public class VideoActions
     {
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }

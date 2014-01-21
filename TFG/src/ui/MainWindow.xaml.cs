@@ -27,14 +27,17 @@ namespace TFG
     {
 
         private int paneNumber;
-        LinkedList<UC_VideoPlayer> videoPanes;
+        private VideoActions videoActions;
+        private GraphicActions graphicActions;
 
         public MainWindow()
         {
             InitializeComponent();
+            
             this.DataContext = this;
             paneNumber = 0;
-            videoPanes = new LinkedList<UC_VideoPlayer>();
+            videoActions = new VideoActions();
+            graphicActions = new GraphicActions();
         }
 
 
@@ -43,7 +46,7 @@ namespace TFG
             try
             {
                 UC_VideoPlayer video = new UC_VideoPlayer();
-                videoPanes.AddLast(video);
+                videoActions.addVideo(video);
                 addToAnchorablePane(video);
 
             }
@@ -61,6 +64,7 @@ namespace TFG
             try
             {
                 UC_DataVisualizer dataVisualizer = new UC_DataVisualizer();
+                graphicActions.addLast(dataVisualizer);
                 addToAnchorablePane(dataVisualizer);
             }
             catch(NotImplementedException ex)
@@ -102,28 +106,8 @@ namespace TFG
         /// <param name="e"></param>
         private void mnitSync_Click(object sender, RoutedEventArgs e)
         {
-            bool first = true;
-            UC_VideoPlayer baseVideo = null;
-            //UC_VideoPlayer video;
-            foreach (UC_VideoPlayer actualVideo in videoPanes)
-            {
-               
-                if(first)
-                {
-                    baseVideo = actualVideo;
-                    first = false;
-                } 
-                
-                actualVideo.pause();
-                actualVideo.sync(baseVideo.position());
-                //baseVideo = actualVideo;
-                 
-            }
-
-            foreach (UC_VideoPlayer actualVideo in videoPanes)
-            {
-                actualVideo.play();
-            }
+            videoActions.sync();
+            graphicActions.sync();
         }
     }
 }

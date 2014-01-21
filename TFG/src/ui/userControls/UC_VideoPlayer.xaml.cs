@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ using System.Windows.Shapes;
 using TFG.src.classes;
 using TFG.src.interfaces;
 using System.Windows.Threading;
+using AForge.Video;
+using AForge.Video.FFMPEG;
+using AForge;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace TFG.src.ui.userControls
 {
@@ -23,12 +29,18 @@ namespace TFG.src.ui.userControls
     /// </summary>
     public partial class UC_VideoPlayer : UserControl, ISynchronizable
     {
+
+        private VideoFileReader reader;
         private DispatcherTimer timer;
+        
         private int seconds;
+
         public UC_VideoPlayer()
         {
             InitializeComponent();
             seconds = 0;
+            reader = new VideoFileReader();
+            
         }
 
         #region PlayBackControlEvents
@@ -39,12 +51,19 @@ namespace TFG.src.ui.userControls
             // The Play method will begin the media if it is not currently active or  
             // resume media if it is paused. This has no effect if the media is 
             // already running.
-            if (!myMediaElement.HasVideo)
+            if (!reader.IsOpen)
             {
                 abrirVideo(sender, args);
+                activarTemporizador();
             }
-            myMediaElement.Volume = 0;
-            myMediaElement.Play();
+            else
+            {
+                timer.Start();
+            }
+            //myMediaElement.Volume = 0;
+            //myMediaElement.Play();
+            
+           
 
         }
 
@@ -54,7 +73,8 @@ namespace TFG.src.ui.userControls
 
             // The Pause method pauses the media if it is currently running. 
             // The Play method can be used to resume.
-            myMediaElement.Pause();
+            //myMediaElement.Pause();
+            timer.Stop();
 
         }
 
@@ -64,26 +84,29 @@ namespace TFG.src.ui.userControls
 
             // The Stop method stops and resets the media to be played from 
             // the beginning.
-            myMediaElement.Stop();
+           // myMediaElement.Stop();
+            timer.Stop();
 
         }
 
         // When the media playback is finished. Stop() the media to seek to media start. 
         private void Element_MediaEnded(object sender, EventArgs e)
         {
-            myMediaElement.Stop();
+            timer.Stop();
         }
         #endregion
 
         #region PlayBackControl
         public void pause()
         {
-            myMediaElement.Pause();
+            timer.Stop();
+            //myMediaElement.Pause();
         }
 
         public void play()
         {
-            myMediaElement.Play();
+            timer.Start();
+            //myMediaElement.Play();
         }
         #endregion
 
@@ -91,8 +114,11 @@ namespace TFG.src.ui.userControls
         {
             try
             {
-                Uri path = new Uri(VideoActions.openFile());
-                myMediaElement.Source = path;
+                string path = VideoActions.openFile();
+                Uri uriPath = new Uri(path);
+                //myMediaElement.Source = uriPath;
+                Console.WriteLine(path);
+                reader.Open(path);
 
             }
             catch (ArgumentNullException exc)
@@ -104,44 +130,63 @@ namespace TFG.src.ui.userControls
             {
                 Console.WriteLine(exc1.StackTrace);
             }
+            catch (VideoException exc2)
+            {
+                Console.WriteLine(exc2.StackTrace);
+            }
 
         }
 
-        private void SecondPerSecond_Click(object sender, RoutedEventArgs e)
+        private void activarTemporizador()
         {
             if (timer == null)
             {
                 timer = new DispatcherTimer();
                 timer.Interval = new TimeSpan(1000);
                 timer.Tick += timer_Tick;
-            }
-
-            if (SecondPerSecond.IsChecked == true)
-            {
                 timer.Start();
             }
-            else
-            {
-                timer.Stop();
-            }
+
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            seconds += 1;
-            myMediaElement.Position = new TimeSpan(0,0,seconds);
+            MemoryStream memory = new MemoryStream();
+            Bitmap bitmap = reader.ReadVideoFrame();
+            bitmap.Save(memory, ImageFormat.Png);
+            memory.Position = 0;
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = memory;
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.EndInit();
+            image1.Source = bitmapImage;
         }
 
         public void sync(TimeSpan position)
         {
-            myMediaElement.Position = position;
+            //myMediaElement.Position = position;
             
         }
 
 
         public TimeSpan position()
         {
-            return myMediaElement.Position;
+            return new TimeSpan();
         }
+
+        private void AdvanceFrame_Click(object sender, RoutedEventArgs e)
+        {
+            //myMediaElement.Pause();
+            //TimeSpan ts = myMediaElement.Position;
+            //ts = ts.Add(TimeSpan.FromSeconds(10));
+            //myMediaElement.Position = ts;
+            //myMediaElement.Play();
+            //myMediaElement.Pause();
+            
+        }
+
+        
+
     }
 }

@@ -1,31 +1,31 @@
-﻿<UserControl x:Class="TFG.src.ui.userControls.UC_VideoPlayer"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="TFG.src.ui.userControls.UC_VideoPlayer"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <Grid x:Name="grid" x:FieldModifier="private">
-       
-        <MediaElement AllowDrop="True" 
-            Name="myMediaElement" 
-            Margin="11,0,9,106" 
-            RenderTransformOrigin="0.5,0.5" 
-            LoadedBehavior="Manual">
-        </MediaElement>
 
-        <StackPanel Orientation="Horizontal" Margin="0,0,10,10" VerticalAlignment="Bottom">
-
+        <!--<MediaElement  
+			x:Name="myMediaElement" 
+			Margin="11,0,9,106" 
+			RenderTransformOrigin="0.5,0.5" 
+			LoadedBehavior="Manual" IsMuted="True" UnloadedBehavior="Stop" Visibility="Hidden" />-->
+        <Image Name="image1" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
             <!-- Play button. -->
-            <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" Name="Play" FontSize="15" >[|>]</Button>
+            <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
+
             <!-- Pause button. -->
-            <Button x:FieldModifier="private" Click="OnMouseDownPauseMedia" Name="Pause" FontSize="15">[II]</Button>
+            <Button x:FieldModifier="private" Click="OnMouseDownPauseMedia" x:Name="Pause" FontSize="15" Content="[II]"/>
             <!-- Stop button. -->
-            <Button x:FieldModifier="private" Click="OnMouseDownStopMedia" Name="Stop" FontSize="15">[#]</Button>
-            <!--<Slider Minimum="0" Maximum="1" Width="100" 
-                                                Value="{Binding Path=Volume,ElementName=myMediaElement}" />-->
-            <CheckBox Name="SecondPerSecond" Click="SecondPerSecond_Click"/>
+            <Button x:FieldModifier="private" Click="OnMouseDownStopMedia" x:Name="Stop" FontSize="15" Content="[#]"/>
+            <Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
+
         </StackPanel>
+        
     </Grid>
 </UserControl>
