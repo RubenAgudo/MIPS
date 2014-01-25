@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +15,7 @@ using System.Windows.Shapes;
 using TFG.src.classes;
 using TFG.src.interfaces;
 using System.Windows.Threading;
-using AForge.Video;
-using AForge.Video.FFMPEG;
-using AForge;
-using System.IO;
-using System.Drawing.Imaging;
+
 
 namespace TFG.src.ui.userControls
 {
@@ -30,163 +25,75 @@ namespace TFG.src.ui.userControls
     public partial class UC_VideoPlayer : UserControl, ISynchronizable
     {
 
-        private VideoFileReader reader;
+        //private VideoFileReader reader;
         private DispatcherTimer timer;
-        
-        private int seconds;
+        private bool videoOpened;
+        private Uri uriPath;
 
         public UC_VideoPlayer()
         {
+            videoOpened = false;
             InitializeComponent();
-            seconds = 0;
-            reader = new VideoFileReader();
+        }
+
+        public UC_VideoPlayer(string path)
+        {
+            InitializeComponent();
+            this.uriPath = new Uri(path);
+            myMediaElement.Source = uriPath;
             
         }
-
-        #region PlayBackControlEvents
-        // Play the media. 
-        private void OnMouseDownPlayMedia(object sender, RoutedEventArgs args)
-        {
-
-            // The Play method will begin the media if it is not currently active or  
-            // resume media if it is paused. This has no effect if the media is 
-            // already running.
-            if (!reader.IsOpen)
-            {
-                abrirVideo(sender, args);
-                activarTemporizador();
-            }
-            else
-            {
-                timer.Start();
-            }
-            //myMediaElement.Volume = 0;
-            //myMediaElement.Play();
-            
-           
-
-        }
-
-        // Pause the media. 
-        private void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
-        {
-
-            // The Pause method pauses the media if it is currently running. 
-            // The Play method can be used to resume.
-            //myMediaElement.Pause();
-            timer.Stop();
-
-        }
-
-        // Stop the media. 
-        private void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
-        {
-
-            // The Stop method stops and resets the media to be played from 
-            // the beginning.
-           // myMediaElement.Stop();
-            timer.Stop();
-
-        }
-
-        // When the media playback is finished. Stop() the media to seek to media start. 
-        private void Element_MediaEnded(object sender, EventArgs e)
-        {
-            timer.Stop();
-        }
-        #endregion
+        
 
         #region PlayBackControl
-        public void pause()
+        internal void pause()
         {
-            timer.Stop();
-            //myMediaElement.Pause();
+            myMediaElement.Pause();
         }
 
-        public void play()
+        internal void play()
         {
-            timer.Start();
-            //myMediaElement.Play();
+            myMediaElement.Play();
+        }
+        internal void stop()
+        {
+            myMediaElement.Stop();
         }
         #endregion
 
-        private void abrirVideo(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string path = VideoActions.openFile();
-                Uri uriPath = new Uri(path);
-                //myMediaElement.Source = uriPath;
-                Console.WriteLine(path);
-                reader.Open(path);
-
-            }
-            catch (ArgumentNullException exc)
-            {
-                Console.WriteLine(exc.StackTrace);
-
-            }
-            catch (UriFormatException exc1)
-            {
-                Console.WriteLine(exc1.StackTrace);
-            }
-            catch (VideoException exc2)
-            {
-                Console.WriteLine(exc2.StackTrace);
-            }
-
-        }
-
-        private void activarTemporizador()
-        {
-            if (timer == null)
-            {
-                timer = new DispatcherTimer();
-                timer.Interval = new TimeSpan(1000);
-                timer.Tick += timer_Tick;
-                timer.Start();
-            }
-
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            MemoryStream memory = new MemoryStream();
-            Bitmap bitmap = reader.ReadVideoFrame();
-            bitmap.Save(memory, ImageFormat.Png);
-            memory.Position = 0;
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.StreamSource = memory;
-            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            bitmapImage.EndInit();
-            image1.Source = bitmapImage;
-        }
-
+        /// <summary>
+        /// Set the video to the specified position. It's used for syncing all the videos.
+        /// </summary>
+        /// <param name="position"></param>
         public void sync(TimeSpan position)
-        {
-            //myMediaElement.Position = position;
+        {            
+            myMediaElement.Position = position;
             
         }
 
 
-        public TimeSpan position()
+        /// <summary>
+        /// Gets or sets position.
+        /// Set: Sets the Position of the video to the given TimeSpan. 
+        /// Get: Gets the TimeSpan of the video representing it's position
+        /// </summary>
+        public TimeSpan Position
         {
-            return new TimeSpan();
+
+            get
+            {
+                return myMediaElement.Position;
+            }
+            set
+            {
+                myMediaElement.Position = value;
+            }
         }
 
-        private void AdvanceFrame_Click(object sender, RoutedEventArgs e)
+        private void myMediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            //myMediaElement.Pause();
-            //TimeSpan ts = myMediaElement.Position;
-            //ts = ts.Add(TimeSpan.FromSeconds(10));
-            //myMediaElement.Position = ts;
-            //myMediaElement.Play();
-            //myMediaElement.Pause();
-            
+            stop();
         }
-
-        
 
     }
 }

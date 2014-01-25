@@ -33,7 +33,7 @@ namespace TFG.src.classes
                 }
 
                 actualVideo.pause();
-                actualVideo.sync(baseVideo.position());
+                actualVideo.sync(baseVideo.Position);
                 //baseVideo = actualVideo;
 
             }
@@ -53,7 +53,7 @@ namespace TFG.src.classes
             //dlg.FileName = "Document"; // Default file name
             dlg.DefaultExt = ".avi"; // Default file extension
             // Filter files by extension
-            dlg.Filter = "All Video Types|*.avi;*.m4v;*.mp4;*.mpg;*.mp4v"; 
+            dlg.Filter = "AVI Videos|*.avi"; 
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
@@ -70,6 +70,44 @@ namespace TFG.src.classes
         public void addVideo(UC_VideoPlayer video)
         {
             videos.AddLast(video);
+        }
+
+        internal void play()
+        {
+            foreach (UC_VideoPlayer actualVideo in videos)
+            {
+                actualVideo.play();
+            }
+        }
+
+        internal void pause()
+        {
+            foreach (UC_VideoPlayer actualVideo in videos)
+            {
+                actualVideo.pause();
+            }
+        }
+
+        internal void stop()
+        {
+            foreach (UC_VideoPlayer actualVideo in videos)
+            {
+                actualVideo.stop();
+            }
+        }
+
+
+
+        internal void advanceFrame()
+        {
+            foreach (UC_VideoPlayer actualVideo in videos)
+            {
+                actualVideo.pause();
+                TimeSpan ts = actualVideo.Position;
+                ts = ts.Add(TimeSpan.FromSeconds(AdvancedSettings.Default.SecondsToAdvance));
+                actualVideo.Position = ts;
+                
+            }
         }
     }
 }

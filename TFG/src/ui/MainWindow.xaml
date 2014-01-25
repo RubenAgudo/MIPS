@@ -19,8 +19,8 @@
                     <MenuItem Header="_Save"/>
                 </MenuItem>
                 <MenuItem Header="_Add">
-                    <MenuItem Header="_GraphPanel" Name="mnitAnadirPanelGrafico" Click="mnitAnadirPanelGrafico_Click" />
-                    <MenuItem Header="_Añadir Video" Name="mnitAnadirVideo" Click="anadirVideo" />
+                    <MenuItem Header="_Añadir contenedor graficos" Name="mnitAnadirPanelGrafico" Click="mnitAddGraphicContainer_Click" />
+                    <MenuItem Header="_Añadir contenedor video" Name="mnitAnadirVideo" Click="mnitAddVideoContainer_Click" />
                     <MenuItem Header="_Sync" Name="mnitSync" IsCheckable="True" Click="mnitSync_Click" />
                     <MenuItem Header="_Close"/>
                     <MenuItem Header="_Save"/>
@@ -29,13 +29,14 @@
 
             <avalonDock:DockingManager x:Name="dockingManager"
                                        DockPanel.Dock="Bottom">
+                
                 <avalonDock:LayoutRoot>
 
                     <avalonDock:LayoutPanel Orientation="Horizontal">
                         
                         <avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
                             
-                            <avalonDock:LayoutAnchorablePane x:Name="mainPanel">
+                            <avalonDock:LayoutAnchorablePane x:Name="mainPanel" >
 
 
                             </avalonDock:LayoutAnchorablePane>

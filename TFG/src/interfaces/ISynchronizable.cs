@@ -8,6 +8,6 @@ namespace TFG.src.interfaces
 {
     interface ISynchronizable
     {
-        void sync(TimeSpan timePosition);
+        void sync(TimeSpan position);
     }
 }

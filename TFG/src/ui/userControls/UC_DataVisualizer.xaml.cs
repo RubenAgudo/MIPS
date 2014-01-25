@@ -31,7 +31,7 @@ namespace TFG.src.ui.userControls
 
         }
 
-        public void sync(TimeSpan timePosition)
+        public void sync(TimeSpan position)
         {
             throw new NotImplementedException();
         }

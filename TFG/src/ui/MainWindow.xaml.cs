@@ -26,7 +26,7 @@ namespace TFG
     public partial class MainWindow : Window
     {
 
-        private int paneNumber;
+        private int containerNumber;
         private VideoActions videoActions;
         private GraphicActions graphicActions;
 
@@ -35,19 +35,18 @@ namespace TFG
             InitializeComponent();
             
             this.DataContext = this;
-            paneNumber = 0;
+            containerNumber = 0;
             videoActions = new VideoActions();
             graphicActions = new GraphicActions();
         }
 
 
-        private void anadirVideo(object sender, RoutedEventArgs e)
+        private void mnitAddVideoContainer_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                UC_VideoPlayer video = new UC_VideoPlayer();
-                videoActions.addVideo(video);
-                addToAnchorablePane(video);
+                UC_VideoContainer videoContainer = new UC_VideoContainer();
+                addToAnchorablePane(videoContainer);
 
             }
             catch(NotImplementedException ex)
@@ -59,7 +58,7 @@ namespace TFG
 
         }
 
-        private void mnitAnadirPanelGrafico_Click(object sender, RoutedEventArgs e)
+        private void mnitAddGraphicContainer_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -88,7 +87,7 @@ namespace TFG
             if (pane != null)
             {
                 LayoutAnchorable doc = new LayoutAnchorable();
-                doc.Title = "Pane " + ++paneNumber;
+                doc.Title = "Container " + ++containerNumber;
                 doc.Content = objectToAdd;
                 pane.Children.Add(doc);
 
