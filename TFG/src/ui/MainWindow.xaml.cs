@@ -27,7 +27,7 @@ namespace TFG
     {
 
         private int containerNumber;
-        private VideoActions videoActions;
+        private LinkedList<UC_VideoContainer> videoContainers;
         private GraphicActions graphicActions;
 
         public MainWindow()
@@ -36,7 +36,7 @@ namespace TFG
             
             this.DataContext = this;
             containerNumber = 0;
-            videoActions = new VideoActions();
+            videoContainers = new LinkedList<UC_VideoContainer>() ;
             graphicActions = new GraphicActions();
         }
 
@@ -105,7 +105,11 @@ namespace TFG
         /// <param name="e"></param>
         private void mnitSync_Click(object sender, RoutedEventArgs e)
         {
-            videoActions.sync();
+            foreach (UC_VideoContainer vc in videoContainers)
+            {
+                vc.sync(new TimeSpan());
+            }
+            
             graphicActions.sync();
         }
     }

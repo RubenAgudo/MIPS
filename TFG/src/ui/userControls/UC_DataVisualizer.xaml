@@ -15,24 +15,24 @@
                 DependentValueBinding="{Binding Value}" 
                 IndependentValueBinding="{Binding Key}" 
                 IsSelectionEnabled="True"
-                IsManipulationEnabled="False" IsHitTestVisible="True">
+                IsManipulationEnabled="True" IsHitTestVisible="True">
                 <chartingToolkit:LineSeries.DependentRangeAxis>
                     <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Orientation="Y" ShowGridLines="False" />                    
                 </chartingToolkit:LineSeries.DependentRangeAxis>
             </chartingToolkit:LineSeries>
 
-            <!--<chartingToolkit:ColumnSeries 
-                Name="m_colserHistogram3" 
+            <chartingToolkit:LineSeries 
+                Name="progress" 
                 Title="nombre propiedad" ItemsSource="{Binding}" 
                 DependentValueBinding="{Binding Value}" 
                 IndependentValueBinding="{Binding Key}" 
                 IsSelectionEnabled="True"
-                IsManipulationEnabled="True">
-                <chartingToolkit:ColumnSeries.DependentRangeAxis>
-                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Orientation="Y" ShowGridLines="False" />                    
-                </chartingToolkit:ColumnSeries.DependentRangeAxis>
-            </chartingToolkit:ColumnSeries>-->
-            
+                IsManipulationEnabled="False" IsHitTestVisible="True">
+                <chartingToolkit:LineSeries.DependentRangeAxis>
+                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Maximum="1" Orientation="Y" ShowGridLines="False" />
+                </chartingToolkit:LineSeries.DependentRangeAxis>
+            </chartingToolkit:LineSeries>
+
         </chartingToolkit:Chart>
 
     </Grid>

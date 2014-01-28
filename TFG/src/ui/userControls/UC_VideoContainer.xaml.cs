@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 using TFG.src.classes;
+using TFG.src.interfaces;
 
 namespace TFG.src.ui.userControls
 {
     /// <summary>
     /// Lógica de interacción para UC_VideoContainer.xaml
     /// </summary>
-    public partial class UC_VideoContainer : UserControl
+    public partial class UC_VideoContainer : UserControl, ISynchronizable
     {
         private int paneNumber;
         private VideoActions videoActions;
@@ -45,10 +46,14 @@ namespace TFG.src.ui.userControls
         {
             try
             {
-                string path = VideoActions.openFile();
-                UC_VideoPlayer video = new UC_VideoPlayer(path);
-                videoActions.addVideo(video);
-                addToAnchorablePane(video);
+                string[] paths = VideoActions.openFile();
+
+                foreach (string path in paths)
+                {
+                    UC_VideoPlayer video = new UC_VideoPlayer(path);
+                    videoActions.addVideo(video);
+                    addToAnchorablePane(video);
+                } 
 
             }
             catch (NotImplementedException ex)
@@ -124,5 +129,10 @@ namespace TFG.src.ui.userControls
             videoActions.advanceFrame();
         }
 
+
+        public void sync(TimeSpan position)
+        {
+            videoActions.sync(position);
+        }
     }
 }

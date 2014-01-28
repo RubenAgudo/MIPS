@@ -28,6 +28,7 @@ namespace TFG.src.ui.userControls
             InitializeComponent();
             m_PetData = new Data();
             DataContext = m_PetData;
+            progress.ItemsSource = new Progress();
 
         }
 
@@ -45,6 +46,15 @@ namespace TFG.src.ui.userControls
                     Add(3, 11);
                     Add(4, 6);
                     Add(5, 6);
+            }
+        }
+
+        public class Progress : Dictionary<double, double>
+        {
+            public Progress()
+            {
+                Add(0.5, 1);
+                
             }
         }
     }

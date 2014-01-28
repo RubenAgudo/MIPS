@@ -18,7 +18,7 @@ namespace TFG.src.classes
             videos = new LinkedList<UC_VideoPlayer>();
         }
 
-        public void sync() {
+        public void sync(TimeSpan position) {
 
             bool first = true;
             UC_VideoPlayer baseVideo = null;
@@ -45,12 +45,13 @@ namespace TFG.src.classes
 
         }
 
-        public static string openFile()
+        public static string[] openFile()
         {
-            string filename = "";
+            string[] filenames = null;
             // Configure open file dialog box
             OpenFileDialog dlg = new OpenFileDialog();
             //dlg.FileName = "Document"; // Default file name
+            dlg.Multiselect = true;
             dlg.DefaultExt = ".avi"; // Default file extension
             // Filter files by extension
             dlg.Filter = "AVI Videos|*.avi"; 
@@ -62,9 +63,9 @@ namespace TFG.src.classes
             if (result == true)
             {
                 // Open document 
-                filename = dlg.FileName;
+                filenames = dlg.FileNames;
             }
-            return filename;
+            return filenames;
         }
 
         public void addVideo(UC_VideoPlayer video)
