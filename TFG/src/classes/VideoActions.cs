@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Win32;
 using TFG.src.ui.userControls;
 using TFG.src.interfaces;
+using TFG.src.exceptions;
 
 namespace TFG.src.classes
 {
@@ -64,6 +65,10 @@ namespace TFG.src.classes
             {
                 // Open document 
                 filenames = dlg.FileNames;
+            }
+            else
+            {
+                throw new FileNotSelectedException();
             }
             return filenames;
         }

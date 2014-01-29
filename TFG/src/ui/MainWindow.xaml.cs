@@ -27,7 +27,7 @@ namespace TFG
     {
 
         private int containerNumber;
-        private LinkedList<UC_VideoContainer> videoContainers;
+        private UC_VideoContainer videoContainer;
         private GraphicActions graphicActions;
 
         public MainWindow()
@@ -36,7 +36,7 @@ namespace TFG
             
             this.DataContext = this;
             containerNumber = 0;
-            videoContainers = new LinkedList<UC_VideoContainer>() ;
+            videoContainer = null;
             graphicActions = new GraphicActions();
         }
 
@@ -45,9 +45,12 @@ namespace TFG
         {
             try
             {
-                UC_VideoContainer videoContainer = new UC_VideoContainer();
-                addToAnchorablePane(videoContainer);
-
+                if (videoContainer == null)
+                {
+                    videoContainer = new UC_VideoContainer();
+                    addToAnchorablePane(videoContainer);
+                }
+                
             }
             catch(NotImplementedException ex)
             {
@@ -96,21 +99,6 @@ namespace TFG
             {
                 throw new NotImplementedException();
             }
-        }
-
-        /// <summary>
-        /// This method syncs all the video panes in fact reset all. All the videos must have the same lenght.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mnitSync_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (UC_VideoContainer vc in videoContainers)
-            {
-                vc.sync(new TimeSpan());
-            }
-            
-            graphicActions.sync();
         }
     }
 }

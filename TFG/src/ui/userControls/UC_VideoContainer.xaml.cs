@@ -16,6 +16,7 @@ using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 using TFG.src.classes;
 using TFG.src.interfaces;
+using TFG.src.exceptions;
 
 namespace TFG.src.ui.userControls
 {
@@ -26,6 +27,7 @@ namespace TFG.src.ui.userControls
     {
         private int paneNumber;
         private VideoActions videoActions;
+        
 
         public UC_VideoContainer()
         {
@@ -37,9 +39,6 @@ namespace TFG.src.ui.userControls
 
 
             InitializeComponent();
-
-            
-
         }
 
         private void mnitAddVideoPane_Click(object sender, RoutedEventArgs e)
@@ -60,6 +59,10 @@ namespace TFG.src.ui.userControls
             {
                 System.Console.WriteLine(ex.StackTrace);
 
+            }
+            catch (FileNotSelectedException ex2)
+            {
+                Console.WriteLine(ex2.StackTrace);
             }
 
         }
@@ -133,6 +136,11 @@ namespace TFG.src.ui.userControls
         public void sync(TimeSpan position)
         {
             videoActions.sync(position);
+        }
+
+        private void videoContainer_Unloaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
