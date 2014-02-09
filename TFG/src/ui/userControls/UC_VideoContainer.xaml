@@ -8,6 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DockPanel>
+            
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open" />
@@ -21,82 +22,85 @@
                 </MenuItem>
                 <MenuItem Header="_Añadir video" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
             </Menu>
-                
-            <avalonDock:DockingManager x:Name="videoContainer" >
             
-                <avalonDock:LayoutRoot>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" DockPanel.Dock="Bottom">
+                
+                <avalonDock:DockingManager x:Name="videoContainer" >
 
-                    <avalonDock:LayoutPanel Orientation="Horizontal">
+                    <avalonDock:LayoutRoot x:Name="videoLayoutRoot">
 
-                        <avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
+                        <avalonDock:LayoutPanel x:Name="videoLayoutPanel" Orientation="Horizontal">
 
-                            <avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
+                            <avalonDock:LayoutAnchorablePaneGroup x:Name="videoAnchorableGroup" DockWidth="150" Orientation="Vertical">
 
-
-                            </avalonDock:LayoutAnchorablePane>
-
-
-
-                        </avalonDock:LayoutAnchorablePaneGroup>
+                                <avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
 
 
-                        <!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
+                                </avalonDock:LayoutAnchorablePane>
+
+
+
+                            </avalonDock:LayoutAnchorablePaneGroup>
+
+
+                            <!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
 
                             
 
                             
                             
-                                </avalonDock:LayoutDocumentPaneGroup>-->
+                                    </avalonDock:LayoutDocumentPaneGroup>-->
 
-                    </avalonDock:LayoutPanel>
+                        </avalonDock:LayoutPanel>
 
 
 
-                    <avalonDock:LayoutRoot.LeftSide>
-                        <avalonDock:LayoutAnchorSide>
-                            <avalonDock:LayoutAnchorGroup>
-                                <avalonDock:LayoutAnchorable Title="Autohidden Content">
-                                    <TextBox/>
-                                </avalonDock:LayoutAnchorable>
-                            </avalonDock:LayoutAnchorGroup>
-                        </avalonDock:LayoutAnchorSide>
-                    </avalonDock:LayoutRoot.LeftSide>
+                        <avalonDock:LayoutRoot.LeftSide>
+                            <avalonDock:LayoutAnchorSide>
+                                <avalonDock:LayoutAnchorGroup>
+                                    <avalonDock:LayoutAnchorable x:Name="videoLayoutAnchorable" Title="Videos Ocultos">
+                                        <ListBox Name="listVideosOcultos" 
+                                                 ItemsSource="{Binding Hidden, ElementName=layoutRoot}" ></ListBox>
+                                    </avalonDock:LayoutAnchorable>
+                                </avalonDock:LayoutAnchorGroup>
+                            </avalonDock:LayoutAnchorSide>
+                        </avalonDock:LayoutRoot.LeftSide>
 
-                </avalonDock:LayoutRoot>
-            </avalonDock:DockingManager>
+                    </avalonDock:LayoutRoot>
+                </avalonDock:DockingManager>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal" >
-                    <!-- Play button. -->
-                    <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
+                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal" >
+                        <!-- Play button. -->
+                        <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
 
-                    <!-- Pause button. -->
-                    <Button x:FieldModifier="private" Click="OnMouseDownPauseMedia" x:Name="Pause" FontSize="15" Content="[II]"/>
-                    <!-- Stop button. -->
-                    <Button x:FieldModifier="private" Click="OnMouseDownStopMedia" x:Name="Stop" FontSize="15" Content="[#]"/>
-                    
-                    <Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
+                        <!-- Pause button. -->
+                        <Button x:FieldModifier="private" Click="OnMouseDownPauseMedia" x:Name="Pause" FontSize="15" Content="[II]"/>
+                        <!-- Stop button. -->
+                        <Button x:FieldModifier="private" Click="OnMouseDownStopMedia" x:Name="Stop" FontSize="15" Content="[#]"/>
 
+                        <Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
+
+                    </StackPanel>
+
+                    <StatusBar Name="videoContainerStatusbar" >
+                        <TextBlock>Duration:</TextBlock>
+                        <TextBlock Name="txblDuration" ></TextBlock>
+
+                        <TextBlock >Actual Position:</TextBlock>
+                        <TextBlock Name="txblPosition"></TextBlock>
+
+                        <TextBlock >Frames skipped:</TextBlock>
+                        <TextBlock Name="txblFramesSkipped"></TextBlock>
+
+                        <TextBlock >Speed:</TextBlock>
+                        <TextBlock Name="txblSpeed"></TextBlock>
+                    </StatusBar>
                 </StackPanel>
-
-                <StatusBar Name="videoContainerStatusbar" VerticalAlignment="Bottom" >
-                    <TextBlock>Duration:</TextBlock>
-                    <TextBlock Name="txblDuration" ></TextBlock>
-
-                    <TextBlock >Actual Position:</TextBlock>
-                    <TextBlock Name="txblPosition"></TextBlock>
-
-                    <TextBlock >Frames skipped:</TextBlock>
-                    <TextBlock Name="txblFramesSkipped"></TextBlock>
-
-                    <TextBlock >Speed:</TextBlock>
-                    <TextBlock Name="txblSpeed"></TextBlock>
-                </StatusBar>
             </StackPanel>
-
         </DockPanel>
 
-        
+
 
     </Grid>
 </UserControl>

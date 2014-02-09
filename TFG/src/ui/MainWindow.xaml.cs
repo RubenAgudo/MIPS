@@ -28,7 +28,7 @@ namespace TFG
 
         private int containerNumber;
         private UC_VideoContainer videoContainer;
-        private GraphicActions graphicActions;
+        private UC_ChartContainer chartContainer;
 
         public MainWindow()
         {
@@ -37,7 +37,7 @@ namespace TFG
             this.DataContext = this;
             containerNumber = 0;
             videoContainer = null;
-            graphicActions = new GraphicActions();
+            chartContainer = null;
         }
 
 
@@ -61,13 +61,15 @@ namespace TFG
 
         }
 
-        private void mnitAddGraphicContainer_Click(object sender, RoutedEventArgs e)
+        private void mnitAddChartContainer_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                UC_DataVisualizer dataVisualizer = new UC_DataVisualizer();
-                graphicActions.addLast(dataVisualizer);
-                addToAnchorablePane(dataVisualizer);
+                if (chartContainer == null)
+                {
+                    chartContainer = new UC_ChartContainer();
+                    addToAnchorablePane(chartContainer);
+                }
             }
             catch(NotImplementedException ex)
             {

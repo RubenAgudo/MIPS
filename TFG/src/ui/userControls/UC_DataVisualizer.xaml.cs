@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TFG.src.interfaces;
-using TFG.src.classes; 
+using TFG.src.classes;
+
 
 namespace TFG.src.ui.userControls
 {

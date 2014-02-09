@@ -23,7 +23,7 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_VideoContainer.xaml
     /// </summary>
-    public partial class UC_VideoContainer : UserControl, ISynchronizable
+    public partial class UC_VideoContainer : UserControl
     {
         private int paneNumber;
         private VideoActions videoActions;
@@ -31,14 +31,10 @@ namespace TFG.src.ui.userControls
 
         public UC_VideoContainer()
         {
+            InitializeComponent();
+
             paneNumber = 0;
             videoActions = new VideoActions();
-            
-            UC_VideoPlayer video = new UC_VideoPlayer();
-            videoActions.addVideo(video);
-
-
-            InitializeComponent();
         }
 
         private void mnitAddVideoPane_Click(object sender, RoutedEventArgs e)
@@ -75,6 +71,8 @@ namespace TFG.src.ui.userControls
             if (pane != null)
             {
                 LayoutAnchorable doc = new LayoutAnchorable();
+                doc.CanHide = false;
+                doc.CanClose = true;
                 doc.Title = "Pane " + ++paneNumber;
                 doc.Content = objectToAdd;
                 pane.Children.Add(doc);
@@ -117,6 +115,11 @@ namespace TFG.src.ui.userControls
             videoActions.stop();
         }
 
+        private void AdvanceFrame_Click(object sender, RoutedEventArgs e)
+        {
+            videoActions.advanceFrame();
+        }
+
         #endregion
 
         private void setStatusBarInfo()
@@ -127,10 +130,7 @@ namespace TFG.src.ui.userControls
 
         }
 
-        private void AdvanceFrame_Click(object sender, RoutedEventArgs e)
-        {
-            videoActions.advanceFrame();
-        }
+       
 
 
         public void sync(TimeSpan position)
@@ -141,6 +141,11 @@ namespace TFG.src.ui.userControls
         private void videoContainer_Unloaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void listVideosOcultos_Selected(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

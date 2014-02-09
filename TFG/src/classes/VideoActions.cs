@@ -108,11 +108,7 @@ namespace TFG.src.classes
         {
             foreach (UC_VideoPlayer actualVideo in videos)
             {
-                actualVideo.pause();
-                TimeSpan ts = actualVideo.Position;
-                ts = ts.Add(TimeSpan.FromSeconds(AdvancedSettings.Default.SecondsToAdvance));
-                actualVideo.Position = ts;
-                
+                actualVideo.advanceFrame();                
             }
         }
     }

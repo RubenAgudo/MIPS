@@ -8,11 +8,33 @@
     d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid x:Name="grid" x:FieldModifier="private">
-        
-        <MediaElement  
-			x:Name="myMediaElement" 
-			Margin="11,0,9,106" 
-			RenderTransformOrigin="0.5,0.5" 
-			LoadedBehavior="Manual" IsMuted="True" UnloadedBehavior="Manual" ScrubbingEnabled="True" MediaEnded="myMediaElement_MediaEnded"/>
+        <DockPanel>
+            
+            <MediaElement DockPanel.Dock="Top"
+			            x:Name="myMediaElement"  
+			            RenderTransformOrigin="0.5,0.5" 
+			            LoadedBehavior="Manual" IsMuted="True" 
+                        UnloadedBehavior="Manual" 
+                        ScrubbingEnabled="True" MediaEnded="myMediaElement_MediaEnded" MediaOpened="myMediaElement_MediaOpened" />
+            <StackPanel>
+                <!--<Slider Height="23" Name="videoPlayingProgressBar" DockPanel.Dock="Bottom" 
+                             VerticalAlignment="Top" Foreground="DarkBlue" 
+                             Maximum="{Binding Path=NaturalDuration.TimeSpan.TotalSeconds, Mode=OneWay, ElementName=myMediaElement1}"
+                             Value="{Binding Path=Position.TotalSeconds, Mode=OneWay, ElementName=myMediaElement1}" />-->
+                <Slider Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" />
+                <StackPanel Orientation="Horizontal" >
+                    <!-- Play button. -->
+                    <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
+
+                    <!-- Pause button. -->
+                    <Button x:FieldModifier="private" Click="OnMouseDownPauseMedia" x:Name="Pause" FontSize="15" Content="[II]"/>
+                    <!-- Stop button. -->
+                    <Button x:FieldModifier="private" Click="OnMouseDownStopMedia" x:Name="Stop" FontSize="15" Content="[#]"/>
+
+                    <Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
+
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </UserControl>

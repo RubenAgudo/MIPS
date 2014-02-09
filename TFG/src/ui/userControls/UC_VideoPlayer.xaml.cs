@@ -95,5 +95,66 @@ namespace TFG.src.ui.userControls
             stop();
         }
 
+        private void SeekToMediaPosition(object sender, RoutedPropertyChangedEventArgs<double> args)
+        {
+            int SliderValue = (int)timelineSlider.Value;
+            // Overloaded constructor takes the arguments days, hours, minutes, seconds, miniseconds. 
+            // Create a TimeSpan with miliseconds equal to the slider value.
+            TimeSpan ts = new TimeSpan(0, 0, 0, 0, SliderValue);
+            Position = ts;
+        }
+
+        private void myMediaElement_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            timelineSlider.Maximum = myMediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+        }
+
+        #region PlayBackControlEvents
+        /// <summary>
+        /// Plays the media if no video is opened. Resumes the media if video is opened
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void OnMouseDownPlayMedia(object sender, RoutedEventArgs args)
+        {
+
+            //if (!videoOpened)
+            //{
+            //    abrirVideo(sender, args);
+            //    videoOpened = true;
+            //    setStatusBarInfo();
+            //}
+            //play();
+            play();
+        }
+
+        // Pause the media. 
+        private void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
+        {
+            pause();
+        }
+
+        // Stop the media. 
+        private void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
+        {
+            stop();
+        }
+
+        private void AdvanceFrame_Click(object sender, RoutedEventArgs e)
+        {
+            advanceFrame();
+        }
+
+        internal void advanceFrame()
+        {
+            pause();
+            TimeSpan ts = Position;
+            ts = ts.Add(TimeSpan.FromSeconds(AdvancedSettings.Default.SecondsToAdvance));
+            Position = ts;
+        }
+
+        #endregion
+
+        
     }
 }

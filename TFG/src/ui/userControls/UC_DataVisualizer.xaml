@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"  
+﻿<UserControl xmlns:amq="http://schemas.amcharts.com/quick/wpf/2010/xaml"  xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"  
              x:Class="TFG.src.ui.userControls.UC_DataVisualizer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,18 +8,31 @@
              d:DesignHeight="300" d:DesignWidth="300" >
 
     <Grid >
-        <chartingToolkit:Chart Name="myData" >
-            <chartingToolkit:LineSeries 
+
+
+       
+
+
+
+        <chartingToolkit:Chart Name="myData2" Visibility="Hidden" >
+            <chartingToolkit:AreaSeries 
                 Name="m_colserHistogram" 
                 Title="nombre propiedad" ItemsSource="{Binding}" 
                 DependentValueBinding="{Binding Value}" 
                 IndependentValueBinding="{Binding Key}" 
                 IsSelectionEnabled="True"
                 IsManipulationEnabled="True" IsHitTestVisible="True">
-                <chartingToolkit:LineSeries.DependentRangeAxis>
-                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Orientation="Y" ShowGridLines="False" />                    
-                </chartingToolkit:LineSeries.DependentRangeAxis>
-            </chartingToolkit:LineSeries>
+                
+                <chartingToolkit:AreaSeries.DependentRangeAxis>
+                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Orientation="Y" ShowGridLines="False" />
+                </chartingToolkit:AreaSeries.DependentRangeAxis>
+
+                <chartingToolkit:AreaSeries.IndependentAxis>
+                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Orientation="X" ShowGridLines="True" />
+                </chartingToolkit:AreaSeries.IndependentAxis>
+
+                
+            </chartingToolkit:AreaSeries>
 
             <chartingToolkit:LineSeries 
                 Name="progress" 

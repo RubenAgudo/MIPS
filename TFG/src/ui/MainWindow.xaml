@@ -4,7 +4,9 @@
         Title="MainWindow" Height="507" Width="854" 
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock">
 
-    <Grid x:Name="grid" x:FieldModifier="private">
+
+    <Grid x:Name="grid" >
+        <!--x:FieldModifier="private"-->
 
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -19,7 +21,7 @@
                     <MenuItem Header="_Save"/>
                 </MenuItem>
                 <MenuItem Header="_Add">
-                    <MenuItem Header="_Añadir contenedor graficos" Name="mnitAnadirPanelGrafico" Click="mnitAddGraphicContainer_Click" />
+                    <MenuItem Header="_Añadir contenedor graficos" Name="mnitAnadirPanelGrafico" Click="mnitAddChartContainer_Click" />
                     <MenuItem Header="_Añadir contenedor video" Name="mnitAnadirVideo" Click="mnitAddVideoContainer_Click" />
                 </MenuItem>
             </Menu>
@@ -58,8 +60,8 @@
                     <avalonDock:LayoutRoot.LeftSide>
                         <avalonDock:LayoutAnchorSide>
                             <avalonDock:LayoutAnchorGroup>
-                                <avalonDock:LayoutAnchorable Title="Autohidden Content">
-                                    <TextBox/>
+                                <avalonDock:LayoutAnchorable Title="Contenedores ocultos">
+                                    <Slider IsSelectionRangeEnabled="True" SelectionEnd="5" SelectionStart="2" />
                                 </avalonDock:LayoutAnchorable>
                             </avalonDock:LayoutAnchorGroup>
                         </avalonDock:LayoutAnchorSide>
