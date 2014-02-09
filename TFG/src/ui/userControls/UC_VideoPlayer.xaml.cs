@@ -27,26 +27,17 @@ namespace TFG.src.ui.userControls
 
         private bool isDragging;
         private DispatcherTimer timer;
-        private bool videoOpened;
         private Uri uriPath;
-        
-
-        public UC_VideoPlayer()
-        {
-            videoOpened = false;
-            InitializeComponent();
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1000);
-            timer.Tick += new EventHandler(timer_Tick);
-            isDragging = false;
-        }
 
         public UC_VideoPlayer(string path)
         {
             InitializeComponent();
             this.uriPath = new Uri(path);
             myMediaElement.Source = uriPath;
-            
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += new EventHandler(timer_Tick);
+            isDragging = false;
         }
         
 
@@ -54,15 +45,18 @@ namespace TFG.src.ui.userControls
         internal void pause()
         {
             myMediaElement.Pause();
+            timer.Stop();
         }
 
         internal void play()
         {
             myMediaElement.Play();
+            timer.Start();
         }
         internal void stop()
         {
             myMediaElement.Stop();
+            timer.Stop();
         }
         #endregion
 
@@ -167,7 +161,7 @@ namespace TFG.src.ui.userControls
 
             if (!isDragging)
             {
-                timelineSlider.Value = myMediaElement.Position.TotalSeconds;
+                timelineSlider.Value = Position.TotalSeconds;
             }
 
         }
