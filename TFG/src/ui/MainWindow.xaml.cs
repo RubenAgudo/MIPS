@@ -50,14 +50,14 @@ namespace TFG
                     videoContainer = new UC_VideoContainer();
                     addToAnchorablePane(videoContainer);
                 }
-                
+
             }
-            catch(NotImplementedException ex)
+            catch (NotImplementedException ex)
             {
                 System.Console.WriteLine(ex.StackTrace);
-                
+
             }
-                
+
 
         }
 
@@ -71,7 +71,7 @@ namespace TFG
                     addToAnchorablePane(chartContainer);
                 }
             }
-            catch(NotImplementedException ex)
+            catch (NotImplementedException ex)
             {
                 System.Console.WriteLine(ex.StackTrace);
             }
@@ -86,21 +86,33 @@ namespace TFG
          /// <exception cref="NotImplementedException"></exception>
         private void addToAnchorablePane(UserControl objectToAdd)
         {
-            LayoutAnchorablePane pane = dockingManager.Layout.Descendents().
-                 OfType<LayoutAnchorablePane>().FirstOrDefault();
-
-            if (pane != null)
+            if (mainPanel != null)
             {
                 LayoutAnchorable doc = new LayoutAnchorable();
-                doc.Title = "Container " + ++containerNumber;
+                //if (objectToAdd is UC_ChartContainer)
+                //{
+                //    doc.Title = "Chart container";
+                //}
+                //else if (objectToAdd is UC_VideoContainer)
+                //{
+                //    doc.Title = "Video container";
+                //}
+                
+                doc.CanHide = false;
+                doc.CanClose = false;
                 doc.Content = objectToAdd;
-                pane.Children.Add(doc);
+                mainPanel.Children.Add(doc);
 
             }
             else
             {
                 throw new NotImplementedException();
             }
+        }
+
+        private void mnitExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

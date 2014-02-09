@@ -25,15 +25,20 @@ namespace TFG.src.ui.userControls
     public partial class UC_VideoPlayer : UserControl, ISynchronizable
     {
 
-        //private VideoFileReader reader;
+        private bool isDragging;
         private DispatcherTimer timer;
         private bool videoOpened;
         private Uri uriPath;
+        
 
         public UC_VideoPlayer()
         {
             videoOpened = false;
             InitializeComponent();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += new EventHandler(timer_Tick);
+            isDragging = false;
         }
 
         public UC_VideoPlayer(string path)
@@ -95,18 +100,9 @@ namespace TFG.src.ui.userControls
             stop();
         }
 
-        private void SeekToMediaPosition(object sender, RoutedPropertyChangedEventArgs<double> args)
-        {
-            int SliderValue = (int)timelineSlider.Value;
-            // Overloaded constructor takes the arguments days, hours, minutes, seconds, miniseconds. 
-            // Create a TimeSpan with miliseconds equal to the slider value.
-            TimeSpan ts = new TimeSpan(0, 0, 0, 0, SliderValue);
-            Position = ts;
-        }
-
         private void myMediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
-            timelineSlider.Maximum = myMediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+            timelineSlider.Maximum = myMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
         }
 
         #region PlayBackControlEvents
@@ -155,6 +151,25 @@ namespace TFG.src.ui.userControls
 
         #endregion
 
-        
+        private void timelineSlider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            isDragging = true;
+        }
+
+        private void timelineSlider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            isDragging = false;
+            Position = TimeSpan.FromSeconds(timelineSlider.Value);
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+
+            if (!isDragging)
+            {
+                timelineSlider.Value = myMediaElement.Position.TotalSeconds;
+            }
+
+        }
     }
 }

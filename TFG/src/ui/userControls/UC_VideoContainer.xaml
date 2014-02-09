@@ -10,20 +10,10 @@
         <DockPanel>
             
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-                <MenuItem Header="_Tools">
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
                 <MenuItem Header="_Añadir video" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
             </Menu>
             
-            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" DockPanel.Dock="Bottom">
+            
                 
                 <avalonDock:DockingManager x:Name="videoContainer" >
 
@@ -55,7 +45,7 @@
 
 
 
-                        <avalonDock:LayoutRoot.LeftSide>
+                        <!--<avalonDock:LayoutRoot.LeftSide>
                             <avalonDock:LayoutAnchorSide>
                                 <avalonDock:LayoutAnchorGroup>
                                     <avalonDock:LayoutAnchorable x:Name="videoLayoutAnchorable" Title="Videos Ocultos">
@@ -64,12 +54,12 @@
                                     </avalonDock:LayoutAnchorable>
                                 </avalonDock:LayoutAnchorGroup>
                             </avalonDock:LayoutAnchorSide>
-                        </avalonDock:LayoutRoot.LeftSide>
+                        </avalonDock:LayoutRoot.LeftSide>-->
 
                     </avalonDock:LayoutRoot>
                 </avalonDock:DockingManager>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
                     <StackPanel Orientation="Horizontal" >
                         <!-- Play button. -->
                         <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
@@ -97,7 +87,7 @@
                         <TextBlock Name="txblSpeed"></TextBlock>
                     </StatusBar>
                 </StackPanel>
-            </StackPanel>
+            
         </DockPanel>
 
 

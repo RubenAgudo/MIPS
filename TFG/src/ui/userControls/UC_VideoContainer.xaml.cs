@@ -130,22 +130,10 @@ namespace TFG.src.ui.userControls
 
         }
 
-       
-
-
         public void sync(TimeSpan position)
         {
             videoActions.sync(position);
         }
 
-        private void videoContainer_Unloaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void listVideosOcultos_Selected(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

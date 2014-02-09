@@ -16,12 +16,15 @@
 			            LoadedBehavior="Manual" IsMuted="True" 
                         UnloadedBehavior="Manual" 
                         ScrubbingEnabled="True" MediaEnded="myMediaElement_MediaEnded" MediaOpened="myMediaElement_MediaOpened" />
-            <StackPanel>
+            <StackPanel VerticalAlignment="Bottom">
                 <!--<Slider Height="23" Name="videoPlayingProgressBar" DockPanel.Dock="Bottom" 
                              VerticalAlignment="Top" Foreground="DarkBlue" 
                              Maximum="{Binding Path=NaturalDuration.TimeSpan.TotalSeconds, Mode=OneWay, ElementName=myMediaElement1}"
                              Value="{Binding Path=Position.TotalSeconds, Mode=OneWay, ElementName=myMediaElement1}" />-->
-                <Slider Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" />
+                <Slider Name="timelineSlider" Margin="5" 
+                        Thumb.DragStarted="timelineSlider_DragStarted" 
+                        Thumb.DragCompleted="timelineSlider_DragCompleted" />
+                
                 <StackPanel Orientation="Horizontal" >
                     <!-- Play button. -->
                     <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
