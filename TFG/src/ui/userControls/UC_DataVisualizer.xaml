@@ -1,20 +1,31 @@
-﻿<UserControl xmlns:amq="http://schemas.amcharts.com/quick/wpf/2010/xaml"  xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"  
-             x:Class="TFG.src.ui.userControls.UC_DataVisualizer"
+﻿<UserControl x:Class="TFG.src.ui.userControls.UC_DataVisualizer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:oxy="http://oxyplot.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
-
     <Grid >
+        
+        <!--<oxy:Plot Name="oxyplot" Title="{Binding Title}" HorizontalContentAlignment="Stretch" 
+                  VerticalContentAlignment="Stretch" MouseDown="oxyplot_MouseDown" MouseUp="oxyplot_MouseUp">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding Points}" LineStyle="Solid"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>-->
+
+        <oxy:Plot Name="oxyplot" HorizontalContentAlignment="Stretch" 
+                  VerticalContentAlignment="Stretch" >
+
+            <oxy:Plot.Series>
+                <oxy:LineSeries LineStyle="Solid"/>
+            </oxy:Plot.Series>
+            
+        </oxy:Plot>
 
 
-       
-
-
-
-        <chartingToolkit:Chart Name="myData2" Visibility="Hidden" >
+        <!--<chartingToolkit:Chart Name="myData" Visibility="Hidden" >
             <chartingToolkit:AreaSeries 
                 Name="m_colserHistogram" 
                 Title="nombre propiedad" ItemsSource="{Binding}" 
@@ -32,9 +43,9 @@
                 </chartingToolkit:AreaSeries.IndependentAxis>
 
                 
-            </chartingToolkit:AreaSeries>
+            </chartingToolkit:AreaSeries>-->
 
-            <chartingToolkit:LineSeries 
+            <!--<chartingToolkit:LineSeries 
                 Name="progress" 
                 Title="nombre propiedad" ItemsSource="{Binding}" 
                 DependentValueBinding="{Binding Value}" 
@@ -44,9 +55,9 @@
                 <chartingToolkit:LineSeries.DependentRangeAxis>
                     <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Maximum="1" Orientation="Y" ShowGridLines="False" />
                 </chartingToolkit:LineSeries.DependentRangeAxis>
-            </chartingToolkit:LineSeries>
+            </chartingToolkit:LineSeries>-->
 
-        </chartingToolkit:Chart>
+        <!--</chartingToolkit:Chart>-->
 
     </Grid>
 

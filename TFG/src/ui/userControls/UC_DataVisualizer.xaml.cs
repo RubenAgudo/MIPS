@@ -14,23 +14,42 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TFG.src.interfaces;
 using TFG.src.classes;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+using OxyPlot.Annotations;
+using TFG.src.ViewModels;
 
 
 namespace TFG.src.ui.userControls
 {
+
     /// <summary>
     /// Lógica de interacción para UC_DataVisualizer.xaml
     /// </summary>
     public partial class UC_DataVisualizer : UserControl, ISynchronizable
     {
-        private Data m_PetData;
+
+        RectangleAnnotation rectangleAnnotation1;
+        bool mouseDown;
+
         public UC_DataVisualizer()
         {
             InitializeComponent();
-            m_PetData = new Data();
-            DataContext = m_PetData;
-            progress.ItemsSource = new Progress();
 
+            oxyplot.Model = new DataVisualizerViewModel().Model;
+            
+            rectangleAnnotation1 = new RectangleAnnotation();
+            rectangleAnnotation1.Fill = OxyColor.FromArgb(120, 135, 206, 235);
+            rectangleAnnotation1.MinimumX = 0;
+            rectangleAnnotation1.MaximumX = 0;
+
+            oxyplot.Model.Annotations.Add(rectangleAnnotation1);
+            oxyplot.Model.MouseDown += Model_MouseDown;
+            oxyplot.Model.MouseMove += Model_MouseMove;
+            oxyplot.Model.MouseUp += Model_MouseUp;
+            mouseDown = false;
+            
         }
 
         public void sync(TimeSpan position)
@@ -38,25 +57,47 @@ namespace TFG.src.ui.userControls
             throw new NotImplementedException();
         }
 
-        public class Data : Dictionary<int, int>
+        private void Model_MouseUp(object sender, OxyMouseEventArgs e)
         {
-             public Data()
-            {
-                    Add(1, 7);
-                    Add(2, 10);
-                    Add(3, 11);
-                    Add(4, 6);
-                    Add(5, 6);
+            Console.WriteLine(oxyplot.Model.Width);
+            Console.WriteLine(oxyplot.Width);
+            if (e.ChangedButton == OxyMouseButton.Left) 
+            { 
+                Console.WriteLine("Start = " + rectangleAnnotation1.MinimumX);
+                Console.WriteLine("End = " + rectangleAnnotation1.MaximumX);
+                oxyplot.Model.Annotations.RemoveAt(0);
+                oxyplot.Model.Annotations.Add(rectangleAnnotation1);
+                mouseDown = false;
             }
         }
 
-        public class Progress : Dictionary<double, double>
+        private void Model_MouseMove(object sender, OxyMouseEventArgs e)
         {
-            public Progress()
+            if (mouseDown)
             {
-                Add(0.5, 1);
-                
+                rectangleAnnotation1.MaximumX = calculatePosition(e.Position.X);
+
+                Console.WriteLine(calculatePosition(e.Position.X));
+                oxyplot.RefreshPlot(true);
             }
         }
+
+        private void Model_MouseDown(object sender, OxyMouseEventArgs e)
+        {
+            if (e.ChangedButton == OxyMouseButton.Left)
+            {
+                rectangleAnnotation1.MinimumX = calculatePosition(e.Position.X);
+                Console.WriteLine(calculatePosition(e.Position.X));
+                mouseDown = true;
+            }
+            
+        }
+
+        private double calculatePosition(double xPosition)
+        {
+            //Console.WriteLine(oxyplot.Model.PlotArea.Width);
+            return xPosition * 50.2 / oxyplot.Model.PlotArea.Width;
+        }
+        
     }
 }

@@ -52,6 +52,7 @@ namespace TFG.src.ui.userControls
         {
             myMediaElement.Play();
             timer.Start();
+            
         }
         internal void stop()
         {
@@ -97,6 +98,11 @@ namespace TFG.src.ui.userControls
         private void myMediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
             timelineSlider.Maximum = myMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+
+
+            //Binding myBinding = new Binding("Position");
+            //myBinding.Source = myMediaElement;
+            //timelineSlider.SetBinding(Slider.ToolTipProperty, myBinding);
         }
 
         #region PlayBackControlEvents
@@ -162,8 +168,10 @@ namespace TFG.src.ui.userControls
             if (!isDragging)
             {
                 timelineSlider.Value = Position.TotalSeconds;
+                
             }
-
+            timelineSlider.SelectionEnd = Position.TotalSeconds;
         }
+
     }
 }

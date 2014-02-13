@@ -13,9 +13,9 @@
             <MediaElement DockPanel.Dock="Top"
 			            x:Name="myMediaElement"  
 			            RenderTransformOrigin="0.5,0.5" 
-			            LoadedBehavior="Manual" IsMuted="True" 
+			            LoadedBehavior="Manual" 
                         UnloadedBehavior="Manual" 
-                        ScrubbingEnabled="True" MediaEnded="myMediaElement_MediaEnded" MediaOpened="myMediaElement_MediaOpened" />
+                        ScrubbingEnabled="True" MediaEnded="myMediaElement_MediaEnded" MediaOpened="myMediaElement_MediaOpened" Source="D:\Videos\Abraham Lincoln Cazador de Vampiros.avi"  />
             <StackPanel VerticalAlignment="Bottom">
                 <!--<Slider Height="23" Name="videoPlayingProgressBar" DockPanel.Dock="Bottom" 
                              VerticalAlignment="Top" Foreground="DarkBlue" 
@@ -23,7 +23,8 @@
                              Value="{Binding Path=Position.TotalSeconds, Mode=OneWay, ElementName=myMediaElement1}" />-->
                 <Slider Name="timelineSlider" Margin="5" 
                         Thumb.DragStarted="timelineSlider_DragStarted" 
-                        Thumb.DragCompleted="timelineSlider_DragCompleted" />
+                        Thumb.DragCompleted="timelineSlider_DragCompleted" TickPlacement="BottomRight"
+                        IsSelectionRangeEnabled="True" AutoToolTipPlacement="TopLeft" />
                 
                 <StackPanel Orientation="Horizontal" >
                     <!-- Play button. -->
