@@ -13,7 +13,6 @@ namespace TFG.src.ViewModels
 {
     public class DataVisualizerViewModel
     {
-        RectangleAnnotation rectangleAnnotation1;
 
         public DataVisualizerViewModel()
         {

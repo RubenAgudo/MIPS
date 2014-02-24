@@ -16,7 +16,7 @@
         </oxy:Plot>-->
 
         <oxy:Plot Name="oxyplot" HorizontalContentAlignment="Stretch" 
-                  VerticalContentAlignment="Stretch" >
+                  VerticalContentAlignment="Stretch" IsManipulationEnabled="True" >
 
             <oxy:Plot.Series>
                 <oxy:LineSeries LineStyle="Solid"/>

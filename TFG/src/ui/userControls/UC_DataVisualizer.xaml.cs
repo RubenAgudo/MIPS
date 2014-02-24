@@ -31,14 +31,16 @@ namespace TFG.src.ui.userControls
     {
 
         RectangleAnnotation rectangleAnnotation1;
-        bool mouseDown;
+		double startx;
 
         public UC_DataVisualizer()
         {
             InitializeComponent();
 
             oxyplot.Model = new DataVisualizerViewModel().Model;
-            
+
+			startx = double.NaN;
+
             rectangleAnnotation1 = new RectangleAnnotation();
             rectangleAnnotation1.Fill = OxyColor.FromArgb(120, 135, 206, 235);
             rectangleAnnotation1.MinimumX = 0;
@@ -48,7 +50,8 @@ namespace TFG.src.ui.userControls
             oxyplot.Model.MouseDown += Model_MouseDown;
             oxyplot.Model.MouseMove += Model_MouseMove;
             oxyplot.Model.MouseUp += Model_MouseUp;
-            mouseDown = false;
+            
+			
             
         }
 
@@ -59,44 +62,49 @@ namespace TFG.src.ui.userControls
 
         private void Model_MouseUp(object sender, OxyMouseEventArgs e)
         {
-            Console.WriteLine(oxyplot.Model.Width);
-            Console.WriteLine(oxyplot.Width);
-            if (e.ChangedButton == OxyMouseButton.Left) 
-            { 
-                Console.WriteLine("Start = " + rectangleAnnotation1.MinimumX);
-                Console.WriteLine("End = " + rectangleAnnotation1.MaximumX);
-                oxyplot.Model.Annotations.RemoveAt(0);
-                oxyplot.Model.Annotations.Add(rectangleAnnotation1);
-                mouseDown = false;
-            }
+			startx = double.NaN;
         }
 
         private void Model_MouseMove(object sender, OxyMouseEventArgs e)
         {
-            if (mouseDown)
-            {
-                rectangleAnnotation1.MaximumX = calculatePosition(e.Position.X);
-
-                Console.WriteLine(calculatePosition(e.Position.X));
-                oxyplot.RefreshPlot(true);
-            }
+			if (e.ChangedButton == OxyMouseButton.Left && !double.IsNaN(startx))
+			{
+				var x = rectangleAnnotation1.InverseTransform(e.Position).X;
+				rectangleAnnotation1.MinimumX = Math.Min(x, startx);
+				rectangleAnnotation1.MaximumX = Math.Max(x, startx);
+				rectangleAnnotation1.Text = string.Format("{0:0.00}", rectangleAnnotation1.MaximumX - rectangleAnnotation1.MinimumX);
+				oxyplot.Model.Subtitle = string.Format("{0:0.00} to {1:0.00}", rectangleAnnotation1.MinimumX, rectangleAnnotation1.MaximumX);
+				oxyplot.Model.RefreshPlot(true);
+				e.Handled = true;
+			}
         }
 
         private void Model_MouseDown(object sender, OxyMouseEventArgs e)
         {
-            if (e.ChangedButton == OxyMouseButton.Left)
-            {
-                rectangleAnnotation1.MinimumX = calculatePosition(e.Position.X);
-                Console.WriteLine(calculatePosition(e.Position.X));
-                mouseDown = true;
-            }
+			//if (e.ChangedButton == OxyMouseButton.Left)
+			//{
+			//	rectangleAnnotation1.MinimumX = calculatePosition(e.Position.X);
+			//	Console.WriteLine(calculatePosition(e.Position.X));
+			//	mouseDown = true;
+			//}
+			if (e.ChangedButton == OxyMouseButton.Left)
+			{
+				startx = rectangleAnnotation1.InverseTransform(e.Position).X;
+				rectangleAnnotation1.MinimumX = startx;
+				rectangleAnnotation1.MaximumX = startx;
+				oxyplot.RefreshPlot(true);
+				e.Handled = true;
+			}
             
         }
 
         private double calculatePosition(double xPosition)
         {
-            //Console.WriteLine(oxyplot.Model.PlotArea.Width);
-            return xPosition * 50.2 / oxyplot.Model.PlotArea.Width;
+
+            double visibleMax = oxyplot.Model.DefaultXAxis.ActualMaximum;
+            double visibleMin = oxyplot.Model.DefaultXAxis.ActualMinimum;
+            double modelWidth = oxyplot.Model.PlotArea.Width;
+            return xPosition * (visibleMax - visibleMin) / modelWidth;
         }
         
     }
