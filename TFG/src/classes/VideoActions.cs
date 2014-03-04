@@ -55,7 +55,7 @@ namespace TFG.src.classes
             dlg.Multiselect = true;
             dlg.DefaultExt = ".avi"; // Default file extension
             // Filter files by extension
-            dlg.Filter = "AVI Videos|*.avi"; 
+            dlg.Filter = "AVI Videos|*.avi|MP4 Videos|*.mp4|All supported videos|*.avi; *.mp4"; 
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
