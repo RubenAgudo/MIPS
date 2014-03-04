@@ -6,6 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{75FC4D91-B851-4CF6-8BDA-E3F20ADAD977}</ProjectGuid>
     <OutputType>WinExe</OutputType>
+    <UICulture>es-ES</UICulture>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TFG</RootNamespace>
     <AssemblyName>TFG</AssemblyName>
@@ -49,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infralution.Localization.Wpf">
+      <HintPath>..\packages\Localization\Infralution.Localization.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MySql.Data.6.8.3\lib\net45\MySql.Data.dll</HintPath>
@@ -89,14 +93,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\WPF Toolkit\v3.5.50211.1\WPFToolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="WPFToolkit.Design, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\WPF Toolkit\v3.5.50211.1\WPFToolkit.Design.dll</HintPath>
-    </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock">
       <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
@@ -118,13 +114,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AdvancedSettings.cs" />
-    <Compile Include="AdvancedSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>AdvancedSettings.settings</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -188,15 +177,13 @@
     <EmbeddedResource Include="diagrams\SequenceDiagram1.sequencediagram.layout">
       <DependentUpon>SequenceDiagram1.sequencediagram</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\ui\MainWindow.resx">
+      <CustomToolNamespace>TFG.src.ui</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AdvancedSettings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>AdvancedSettings.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\SequenceDiagram1.sequencediagram" />
     <None Include="packages.config">

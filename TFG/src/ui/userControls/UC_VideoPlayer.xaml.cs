@@ -145,7 +145,7 @@ namespace TFG.src.ui.userControls
         {
             pause();
             TimeSpan ts = Position;
-            ts = ts.Add(TimeSpan.FromSeconds(AdvancedSettings.Default.SecondsToAdvance));
+            ts = ts.Add(TimeSpan.FromSeconds(Properties.Settings.Default.SecondsToAdvance));
             Position = ts;
         }
 

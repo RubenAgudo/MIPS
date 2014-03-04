@@ -1,7 +1,8 @@
-﻿<Window x:Class="TFG.MainWindow"
+﻿<Window ResxExtension.DefaultResxName="TFG.src.ui.MainWindow" Language="{UICulture}"
+		x:Class="TFG.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="507" Width="854" 
+        Title="{Resx Key=Window.Title}" Height="507" Width="854" 
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock" WindowState="Maximized">
 
 
@@ -10,15 +11,15 @@
 
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Save"/>
-                    <MenuItem Header="_Exit" Name="mnitExit" Click="mnitExit_Click"/>
+				<MenuItem Header="{Resx _fileMenuItem.Header}">
+					<MenuItem Header="{Resx _fileMenuItem.Open}" Name="_Open" />
+					<MenuItem Header="{Resx _fileMenuItem.Save}"/>
+					<MenuItem Header="{Resx _fileMenuItem.Exit}" Name="mnitExit" Click="mnitExit_Click"/>
                 </MenuItem>
-                
-                <MenuItem Header="_Add">
-                    <MenuItem Header="_Añadir contenedor graficos" Name="mnitAnadirPanelGrafico" Click="mnitAddChartContainer_Click" />
-                    <MenuItem Header="_Añadir contenedor video" Name="mnitAnadirVideo" Click="mnitAddVideoContainer_Click" />
+
+				<MenuItem Header="{Resx _addMenuItem.Header}">
+					<MenuItem Header="{Resx _addMenuItem.AddChartContainer}" Name="mnitAnadirPanelGrafico" Click="mnitAddChartContainer_Click" />
+					<MenuItem Header="{Resx _addMenuItem.AddVideoContainer}" Name="mnitAnadirVideo" Click="mnitAddVideoContainer_Click" />
                 </MenuItem>
             </Menu>
 
@@ -56,7 +57,7 @@
                     <avalonDock:LayoutRoot.LeftSide>
                         <avalonDock:LayoutAnchorSide>
                             <avalonDock:LayoutAnchorGroup>
-                                <avalonDock:LayoutAnchorable Title="Contenedores ocultos">
+								<avalonDock:LayoutAnchorable Title="{Resx _layoutAnchorable.HiddenContainers}">
                                     <Slider IsSelectionRangeEnabled="True" SelectionEnd="5" SelectionStart="2" />
                                 </avalonDock:LayoutAnchorable>
                             </avalonDock:LayoutAnchorGroup>
