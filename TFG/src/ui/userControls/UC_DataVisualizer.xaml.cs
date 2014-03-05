@@ -30,15 +30,12 @@ namespace TFG.src.ui.userControls
     public partial class UC_DataVisualizer : UserControl, ISynchronizable
     {
 
-        RectangleAnnotation rectangleAnnotation1;
-		double startx;
+        private RectangleAnnotation rectangleAnnotation1;
+		private double startx;
 
         public UC_DataVisualizer()
         {
             InitializeComponent();
-
-            oxyplot.Model = new DataVisualizerViewModel().Model;
-
 			startx = double.NaN;
 
             rectangleAnnotation1 = new RectangleAnnotation();
@@ -81,12 +78,6 @@ namespace TFG.src.ui.userControls
 
         private void Model_MouseDown(object sender, OxyMouseEventArgs e)
         {
-			//if (e.ChangedButton == OxyMouseButton.Left)
-			//{
-			//	rectangleAnnotation1.MinimumX = calculatePosition(e.Position.X);
-			//	Console.WriteLine(calculatePosition(e.Position.X));
-			//	mouseDown = true;
-			//}
 			if (e.ChangedButton == OxyMouseButton.Left)
 			{
 				startx = rectangleAnnotation1.InverseTransform(e.Position).X;
@@ -96,15 +87,6 @@ namespace TFG.src.ui.userControls
 				e.Handled = true;
 			}
             
-        }
-
-        private double calculatePosition(double xPosition)
-        {
-
-            double visibleMax = oxyplot.Model.DefaultXAxis.ActualMaximum;
-            double visibleMin = oxyplot.Model.DefaultXAxis.ActualMinimum;
-            double modelWidth = oxyplot.Model.PlotArea.Width;
-            return xPosition * (visibleMax - visibleMin) / modelWidth;
         }
         
     }

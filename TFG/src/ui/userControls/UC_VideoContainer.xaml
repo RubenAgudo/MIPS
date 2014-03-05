@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="TFG.src.ui.userControls.UC_VideoContainer"
+﻿<UserControl ResxExtension.DefaultResxName="TFG.src.ui.userControls.UC_VideoContainer"
+			 x:Class="TFG.src.ui.userControls.UC_VideoContainer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,30 +11,33 @@
         <DockPanel>
             
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Añadir video" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
+                <MenuItem Header="{Resx Key=_añadirVideoMenuItem.Header}" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
             </Menu>
             
             
                 
-                <avalonDock:DockingManager x:Name="videoContainer" >
+               
 
-                    <avalonDock:LayoutRoot x:Name="videoLayoutRoot">
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+				<avalonDock:DockingManager x:Name="videoContainer" >
 
-                        <avalonDock:LayoutPanel x:Name="videoLayoutPanel" Orientation="Horizontal">
+					<avalonDock:LayoutRoot x:Name="videoLayoutRoot">
 
-                            <avalonDock:LayoutAnchorablePaneGroup x:Name="videoAnchorableGroup" DockWidth="150" Orientation="Vertical">
+						<avalonDock:LayoutPanel x:Name="videoLayoutPanel" Orientation="Horizontal">
 
-                                <avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
+							<avalonDock:LayoutAnchorablePaneGroup x:Name="videoAnchorableGroup" DockWidth="150" Orientation="Vertical">
 
-
-                                </avalonDock:LayoutAnchorablePane>
-
-
-
-                            </avalonDock:LayoutAnchorablePaneGroup>
+								<avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
 
 
-                            <!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
+								</avalonDock:LayoutAnchorablePane>
+
+
+
+							</avalonDock:LayoutAnchorablePaneGroup>
+
+
+							<!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
 
                             
 
@@ -41,11 +45,11 @@
                             
                                     </avalonDock:LayoutDocumentPaneGroup>-->
 
-                        </avalonDock:LayoutPanel>
+						</avalonDock:LayoutPanel>
 
 
 
-                        <!--<avalonDock:LayoutRoot.LeftSide>
+						<!--<avalonDock:LayoutRoot.LeftSide>
                             <avalonDock:LayoutAnchorSide>
                                 <avalonDock:LayoutAnchorGroup>
                                     <avalonDock:LayoutAnchorable x:Name="videoLayoutAnchorable" Title="Videos Ocultos">
@@ -56,11 +60,9 @@
                             </avalonDock:LayoutAnchorSide>
                         </avalonDock:LayoutRoot.LeftSide>-->
 
-                    </avalonDock:LayoutRoot>
-                </avalonDock:DockingManager>
-
-                <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-                    <StackPanel Orientation="Horizontal" >
+					</avalonDock:LayoutRoot>
+				</avalonDock:DockingManager>
+				<StackPanel Orientation="Horizontal" >
                         <!-- Play button. -->
                         <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
 
@@ -73,7 +75,7 @@
 
                     </StackPanel>
 
-                    <StatusBar Name="videoContainerStatusbar" >
+                    <!--<StatusBar Name="videoContainerStatusbar" >
                         <TextBlock>Duration:</TextBlock>
                         <TextBlock Name="txblDuration" ></TextBlock>
 
@@ -85,7 +87,7 @@
 
                         <TextBlock >Speed:</TextBlock>
                         <TextBlock Name="txblSpeed"></TextBlock>
-                    </StatusBar>
+                    </StatusBar>-->
                 </StackPanel>
             
         </DockPanel>

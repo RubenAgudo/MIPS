@@ -178,6 +178,8 @@
     <EmbeddedResource Include="src\ui\userControls\UC_ChartContainer.resx">
       <CustomToolNamespace>TFG.src.ui.userControls</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\ui\userControls\UC_DataVisualizer.resx" />
+    <EmbeddedResource Include="src\ui\userControls\UC_VideoContainer.resx" />
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\SequenceDiagram1.sequencediagram" />
     <None Include="packages.config">

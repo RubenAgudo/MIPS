@@ -38,8 +38,6 @@ namespace TFG.src.ViewModels
         private PlotModel Selectrange()
         {
             var plotModel1 = new PlotModel();
-            plotModel1.Subtitle = "Left click and drag to select a range.";
-            plotModel1.Title = "Select range";
             var functionSeries1 = new FunctionSeries();
             functionSeries1.Points.Add(new DataPoint(0, 4));
             functionSeries1.Points.Add(new DataPoint(10, 13));
