@@ -7,7 +7,7 @@
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid x:Name="grid" x:FieldModifier="private">
+    <Grid x:Name="grid">
         <DockPanel>
             
             <MediaElement DockPanel.Dock="Top"
@@ -21,12 +21,12 @@
                              VerticalAlignment="Top" Foreground="DarkBlue" 
                              Maximum="{Binding Path=NaturalDuration.TimeSpan.TotalSeconds, Mode=OneWay, ElementName=myMediaElement1}"
                              Value="{Binding Path=Position.TotalSeconds, Mode=OneWay, ElementName=myMediaElement1}" />-->
-                <Slider Name="timelineSlider" Margin="5" 
+				<Slider Name="timelineSlider" Margin="5" 
                         Thumb.DragStarted="timelineSlider_DragStarted" 
                         Thumb.DragCompleted="timelineSlider_DragCompleted" TickPlacement="BottomRight"
                         IsSelectionRangeEnabled="True" AutoToolTipPlacement="TopLeft" />
-                
-                <StackPanel Orientation="Horizontal" >
+
+				<StackPanel Orientation="Horizontal" >
                     <!-- Play button. -->
                     <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
 

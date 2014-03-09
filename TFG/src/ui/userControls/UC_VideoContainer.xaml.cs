@@ -27,7 +27,14 @@ namespace TFG.src.ui.userControls
     {
         private int paneNumber;
         private VideoActions videoActions;
-        
+
+		public double Progress
+		{
+			get
+			{
+				return videoActions.getLongestVideoProgress();
+			}
+		}
 
         public UC_VideoContainer()
         {
@@ -65,17 +72,16 @@ namespace TFG.src.ui.userControls
 
         private void addToAnchorablePane(UserControl objectToAdd)
         {
-            LayoutAnchorablePane pane = videoContainer.Layout.Descendents().
-                 OfType<LayoutAnchorablePane>().FirstOrDefault();
+            
 
-            if (pane != null)
+            if (mainPanelVideoContainer != null)
             {
                 LayoutAnchorable doc = new LayoutAnchorable();
                 doc.CanHide = false;
                 doc.CanClose = true;
                 doc.Title = "Pane " + ++paneNumber;
                 doc.Content = objectToAdd;
-                pane.Children.Add(doc);
+                mainPanelVideoContainer.Children.Add(doc);
 
             }
             else
@@ -122,13 +128,6 @@ namespace TFG.src.ui.userControls
 
         #endregion
 
-        private void setStatusBarInfo()
-        {
-            //txblDuration.Text = myMediaElement.NaturalDuration.ToString();
-            //txblFramesSkipped.Text = AdvancedSettings.Default.SecondsToAdvance.ToString();
-            //txblSpeed.Text = myMediaElement.SpeedRatio.ToString();
-
-        }
 
         public void sync(TimeSpan position)
         {

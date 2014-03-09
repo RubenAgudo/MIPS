@@ -17,6 +17,7 @@ using TFG.src.classes;
 using TFG.src.ui.userControls;
 using System.ComponentModel;
 using Xceed.Wpf.AvalonDock.Themes;
+using System.Windows.Threading;
 
 namespace TFG
 {
@@ -29,6 +30,7 @@ namespace TFG
         private int containerNumber;
         private UC_VideoContainer videoContainer;
         private UC_ChartContainer chartContainer;
+		private DispatcherTimer timer;
 
         public MainWindow()
         {
@@ -38,7 +40,20 @@ namespace TFG
             containerNumber = 0;
             videoContainer = null;
             chartContainer = null;
+			timer = new DispatcherTimer();
+			timer.Interval = new TimeSpan(0,0,0,0,500);
+			timer.Tick += timer_Tick;
+			timer.Start();
         }
+
+		private void timer_Tick(object sender, EventArgs e)
+		{
+			if (chartContainer != null && videoContainer != null)
+			{
+
+				chartContainer.Update(videoContainer.Progress);
+			}
+		}
 
 
         private void mnitAddVideoContainer_Click(object sender, RoutedEventArgs e)
@@ -88,20 +103,21 @@ namespace TFG
         {
             if (mainPanel != null)
             {
-                LayoutAnchorable doc = new LayoutAnchorable();
-                //if (objectToAdd is UC_ChartContainer)
-                //{
-                //    doc.Title = "Chart container";
-                //}
-                //else if (objectToAdd is UC_VideoContainer)
-                //{
-                //    doc.Title = "Video container";
-                //}
+                LayoutDocument doc = new LayoutDocument();
+				if (objectToAdd is UC_ChartContainer)
+				{
+					doc.Title = "Chart container";
+				}
+				else if (objectToAdd is UC_VideoContainer)
+				{
+					doc.Title = "Video container";
+				}
                 
-                doc.CanHide = false;
+                
                 doc.CanClose = false;
                 doc.Content = objectToAdd;
-                mainPanel.Children.Add(doc);
+				
+				mainPanel.Children.Add(doc);
 
             }
             else

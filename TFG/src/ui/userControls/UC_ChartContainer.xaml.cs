@@ -38,6 +38,7 @@ namespace TFG.src.ui.userControls
         private void mnitAddChart_Click(object sender, RoutedEventArgs e)
         {
             UC_DataVisualizer dataVisualizer = new UC_DataVisualizer();
+			graphicActions.addLast(dataVisualizer);
             addToAnchorablePane(dataVisualizer);
         }
 
@@ -66,5 +67,13 @@ namespace TFG.src.ui.userControls
             }
         }
 
-    }
+		/// <summary>
+		/// Method that updates the chart progress indicator.
+		/// </summary>
+		/// <param name="p">The new position of the indicator</param>
+		internal void Update(double p)
+		{
+			graphicActions.update(p);
+		}
+	}
 }

@@ -30,7 +30,7 @@
 
                     <avalonDock:LayoutPanel Orientation="Horizontal">
                         
-                        <avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
+                        <!--<avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
                             
                             <avalonDock:LayoutAnchorablePane x:Name="mainPanel" >
 
@@ -39,18 +39,22 @@
                             </avalonDock:LayoutAnchorablePane>
 
 
-                        </avalonDock:LayoutAnchorablePaneGroup>
+                        </avalonDock:LayoutAnchorablePaneGroup>-->
 
 
-                        <!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
+						<avalonDock:LayoutDocumentPaneGroup >
 
-                            
 
-                            
-                            
-                            </avalonDock:LayoutDocumentPaneGroup>-->
+							<avalonDock:LayoutDocumentPane x:Name="mainPanel">
+								
+								
+								
+							</avalonDock:LayoutDocumentPane>
 
-                    </avalonDock:LayoutPanel>
+
+						</avalonDock:LayoutDocumentPaneGroup>
+
+					</avalonDock:LayoutPanel>
                     
                     
                     

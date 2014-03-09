@@ -1,10 +1,10 @@
-﻿<UserControl
+﻿<UserControl ResxExtension.DefaultResxName="TFG.src.ui.userControls.UC_DataVisualizer" Language="{UICulture}"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:oxy="http://oxyplot.codeplex.com"
-             xmlns:ViewModels="clr-namespace:TFG.src.ViewModels" Resx.DefaultResxName="TFG.src.ui.userControls.UC_DataVisualizer" Language="{UICulture}"
+             xmlns:ViewModels="clr-namespace:TFG.src.ViewModels" 
 			 x:Class="TFG.src.ui.userControls.UC_DataVisualizer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
@@ -52,7 +52,7 @@
 
 		<oxy:Plot x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
 			VerticalContentAlignment="Stretch" IsManipulationEnabled="True"  
-			Title="{Resx Key=_plotModel.Title}" Subtitle="{Resx Key=_plotModel.Subtitle}" Model="{Binding Model}" >
+			Model="{Binding Model}"  >
 
 			<oxy:LineSeries LineStyle="Solid"  />
 

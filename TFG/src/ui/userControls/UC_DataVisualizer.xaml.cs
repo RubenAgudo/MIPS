@@ -19,6 +19,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.Annotations;
 using TFG.src.ViewModels;
+using System.ComponentModel;
 
 
 namespace TFG.src.ui.userControls
@@ -27,18 +28,20 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_DataVisualizer.xaml
     /// </summary>
-    public partial class UC_DataVisualizer : UserControl, ISynchronizable
+	public partial class UC_DataVisualizer : UserControl
     {
 
         private RectangleAnnotation rectangleAnnotation1;
+		private RectangleAnnotation rectangleAnnotationProgress;
 		private double startx;
 
         public UC_DataVisualizer()
         {
+			
             InitializeComponent();
 			startx = double.NaN;
 
-            rectangleAnnotation1 = new RectangleAnnotation();
+			rectangleAnnotation1 = new RectangleAnnotation();
             rectangleAnnotation1.Fill = OxyColor.FromArgb(120, 135, 206, 235);
             rectangleAnnotation1.MinimumX = 0;
             rectangleAnnotation1.MaximumX = 0;
@@ -47,15 +50,15 @@ namespace TFG.src.ui.userControls
             oxyplot.Model.MouseDown += Model_MouseDown;
             oxyplot.Model.MouseMove += Model_MouseMove;
             oxyplot.Model.MouseUp += Model_MouseUp;
-            
-			
+
+			rectangleAnnotationProgress = new RectangleAnnotation();
+			rectangleAnnotationProgress.Fill = OxyColor.FromArgb(100, 100, 100, 100);
+			rectangleAnnotationProgress.MinimumX = 0;
+			rectangleAnnotationProgress.MaximumX = 0;
+			oxyplot.Model.Annotations.Add(rectangleAnnotationProgress);
             
         }
 
-        public void sync(TimeSpan position)
-        {
-            throw new NotImplementedException();
-        }
 
         private void Model_MouseUp(object sender, OxyMouseEventArgs e)
         {
@@ -88,6 +91,12 @@ namespace TFG.src.ui.userControls
 			}
             
         }
-        
-    }
+
+
+		internal void update(double p)
+		{
+			rectangleAnnotationProgress.MaximumX = p;
+			oxyplot.RefreshPlot(true);
+		}
+	}
 }

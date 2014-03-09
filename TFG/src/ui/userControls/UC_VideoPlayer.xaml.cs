@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using TFG.src.classes;
 using TFG.src.interfaces;
 using System.Windows.Threading;
+using System.ComponentModel;
 
 
 namespace TFG.src.ui.userControls
@@ -22,7 +23,7 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_VideoPlayer.xaml
     /// </summary>
-    public partial class UC_VideoPlayer : UserControl, ISynchronizable
+	public partial class UC_VideoPlayer : UserControl
     {
 
         private bool isDragging;
@@ -165,13 +166,13 @@ namespace TFG.src.ui.userControls
         private void timer_Tick(object sender, EventArgs e)
         {
 
-            if (!isDragging)
-            {
-                timelineSlider.Value = Position.TotalSeconds;
-                
-            }
-            timelineSlider.SelectionEnd = Position.TotalSeconds;
-        }
+			if (!isDragging)
+			{
+				timelineSlider.Value = Position.TotalSeconds;
 
-    }
+			}
+			timelineSlider.SelectionEnd = Position.TotalSeconds;
+		}
+
+	}
 }

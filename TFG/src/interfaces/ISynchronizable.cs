@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TFG.src.interfaces
 {
-    interface ISynchronizable
-    {
-        void sync(TimeSpan position);
-    }
+	interface INotifyParent
+	{
+		
+	}
 }

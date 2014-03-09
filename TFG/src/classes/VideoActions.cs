@@ -111,5 +111,18 @@ namespace TFG.src.classes
                 actualVideo.advanceFrame();                
             }
         }
-    }
+
+		internal double getLongestVideoProgress()
+		{
+			if (videos.Count > 0)
+			{
+				return videos.First.Value.Position.TotalSeconds;
+			}
+			else
+			{
+				return 0d;
+			}
+			
+		}
+	}
 }
