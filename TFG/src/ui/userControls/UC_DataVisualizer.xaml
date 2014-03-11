@@ -55,6 +55,7 @@
 			Model="{Binding Model}"  >
 
 			<oxy:LineSeries LineStyle="Solid"  />
+			
 
 		</oxy:Plot>
 
