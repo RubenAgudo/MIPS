@@ -32,12 +32,12 @@ namespace TFG.src.ViewModels
 			categoryAxis2.AxislineStyle = LineStyle.Solid;
 			categoryAxis2.MinorStep = 1;
 			categoryAxis2.TickStyle = TickStyle.None;
-			categoryAxis2.Labels.Add("Jul");
-			categoryAxis2.Labels.Add("Aug");
-			categoryAxis2.Labels.Add("Sep");
-			categoryAxis2.Labels.Add("Oct");
-			categoryAxis2.Labels.Add("Nov");
-			categoryAxis2.Labels.Add("Dec");
+			categoryAxis2.Labels.Add("Tipo 1");
+			categoryAxis2.Labels.Add("Tipo 2");
+			categoryAxis2.Labels.Add("Tipo 3");
+			categoryAxis2.Labels.Add("Tipo 4");
+			categoryAxis2.Labels.Add("Tipo 5");
+			categoryAxis2.Labels.Add("Tipo 6");
 
 			plotModel1.Axes.Add(categoryAxis2);
 
@@ -54,13 +54,13 @@ namespace TFG.src.ViewModels
 
 			plotModel1.Axes.Add(categoryAxis1);
 
-			var functionSeries1 = new FunctionSeries();
-			functionSeries1.Points.Add(new DataPoint(0, 4));
-			functionSeries1.Points.Add(new DataPoint(1, 13));
-			functionSeries1.Points.Add(new DataPoint(2, 15));
-			functionSeries1.Points.Add(new DataPoint(3, 16));
-			functionSeries1.Points.Add(new DataPoint(4, 12));
-			functionSeries1.Points.Add(new DataPoint(5, 12));
+			var functionSeries1 = new StairStepSeries();
+			functionSeries1.Points.Add(new DataPoint(0, 1));
+			functionSeries1.Points.Add(new DataPoint(1, 0));
+			functionSeries1.Points.Add(new DataPoint(2, 2));
+			functionSeries1.Points.Add(new DataPoint(3, 5));
+			functionSeries1.Points.Add(new DataPoint(4, 3));
+			functionSeries1.Points.Add(new DataPoint(5, 4));
 			plotModel1.Series.Add(functionSeries1);
 			//plotModel1.DefaultXAxis.AbsoluteMinimum = 0;
 			//plotModel1.DefaultXAxis.AbsoluteMaximum = 50;

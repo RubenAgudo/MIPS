@@ -27,7 +27,7 @@ namespace TFG.src.ViewModels
 		protected override PlotModel createModel()
 		{
 			var plotModel1 = new PlotModel();
-			var functionSeries1 = new StairStepSeries();
+			var functionSeries1 = new FunctionSeries();
 			functionSeries1.Points.Add(new DataPoint(0, 4));
 			functionSeries1.Points.Add(new DataPoint(1, 13));
 			functionSeries1.Points.Add(new DataPoint(2, 15));
