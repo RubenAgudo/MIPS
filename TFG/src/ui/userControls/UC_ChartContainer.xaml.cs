@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TFG.src.classes;
+using TFG.src.ViewModels;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 
@@ -33,13 +34,6 @@ namespace TFG.src.ui.userControls
 
             graphicActions = new GraphicActions();
             paneNumber = 0;
-        }
-
-        private void mnitAddChart_Click(object sender, RoutedEventArgs e)
-        {
-            UC_DataVisualizer dataVisualizer = new UC_DataVisualizer();
-			graphicActions.addLast(dataVisualizer);
-            addToAnchorablePane(dataVisualizer);
         }
 
         /// <summary>
@@ -74,6 +68,21 @@ namespace TFG.src.ui.userControls
 		internal void Update(double p)
 		{
 			graphicActions.update(p);
+		}
+
+		private void mnitAddContinousChart_Click(object sender, RoutedEventArgs e)
+		{
+			UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(AbstractDataVisualizerViewModel.CONTINOUS);
+			graphicActions.addLast(dataVisualizer);
+			addToAnchorablePane(dataVisualizer);
+		}
+
+		private void mnitAddDiscreteChart_Click(object sender, RoutedEventArgs e)
+		{
+			
+			UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(AbstractDataVisualizerViewModel.DISCRETE);
+			graphicActions.addLast(dataVisualizer);
+			addToAnchorablePane(dataVisualizer);
 		}
 	}
 }

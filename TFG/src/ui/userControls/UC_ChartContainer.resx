@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="_addChartPanel.Header" xml:space="preserve">
-    <value>Añadir gráfico</value>
+  <data name="_addContinousChartPanel.Header" xml:space="preserve">
+    <value>Añadir gráfico continuo</value>
+  </data>
+  <data name="_addDiscreteChartPanel.Header" xml:space="preserve">
+    <value>Añadir gráfico discreto</value>
   </data>
   <data name="_addObservationPanel.Header" xml:space="preserve">
     <value>Añadir observación</value>

@@ -16,12 +16,13 @@
                     <MenuItem Header="_Close"/>
                     <MenuItem Header="_Save"/>
                 </MenuItem>
-                <MenuItem Header="_Tools">
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-                <MenuItem Header="{Resx Key=_addChartPanel.Header}" Name="mnitAddChart" Click="mnitAddChart_Click" />
+				<MenuItem Header="_Tools">
+					<MenuItem Header="_Open"/>
+					<MenuItem Header="_Close"/>
+					<MenuItem Header="_Save"/>
+				</MenuItem>
+				<MenuItem Header="{Resx Key=_addContinousChartPanel.Header}" Name="mnitAddContinousChart" Click="mnitAddContinousChart_Click" />
+				<MenuItem Header="{Resx Key=_addDiscreteChartPanel.Header}" Name="mnitAddDiscreteChart" Click="mnitAddDiscreteChart_Click" />
 				<MenuItem Header="{Resx Key=_addStepPanel.Header}" Name="mnitAddStep"  />
 				<MenuItem Header="{Resx Key=_addObservationPanel.Header}" Name="mnitAddObservation"  />
             </Menu>

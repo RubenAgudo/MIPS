@@ -12,6 +12,9 @@ namespace TFG.src.ViewModels
 {
 	abstract public class AbstractDataVisualizerViewModel
 	{
+		public const int DISCRETE = 0;
+		public const int CONTINOUS = 1;
+
 		public string Title
 		{
 			get;

@@ -8,14 +8,15 @@
 			 x:Class="TFG.src.ui.userControls.UC_DataVisualizer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
-	<UserControl.DataContext>
-		<ViewModels:DiscreteDataVisualizerViewModel/>
-	</UserControl.DataContext>
 
 	<Grid >
+		<DockPanel>
 
+			<Menu DockPanel.Dock="Top">
+				<MenuItem Header="{Resx Key=_saveRange.Header}" Name="mnitSaveRange" Click="mnitSaveRange_Click" />
+			</Menu>
 
-		<!--<chartingToolkit:Chart Name="myData" Visibility="Hidden" >
+			<!--<chartingToolkit:Chart Name="myData" Visibility="Hidden" >
             <chartingToolkit:AreaSeries 
                 Name="m_colserHistogram" 
                 Title="nombre propiedad" ItemsSource="{Binding}" 
@@ -35,7 +36,7 @@
                 
             </chartingToolkit:AreaSeries>-->
 
-		<!--<chartingToolkit:LineSeries 
+			<!--<chartingToolkit:LineSeries 
                 Name="progress" 
                 Title="nombre propiedad" ItemsSource="{Binding}" 
                 DependentValueBinding="{Binding Value}" 
@@ -47,20 +48,20 @@
                 </chartingToolkit:LineSeries.DependentRangeAxis>
             </chartingToolkit:LineSeries>-->
 
-		<!--</chartingToolkit:Chart>-->
+			<!--</chartingToolkit:Chart>-->
 
-		
 
-		<oxy:Plot x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
+
+			<oxy:Plot x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
 			VerticalContentAlignment="Stretch" IsManipulationEnabled="True"  
 			Model="{Binding Model}"  >
 
-			<oxy:LineSeries LineStyle="Solid"  />
-			
-
-		</oxy:Plot>
+				<oxy:LineSeries LineStyle="Solid"  />
 
 
+			</oxy:Plot>
+
+		</DockPanel>
 	</Grid>
 
 </UserControl>
