@@ -41,34 +41,16 @@
 
                         </avalonDock:LayoutAnchorablePaneGroup>-->
 
-
-						<avalonDock:LayoutDocumentPaneGroup >
-
-
-							<avalonDock:LayoutDocumentPane x:Name="mainPanel">
+						<avalonDock:LayoutDocumentPane x:Name="mainPanel">
 								
 								
 								
-							</avalonDock:LayoutDocumentPane>
-
-
-						</avalonDock:LayoutDocumentPaneGroup>
+						</avalonDock:LayoutDocumentPane>
 
 					</avalonDock:LayoutPanel>
-                    
-                    
-                    
-                    <avalonDock:LayoutRoot.LeftSide>
-                        <avalonDock:LayoutAnchorSide>
-                            <avalonDock:LayoutAnchorGroup>
-								<avalonDock:LayoutAnchorable Title="{Resx _layoutAnchorable.HiddenContainers}">
-                                    <Slider IsSelectionRangeEnabled="True" SelectionEnd="5" SelectionStart="2" />
-                                </avalonDock:LayoutAnchorable>
-                            </avalonDock:LayoutAnchorGroup>
-                        </avalonDock:LayoutAnchorSide>
-                    </avalonDock:LayoutRoot.LeftSide>
-                    
+
                 </avalonDock:LayoutRoot>
+				
             </avalonDock:DockingManager>
 
         </DockPanel>

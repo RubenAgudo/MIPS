@@ -32,18 +32,12 @@
 
                 <avalonDock:LayoutRoot x:Name="chartLayoutRoot">
 
-                    <avalonDock:LayoutPanel Orientation="Horizontal">
+					<avalonDock:LayoutPanel Orientation="Horizontal">
 
-                        <avalonDock:LayoutAnchorablePaneGroup x:Name="chartAnchorablePaneGroup" DockWidth="150" Orientation="Vertical">
-
-                            <avalonDock:LayoutAnchorablePane x:Name="mainPanelGraphicsContainer">
+						<avalonDock:LayoutAnchorablePane x:Name="mainPanelGraphicsContainer">
 
 
                             </avalonDock:LayoutAnchorablePane>
-
-
-
-                        </avalonDock:LayoutAnchorablePaneGroup>
 
 
                         <!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
@@ -56,23 +50,11 @@
 
                     </avalonDock:LayoutPanel>
 
-
-
-                    <avalonDock:LayoutRoot.LeftSide>
-                        <avalonDock:LayoutAnchorSide>
-                            <avalonDock:LayoutAnchorGroup>
-                                <avalonDock:LayoutAnchorable Title="{Resx Key=_hiddenCharts.Title}">
-                                    <ListBox Name="listHiddenCharts" 
-                                                ItemsSource="{Binding Hidden, ElementName=layoutRoot}" ></ListBox>
-                                </avalonDock:LayoutAnchorable>
-                            </avalonDock:LayoutAnchorGroup>
-                        </avalonDock:LayoutAnchorSide>
-                    </avalonDock:LayoutRoot.LeftSide>
-
+					
                 </avalonDock:LayoutRoot>
+				
             </avalonDock:DockingManager>
 
-            
         </DockPanel>
 
     </Grid>

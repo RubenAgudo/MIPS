@@ -40,19 +40,17 @@ namespace TFG.src.ui.userControls
         /// Method that adds to the GraphicsContainer a LayoutAnchorable that contains a Data visualizer user control
         /// </summary>
         /// <param name="objectToAdd"></param>
-        private void addToAnchorablePane(UserControl objectToAdd)
+        private void addToAnchorablePane(UC_DataVisualizer objectToAdd)
         {
-            LayoutAnchorablePane pane = chartContainer.Layout.Descendents().
-                 OfType<LayoutAnchorablePane>().FirstOrDefault();
 
-            if (pane != null)
+            if (mainPanelGraphicsContainer != null)
             {
-                LayoutAnchorable doc = new LayoutAnchorable();
-                doc.CanHide = false;
-                doc.CanClose = true;
-                doc.Title = "Pane " + ++paneNumber;
-                doc.Content = objectToAdd;
-                pane.Children.Add(doc);
+				LayoutAnchorable doc = new LayoutAnchorable() { Title = "Pane " + ++paneNumber, Content = objectToAdd };
+                //doc.CanHide = false;
+                //doc.CanClose = true;
+                //doc.Title = "Pane " + ++paneNumber;
+                //doc.Content = objectToAdd;
+                mainPanelGraphicsContainer.Children.Add(doc);
 
             }
             else

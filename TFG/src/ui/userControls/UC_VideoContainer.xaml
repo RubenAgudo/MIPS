@@ -9,56 +9,25 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DockPanel>
-            
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="{Resx Key=_añadirVideoMenuItem.Header}" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
-            </Menu>
-            
-            
-                
-               
 
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+			<Menu DockPanel.Dock="Top">
+				<MenuItem Header="{Resx Key=_añadirVideoMenuItem.Header}" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
+			</Menu>
+
+			<StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
 				<avalonDock:DockingManager x:Name="videoContainer" >
 
 					<avalonDock:LayoutRoot x:Name="videoLayoutRoot">
 
 						<avalonDock:LayoutPanel x:Name="videoLayoutPanel" Orientation="Horizontal">
 
-							<avalonDock:LayoutAnchorablePaneGroup x:Name="videoAnchorableGroup" DockWidth="150" Orientation="Vertical">
-
-								<avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
+							<avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
 
 
-								</avalonDock:LayoutAnchorablePane>
-
-
-
-							</avalonDock:LayoutAnchorablePaneGroup>
-
-
-							<!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
-
-                            
-
-                            
-                            
-                                    </avalonDock:LayoutDocumentPaneGroup>-->
-
+							</avalonDock:LayoutAnchorablePane>
+							
 						</avalonDock:LayoutPanel>
 
-
-
-						<!--<avalonDock:LayoutRoot.LeftSide>
-                            <avalonDock:LayoutAnchorSide>
-                                <avalonDock:LayoutAnchorGroup>
-                                    <avalonDock:LayoutAnchorable x:Name="videoLayoutAnchorable" Title="Videos Ocultos">
-                                        <ListBox Name="listVideosOcultos" 
-                                                 ItemsSource="{Binding Hidden, ElementName=layoutRoot}" ></ListBox>
-                                    </avalonDock:LayoutAnchorable>
-                                </avalonDock:LayoutAnchorGroup>
-                            </avalonDock:LayoutAnchorSide>
-                        </avalonDock:LayoutRoot.LeftSide>-->
 
 					</avalonDock:LayoutRoot>
 				</avalonDock:DockingManager>
