@@ -10,51 +10,15 @@
              d:DesignHeight="300" d:DesignWidth="300" >
 
 	<Grid >
+		
 		<DockPanel>
 
 			<Menu DockPanel.Dock="Top">
 				<MenuItem Header="{Resx Key=_saveRange.Header}" Name="mnitSaveRange" Click="mnitSaveRange_Click" />
 			</Menu>
-
-			<!--<chartingToolkit:Chart Name="myData" Visibility="Hidden" >
-            <chartingToolkit:AreaSeries 
-                Name="m_colserHistogram" 
-                Title="nombre propiedad" ItemsSource="{Binding}" 
-                DependentValueBinding="{Binding Value}" 
-                IndependentValueBinding="{Binding Key}" 
-                IsSelectionEnabled="True"
-                IsManipulationEnabled="True" IsHitTestVisible="True">
-                
-                <chartingToolkit:AreaSeries.DependentRangeAxis>
-                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Orientation="Y" ShowGridLines="False" />
-                </chartingToolkit:AreaSeries.DependentRangeAxis>
-
-                <chartingToolkit:AreaSeries.IndependentAxis>
-                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Orientation="X" ShowGridLines="True" />
-                </chartingToolkit:AreaSeries.IndependentAxis>
-
-                
-            </chartingToolkit:AreaSeries>-->
-
-			<!--<chartingToolkit:LineSeries 
-                Name="progress" 
-                Title="nombre propiedad" ItemsSource="{Binding}" 
-                DependentValueBinding="{Binding Value}" 
-                IndependentValueBinding="{Binding Key}" 
-                IsSelectionEnabled="True"
-                IsManipulationEnabled="False" IsHitTestVisible="True">
-                <chartingToolkit:LineSeries.DependentRangeAxis>
-                    <chartingToolkit:LinearAxis FontSize="15" Foreground="Black" Interval="{Binding ChartingInterval}"  Minimum="0" Maximum="1" Orientation="Y" ShowGridLines="False" />
-                </chartingToolkit:LineSeries.DependentRangeAxis>
-            </chartingToolkit:LineSeries>-->
-
-			<!--</chartingToolkit:Chart>-->
-
-
-
+			
 			<oxy:Plot x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
-			VerticalContentAlignment="Stretch" IsManipulationEnabled="True"  
-			Model="{Binding Model}"  >
+            VerticalContentAlignment="Stretch" IsManipulationEnabled="True" Model="{Binding DataContext.Model, Mode=OneWay, RelativeSource={RelativeSource Self}}"> <!---->
 
 				<oxy:LineSeries LineStyle="Solid"  />
 

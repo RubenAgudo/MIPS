@@ -38,20 +38,21 @@ namespace TFG.src.ui.userControls
         public UC_DataVisualizer(int chartType)
         {
 
+			//DataContext = new ContinousDataVisualizerViewModel();
 			selectDataContext(chartType);
 
             InitializeComponent();
 			startx = double.NaN;
 
 			RangeSelection = new RectangleAnnotation();
-            RangeSelection.Fill = OxyColor.FromArgb(120, 135, 206, 235);
-            RangeSelection.MinimumX = 0;
-            RangeSelection.MaximumX = 0;
+			RangeSelection.Fill = OxyColor.FromArgb(120, 135, 206, 235);
+			RangeSelection.MinimumX = 0;
+			RangeSelection.MaximumX = 0;
 
-            oxyplot.Model.Annotations.Add(RangeSelection);
-            oxyplot.Model.MouseDown += Model_MouseDown;
-            oxyplot.Model.MouseMove += Model_MouseMove;
-            oxyplot.Model.MouseUp += Model_MouseUp;
+			oxyplot.Model.Annotations.Add(RangeSelection);
+			oxyplot.Model.MouseDown += Model_MouseDown;
+			oxyplot.Model.MouseMove += Model_MouseMove;
+			oxyplot.Model.MouseUp += Model_MouseUp;
 
 			Progress = new RectangleAnnotation();
 			Progress.Fill = OxyColor.FromArgb(100, 100, 100, 100);
