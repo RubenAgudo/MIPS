@@ -188,10 +188,10 @@
     <EmbeddedResource Include="src\ui\userControls\UC_VideoContainer.resx" />
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\SequenceDiagram1.sequencediagram" />
-    <None Include="ObservationData.xsd">
+    <None Include="LoadDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ObservationModel.xsd">
+    <None Include="saveData.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
@@ -222,9 +222,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="estructura.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
