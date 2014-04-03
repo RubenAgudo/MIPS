@@ -1,56 +1,70 @@
-﻿<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/po.xsd"
-xmlns="http://tempuri.org/po.xsd" elementFormDefault="qualified">
+﻿<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="ObservationModel" type="ObservationModelType"/>
 	
-	<xs:complexType name="ObservationModel">
-		
+	<!--Tipo complejo que identifica al ObservationModel-->
+	<xs:complexType name="ObservationModelType">
+
 		<xs:sequence>
 
-			<xs:element name="EspObservation" minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="EspObservation" type="EspObservationType" minOccurs="1" maxOccurs="unbounded" />
 			
-				<xs:complexType>
-					
-					<xs:sequence>
-						
-						<xs:element name="InputData" minOccurs="0" maxOccurs="1" >
-							
-							<xs:complexType>
-								
-								<xs:sequence>
-									
-									<xs:element name="IData" minOccurs="1" maxOccurs="unbounded" type="xs:string"/>
-							
-								</xs:sequence>
-						
-							</xs:complexType>
-					
-						</xs:element>
-						
-						<xs:element name="Properties" minOccurs="1" maxOccurs="unbounded" >
-							
-							<xs:complexType>
-								
-								<xs:sequence>
-									
-									
-									
-								</xs:sequence>
-								
-							</xs:complexType>
-						
-						</xs:element>
-					
-					</xs:sequence>
-					
-					<xs:attribute name="name" />
-
-				</xs:complexType>
-						
-			</xs:element>
-		
 		</xs:sequence>
 		
-		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="name" type="xs:string"/>
+		
+	</xs:complexType>
+	
+	<!--Tipo complejo que identifica los EspObservations-->
+	<xs:complexType name="EspObservationType" >
 
+		<xs:sequence>
+
+			<xs:element name="InputData" type="InputDataType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Properties" type="PropertiesType" minOccurs="1" maxOccurs="1" />
+			
+		</xs:sequence>
+
+		<xs:attribute name="name" use="required" />
+		<xs:attribute name="description" use="optional" />
+		
 	</xs:complexType>
 
+	<!--Tipo complejo para los datos constantes InputData-->
+	<xs:complexType name="InputDataType" >
+
+		<xs:sequence>
+
+			<xs:element name="IData" type="IDataType" minOccurs="0" maxOccurs="unbounded"/>
+			
+		</xs:sequence>
+		
+	</xs:complexType>
+
+	<!--Tipo complejo que identifica cada campo constante IData-->
+	<xs:complexType name="IDataType" >
+
+		<xs:attribute name="id" type="xs:string"/>
+		
+	</xs:complexType>
+	
+	<!--Tipo complejo que identifica el campo propiedades, que contiene una lista de EspProperty-->
+	<xs:complexType name="PropertiesType" >
+
+		<xs:sequence>
+
+			<xs:element name="EspProperty" type="EspPropertyType" minOccurs="1" maxOccurs="unbounded" />
+			
+		</xs:sequence>
+		
+	</xs:complexType>
+
+	<!-- Definicion del campo EspProperty, que lo unico que contiene son los atributos-->
+	<xs:complexType name="EspPropertyType" >
+
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="type" type="xs:string" />
+		
+	</xs:complexType>
+	
 </xs:schema>

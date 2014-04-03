@@ -42,7 +42,7 @@
 
 		<xs:sequence>
 
-			<xs:element name="inputData" minOccurs="0" maxOccurs="0" type="xs:string"/>
+			<xs:element name="inputData" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
 			<xs:element name ="propiedad" minOccurs="1" maxOccurs="unbounded" type ="propiedadType" />
 			
 		</xs:sequence>
