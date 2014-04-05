@@ -14,13 +14,23 @@ namespace TFG.src.classes
     public class GraphicActions
     {
 
-        LinkedList<UC_DataVisualizer> data;
+        private LinkedList<UC_DataVisualizer> data;
+		private static GraphicActions myGraphicActions;
 
-        public GraphicActions()
+        private GraphicActions()
         {
             data = new LinkedList<UC_DataVisualizer>();
         }
 
+		public static GraphicActions getMyGraphicActions()
+		{
+			if (myGraphicActions == null)
+			{
+				myGraphicActions = new GraphicActions();
+			}
+
+			return myGraphicActions;
+		}
 
         public void addLast(UC_DataVisualizer dataVisualizer)
         {

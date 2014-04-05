@@ -26,13 +26,12 @@ namespace TFG.src.ui.userControls
     public partial class UC_VideoContainer : UserControl
     {
         private int paneNumber;
-        private VideoActions videoActions;
 
 		public double Progress
 		{
 			get
 			{
-				return videoActions.getLongestVideoProgress();
+				return VideoActions.getMyVideoActions().getLongestVideoProgress();
 			}
 		}
 
@@ -41,7 +40,6 @@ namespace TFG.src.ui.userControls
             InitializeComponent();
 
             paneNumber = 0;
-            videoActions = new VideoActions();
         }
 
         private void mnitAddVideoPane_Click(object sender, RoutedEventArgs e)
@@ -53,7 +51,7 @@ namespace TFG.src.ui.userControls
                 foreach (string path in paths)
                 {
                     UC_VideoPlayer video = new UC_VideoPlayer(path);
-                    videoActions.addVideo(video);
+                    VideoActions.getMyVideoActions().addVideo(video);
                     addToAnchorablePane(video);
                 } 
 
@@ -106,24 +104,24 @@ namespace TFG.src.ui.userControls
             //    setStatusBarInfo();
             //}
             //play();
-            videoActions.play();
+			VideoActions.getMyVideoActions().play();
         }
 
         // Pause the media. 
         private void OnMouseDownPauseMedia(object sender, RoutedEventArgs args)
         {
-            videoActions.pause();
+			VideoActions.getMyVideoActions().pause();
         }
 
         // Stop the media. 
         private void OnMouseDownStopMedia(object sender, RoutedEventArgs args)
         {
-            videoActions.stop();
+			VideoActions.getMyVideoActions().stop();
         }
 
         private void AdvanceFrame_Click(object sender, RoutedEventArgs e)
         {
-            videoActions.advanceFrame();
+			VideoActions.getMyVideoActions().advanceFrame();
         }
 
         #endregion
@@ -131,7 +129,7 @@ namespace TFG.src.ui.userControls
 
         public void sync(TimeSpan position)
         {
-            videoActions.sync(position);
+			VideoActions.getMyVideoActions().sync(position);
         }
 
     }

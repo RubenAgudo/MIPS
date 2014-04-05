@@ -13,11 +13,22 @@ namespace TFG.src.classes
     public class VideoActions
     {
         private LinkedList<UC_VideoPlayer> videos;
+		private static VideoActions myVideoActions;
 
-        public VideoActions() 
+        private VideoActions() 
         {
             videos = new LinkedList<UC_VideoPlayer>();
         }
+
+		public static VideoActions getMyVideoActions()
+		{
+			if (myVideoActions == null)
+			{
+				myVideoActions = new VideoActions();
+			}
+
+			return myVideoActions;
+		}
 
         public void sync(TimeSpan position) {
 

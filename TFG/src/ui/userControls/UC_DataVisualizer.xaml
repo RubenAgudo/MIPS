@@ -18,10 +18,13 @@
 			</Menu>
 			
 			<oxy:Plot x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
-            VerticalContentAlignment="Stretch" IsManipulationEnabled="True" Model="{Binding DataContext.Model, Mode=OneWay, RelativeSource={RelativeSource Self}}"> <!---->
+					  VerticalContentAlignment="Stretch" IsManipulationEnabled="True" 
+					  Model="{Binding DataContext.Model, Mode=OneWay, RelativeSource={RelativeSource Self}}"> <!---->
 
-				<oxy:LineSeries LineStyle="Solid"  />
-
+				<oxy:LineSeries LineStyle="Solid"  >
+					<oxy:RectangleAnnotation MinimumX="0" />
+				</oxy:LineSeries>
+				
 
 			</oxy:Plot>
 

@@ -24,15 +24,12 @@ namespace TFG.src.ui.userControls
     /// </summary>
     public partial class UC_ChartContainer : UserControl
     {
-
-        private GraphicActions graphicActions;
         private int paneNumber;
 
         public UC_ChartContainer()
         {
             InitializeComponent();
 
-            graphicActions = new GraphicActions();
             paneNumber = 0;
         }
 
@@ -65,13 +62,13 @@ namespace TFG.src.ui.userControls
 		/// <param name="p">The new position of the indicator</param>
 		internal void Update(double p)
 		{
-			graphicActions.update(p);
+			GraphicActions.getMyGraphicActions().update(p);
 		}
 
 		private void mnitAddContinousChart_Click(object sender, RoutedEventArgs e)
 		{
 			UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(AbstractDataVisualizerViewModel.CONTINOUS);
-			graphicActions.addLast(dataVisualizer);
+			GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
 			addToAnchorablePane(dataVisualizer);
 		}
 
@@ -79,7 +76,7 @@ namespace TFG.src.ui.userControls
 		{
 			
 			UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(AbstractDataVisualizerViewModel.DISCRETE);
-			graphicActions.addLast(dataVisualizer);
+			GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
 			addToAnchorablePane(dataVisualizer);
 		}
 	}
