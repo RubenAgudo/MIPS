@@ -44,6 +44,7 @@ namespace TFG
 			timer.Interval = new TimeSpan(0,0,0,0,500);
 			timer.Tick += timer_Tick;
 			timer.Start();
+			XMLLoader.getXMLLoader();
         }
 
 		private void timer_Tick(object sender, EventArgs e)

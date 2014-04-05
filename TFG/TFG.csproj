@@ -111,7 +111,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\classes\DataReader.cs" />
+    <Compile Include="src\classes\XMLLoader.cs" />
     <Compile Include="src\classes\DBManager.cs" />
     <Compile Include="src\classes\GraphicActions.cs" />
     <Compile Include="src\classes\VideoActions.cs" />
@@ -188,10 +188,10 @@
     <EmbeddedResource Include="src\ui\userControls\UC_VideoContainer.resx" />
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\SequenceDiagram1.sequencediagram" />
-    <None Include="LoadDataModel.xsd">
+    <None Include="src\schemas\LoadDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="saveData.xsd">
+    <None Include="src\schemas\saveData.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
@@ -224,7 +224,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="XMLFile1.xml" />
+    <Resource Include="XMLFile1.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
