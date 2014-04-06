@@ -188,6 +188,9 @@
     <EmbeddedResource Include="src\ui\userControls\UC_VideoContainer.resx" />
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\SequenceDiagram1.sequencediagram" />
+    <None Include="src\schemas\LoadData.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="src\schemas\LoadDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -224,9 +227,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="XMLFile1.xml">
+    <Resource Include="ObservationModelExample.xml">
       <SubType>Designer</SubType>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ObservationModelDataExample.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

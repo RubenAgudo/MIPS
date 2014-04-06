@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ObservationModel name="KinectOM.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="LoadDataModel.xsd">
+         xsi:noNamespaceSchemaLocation="src\\schemas\\LoadDataModel.xsd">
 
 	<EspObservation name="Axis">
 		<InputData>

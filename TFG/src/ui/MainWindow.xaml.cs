@@ -26,8 +26,6 @@ namespace TFG
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private int containerNumber;
         private UC_VideoContainer videoContainer;
         private UC_ChartContainer chartContainer;
 		private DispatcherTimer timer;
@@ -37,11 +35,10 @@ namespace TFG
             InitializeComponent();
             
             this.DataContext = this;
-            containerNumber = 0;
             videoContainer = null;
             chartContainer = null;
 			timer = new DispatcherTimer();
-			timer.Interval = new TimeSpan(0,0,0,0,500);
+			timer.Interval = new TimeSpan(0,0,0,0,1000);
 			timer.Tick += timer_Tick;
 			timer.Start();
 			XMLLoader.getXMLLoader();

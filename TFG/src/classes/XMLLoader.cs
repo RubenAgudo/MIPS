@@ -17,7 +17,7 @@ namespace TFG.src.classes
 
 		private XMLLoader()
 		{
-			
+			Validate("D:\\GitHub\\TFG\\TFG\\ObservationModelDataExample.xml", "D:\\GitHub\\TFG\\TFG\\src\\schemas\\LoadData.xsd");
 		}
 
 		public static XMLLoader getXMLLoader()
@@ -63,9 +63,7 @@ namespace TFG.src.classes
 			{
 				
 			}
-			DataSet dataSet = new DataSet();
-			dataSet.ReadXml(@"C:\Books\Books.xml");
-
+			
 		}
 	}
 }	

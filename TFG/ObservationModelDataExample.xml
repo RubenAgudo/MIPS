@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	  EspObservation="ObservationModelExample.xml">
+
+	<instante numInstante = "1">
+
+		<observacion name="observacion1">
+
+			<propiedad name="prop1" value="1" />
+			<propiedad name="prop2" value="2" />
+			<propiedad name="prop3" value="3" />
+			<propiedad name="prop4" value="4" />
+		</observacion>
+		
+	</instante>
+	<instante numInstante = "2">
+
+		<observacion name="observacion1">
+
+			<propiedad name="prop1" value="1" />
+			<propiedad name="prop2" value="2" />
+			<propiedad name="prop3" value="3" />
+			<propiedad name="prop4" value="4" />
+		</observacion>
+
+	</instante>
+</data>
