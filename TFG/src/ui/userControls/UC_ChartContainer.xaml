@@ -12,7 +12,7 @@
 
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Open" />
+                    <MenuItem Header="{Resx Key=_loadXML.Header}" Name="mnitLoadXML" Click="mnitLoadXML_Click" />
                     <MenuItem Header="_Close"/>
                     <MenuItem Header="_Save"/>
                 </MenuItem>
@@ -50,10 +50,30 @@
 
                     </avalonDock:LayoutPanel>
 
-					
-                </avalonDock:LayoutRoot>
-				
-            </avalonDock:DockingManager>
+
+					<avalonDock:LayoutRoot.LeftSide>
+
+						<avalonDock:LayoutAnchorSide>
+
+							<avalonDock:LayoutAnchorGroup>
+
+								<avalonDock:LayoutAnchorable Title="{Resx Key=_hiddenCharts.Title}">
+
+									<TreeView Name="observationsAndProperties">
+
+									</TreeView>
+
+								</avalonDock:LayoutAnchorable>
+
+							</avalonDock:LayoutAnchorGroup>
+
+						</avalonDock:LayoutAnchorSide>
+
+					</avalonDock:LayoutRoot.LeftSide>
+
+				</avalonDock:LayoutRoot>
+
+			</avalonDock:DockingManager>
 
         </DockPanel>
 

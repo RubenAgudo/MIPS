@@ -8,27 +8,25 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Linq;
 using System.Data;
+using OxyPlot;
+using TFG.src.exceptions;
+using Microsoft.Win32;
 
 namespace TFG.src.classes
 {
-	public class XMLLoader
+	public static class XMLLoader
 	{
-		private static XMLLoader myXMLLoader;
+		//private static XMLLoader myXMLLoader;
 
-		private XMLLoader()
-		{
-			Validate("D:\\GitHub\\TFG\\TFG\\ObservationModelDataExample.xml", "D:\\GitHub\\TFG\\TFG\\src\\schemas\\LoadData.xsd");
-		}
+		//public static XMLLoader getXMLLoader()
+		//{
+		//	if (myXMLLoader == null)
+		//	{
+		//		myXMLLoader = new XMLLoader();
+		//	}
 
-		public static XMLLoader getXMLLoader()
-		{
-			if (myXMLLoader == null)
-			{
-				myXMLLoader = new XMLLoader();
-			}
-
-			return myXMLLoader;
-		}
+		//	return myXMLLoader;
+		//}
 
 
 		/// <summary>
@@ -36,7 +34,8 @@ namespace TFG.src.classes
 		/// </summary>
 		/// <param name="pathToXml"></param>
 		/// <param name="pathToXsd"></param>
-		public void Validate(string pathToXml, string pathToXsd)
+		/// <returns>A boolean indicating if the given XML complies with the XSD</returns>
+		public static bool Validate(string pathToXml, string pathToXsd)
 		{
 
 			XmlSchemaSet schemas = new XmlSchemaSet();
@@ -52,18 +51,105 @@ namespace TFG.src.classes
 				errors = true;
 			});
 			Console.WriteLine("doc1 {0}", errors ? "did not validate" : "validated");
-
+			return !errors;
 
 		}
 
-		public void LoadXML(string pathToXml)
+		public static void LoadXMLData(string pathToXml)
 		{
-			XDocument xml = XDocument.Load(pathToXml);
-			foreach (XElement descendant in xml.Descendants())
+			if (Validate(pathToXml, "D:/GitHub/TFG/TFG/src/schemas/ObservationModelData.xsd"))
 			{
-				
+
+				XElement xml = XElement.Load(pathToXml);
+				//IEnumerable<XElement> valores =
+				//	from ins in xml.Descendants("propiedad")
+				//	where (string)ins.Attribute("name") == "prop1"
+				//	select ins;
+
+				//foreach (XElement instante in valores)
+				//{
+				//	Console.WriteLine(instante.Parent.Parent.Attribute("numInstante"));
+				//	Console.WriteLine("Propiedad: " + instante.Attribute("name") + ", Valor: " + instante.Attribute("value"));
+				//}
+
+				//IEnumerable<XElement> observaciones =
+				//	from obs in xml.Descendants("observation")
+				//	select obs;
+
+				//foreach (XElement obs in observaciones)
+				//{
+				//	Console.WriteLine(obs.Attribute("name"));
+				//	Console.WriteLine("Propiedades de la observacion:");
+				//	Console.WriteLine("================================");
+				//	IEnumerable<XElement> propiedades =
+				//		from prop in obs.Descendants()
+				//		select prop;
+
+				//	foreach (XElement prop in propiedades)
+				//	{
+				//		Console.WriteLine(prop.Attribute("name"));
+				//	}
+				//	//Console.WriteLine();
+				//}
+
+				//Obtenemos los datos de las propiedades y creamos los graficos
+				IEnumerable<XElement> propiedades =
+					from prop in xml.Descendants("property")
+					select prop;
+
+				foreach (XElement prop in propiedades)
+				{
+					IEnumerable<XElement> data =
+						from da in prop.Descendants("instant")
+						select da;
+
+					ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
+					foreach (XElement instant in data)
+					{
+						double x = Double.Parse(instant.Attribute("ins").Value.ToString());
+						double y = Double.Parse(instant.Attribute("value").Value.ToString());
+
+						pointCollection.Add(new DataPoint(x, y));
+
+						List<DataPoint> points = new List<DataPoint>(pointCollection);
+
+					}
+				} 
+
 			}
-			
+
+		}
+
+		public static void loadXMLModel(string pathToXml)
+		{
+
+		}
+
+		public static string openFile()
+		{
+			string filename = null;
+			// Configure open file dialog box
+			OpenFileDialog dlg = new OpenFileDialog();
+			//dlg.FileName = "Document"; // Default file name
+			dlg.Multiselect = false;
+			dlg.DefaultExt = ".xml"; // Default file extension
+			// Filter files by extension
+			dlg.Filter = "XML Files|*.xml";
+
+			// Show open file dialog box
+			Nullable<bool> result = dlg.ShowDialog();
+
+			// Process open file dialog box results 
+			if (result == true)
+			{
+				// Open document 
+				filename = dlg.FileName;
+			}
+			else
+			{
+				throw new FileNotSelectedException();
+			}
+			return filename;
 		}
 	}
 }	

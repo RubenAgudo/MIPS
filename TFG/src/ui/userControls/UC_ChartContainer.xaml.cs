@@ -79,5 +79,12 @@ namespace TFG.src.ui.userControls
 			GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
 			addToAnchorablePane(dataVisualizer);
 		}
+
+		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
+		{
+			TreeViewItem newChild = new TreeViewItem();
+			newChild.Header = paneNumber++;
+			observationsAndProperties.Items.Add(newChild);
+		}
 	}
 }

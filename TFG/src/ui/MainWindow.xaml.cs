@@ -41,7 +41,7 @@ namespace TFG
 			timer.Interval = new TimeSpan(0,0,0,0,1000);
 			timer.Tick += timer_Tick;
 			timer.Start();
-			XMLLoader.getXMLLoader();
+			XMLLoader.LoadXML("D:/Adjunto2.xml");
         }
 
 		private void timer_Tick(object sender, EventArgs e)

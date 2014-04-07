@@ -1,27 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	  EspObservation="ObservationModelExample.xml">
-
 	<instante numInstante = "1">
-
 		<observacion name="observacion1">
-
-			<propiedad name="prop1" value="1" />
-			<propiedad name="prop2" value="2" />
-			<propiedad name="prop3" value="3" />
-			<propiedad name="prop4" value="4" />
+			<propiedad name="prop11" value="1" />
+			<propiedad name="prop12" value="2" />
+			<propiedad name="prop13" value="3" />
+			<propiedad name="prop14" value="4" />
 		</observacion>
-		
 	</instante>
 	<instante numInstante = "2">
-
 		<observacion name="observacion1">
-
-			<propiedad name="prop1" value="1" />
-			<propiedad name="prop2" value="2" />
-			<propiedad name="prop3" value="3" />
-			<propiedad name="prop4" value="4" />
+			<propiedad name="prop11" value="2" />
+			<propiedad name="prop12" value="3" />
+			<propiedad name="prop13" value="4" />
+			<propiedad name="prop14" value="5" />
 		</observacion>
-
 	</instante>
 </data>
+
+<!--<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  EspObservation="ObservationModelExample.xml" longitudInstante="1">
+	<observacion name="observacion1">
+		<propiedad name="prop1">
+			<instante ins="1" value="1"/>
+			<instante ins="2" value="2"/>
+		</propiedad>
+		<propiedad name="prop2">
+			<instante ins="1" value="2"/>
+			<instante ins="2" value="3"/>
+		</propiedad>
+		<propiedad name="prop3">
+			<instante ins="1" value="3"/>
+			<instante ins="2" value="4"/>
+		</propiedad>
+		<propiedad name="prop4">
+			<instante ins="1" value="4"/>
+			<instante ins="2" value="5"/>
+		</propiedad>
+	</observacion>
+</data>-->

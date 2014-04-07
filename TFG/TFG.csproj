@@ -194,6 +194,9 @@
     <None Include="src\schemas\LoadDataModel.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="src\schemas\ObservationModelData.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="src\schemas\saveData.xsd">
       <SubType>Designer</SubType>
     </None>
