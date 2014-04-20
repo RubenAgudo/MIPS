@@ -29,17 +29,17 @@ namespace TFG.src.ViewModels
 			var plotModel1 = new PlotModel();
 			var functionSeries1 = new FunctionSeries();
 
-			functionSeries1.Points = Points;
 
-			//functionSeries1.Points.Add(new DataPoint(0, 4));
-			//functionSeries1.Points.Add(new DataPoint(1, 13));
-			//functionSeries1.Points.Add(new DataPoint(2, 15));
-			//functionSeries1.Points.Add(new DataPoint(3, 16));
-			//functionSeries1.Points.Add(new DataPoint(4, 12));
-			//functionSeries1.Points.Add(new DataPoint(5, 12));
-			//functionSeries1.Points.Add(new DataPoint(double.NaN, double.NaN));
-			//functionSeries1.Points.Add(new DataPoint(10, 12));
-			//functionSeries1.Points.Add(new DataPoint(13, 12));
+
+			functionSeries1.Points.Add(new DataPoint(0, 4));
+			functionSeries1.Points.Add(new DataPoint(1, 13));
+			functionSeries1.Points.Add(new DataPoint(2, 15));
+			functionSeries1.Points.Add(new DataPoint(3, 16));
+			functionSeries1.Points.Add(new DataPoint(4, 12));
+			functionSeries1.Points.Add(new DataPoint(5, 12));
+			functionSeries1.Points.Add(new DataPoint(double.NaN, double.NaN));
+			functionSeries1.Points.Add(new DataPoint(10, 12));
+			functionSeries1.Points.Add(new DataPoint(13, 12));
 			plotModel1.Series.Add(functionSeries1);
 			//plotModel1.DefaultXAxis.AbsoluteMinimum = 0;
 			//plotModel1.DefaultXAxis.AbsoluteMaximum = 50;
