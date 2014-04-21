@@ -37,17 +37,17 @@ namespace TFG.src.ui.userControls
         /// Method that adds to the GraphicsContainer a LayoutAnchorable that contains a Data visualizer user control
         /// </summary>
         /// <param name="objectToAdd"></param>
-        private void addToAnchorablePane(UC_DataVisualizer objectToAdd)
+        private void addToAnchorablePane(UserControl objectToAdd)
         {
 
-            if (mainPanelGraphicsContainer != null)
+            if (mainPanelChartContainer != null)
             {
-				LayoutAnchorable doc = new LayoutAnchorable() { Title = "Pane " + ++paneNumber, Content = objectToAdd };
-                //doc.CanHide = false;
-                //doc.CanClose = true;
-                //doc.Title = "Pane " + ++paneNumber;
-                //doc.Content = objectToAdd;
-                mainPanelGraphicsContainer.Children.Add(doc);
+				LayoutAnchorable doc = new LayoutAnchorable();
+				doc.CanHide = false;
+				doc.CanClose = true;
+				doc.Title = "Pane " + ++paneNumber;
+				doc.Content = objectToAdd;
+                mainPanelChartContainer.Children.Add(doc);
 
             }
             else
@@ -84,7 +84,7 @@ namespace TFG.src.ui.userControls
 		{
 			TreeViewItem newChild = new TreeViewItem();
 			newChild.Header = paneNumber++;
-			observationsAndProperties.Items.Add(newChild);
+			//observationsAndProperties.Items.Add(newChild);
 		}
 	}
 }

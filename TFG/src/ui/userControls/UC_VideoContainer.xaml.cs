@@ -71,7 +71,6 @@ namespace TFG.src.ui.userControls
         private void addToAnchorablePane(UserControl objectToAdd)
         {
             
-
             if (mainPanelVideoContainer != null)
             {
                 LayoutAnchorable doc = new LayoutAnchorable();

@@ -8,7 +8,6 @@
 			 x:Class="TFG.src.ui.userControls.UC_DataVisualizer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
-
 	<Grid >
 		
 		<DockPanel>
@@ -19,7 +18,7 @@
 			
 			<oxy:Plot x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
 					  VerticalContentAlignment="Stretch" IsManipulationEnabled="True" 
-					  Model="{Binding DataContext.Model, Mode=OneWay, RelativeSource={RelativeSource Self}}"> <!---->
+					  > <!---->
 
 				<oxy:LineSeries LineStyle="Solid"  >
 					<oxy:RectangleAnnotation MinimumX="0" />

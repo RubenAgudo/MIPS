@@ -33,13 +33,13 @@ namespace TFG.src.ui.userControls
 
         private RectangleAnnotation RangeSelection;
 		private RectangleAnnotation Progress;
+		private AbstractDataVisualizerViewModel viewModel;
 		private double startx;
 
         public UC_DataVisualizer(int chartType)
         {
 
 			//DataContext = new ContinousDataVisualizerViewModel();
-			selectDataContext(chartType);
 
             InitializeComponent();
 			startx = double.NaN;
@@ -75,10 +75,14 @@ namespace TFG.src.ui.userControls
 			switch (chartType)
 			{
 				case AbstractDataVisualizerViewModel.CONTINOUS:
-					DataContext = new ContinousDataVisualizerViewModel();
+					//DataContext = new ContinousDataVisualizerViewModel();
+					viewModel = new ContinousDataVisualizerViewModel();
+					oxyplot.Model = viewModel.Model;
 					break;
 				case AbstractDataVisualizerViewModel.DISCRETE:
-					DataContext = new DiscreteDataVisualizerViewModel();
+					//DataContext = new DiscreteDataVisualizerViewModel();
+					viewModel = new DiscreteDataVisualizerViewModel();
+					oxyplot.Model = viewModel.Model;
 					break;
 				default:
 					throw new NotImplementedException();

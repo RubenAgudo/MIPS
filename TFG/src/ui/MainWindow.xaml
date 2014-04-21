@@ -52,6 +52,7 @@
                 </avalonDock:LayoutRoot>
 				
             </avalonDock:DockingManager>
+			
 
         </DockPanel>
 
