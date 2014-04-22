@@ -42,8 +42,7 @@ namespace TFG.src.ui.userControls
 			//DataContext = new ContinousDataVisualizerViewModel();
 
             InitializeComponent();
-			
-
+			selectDataContext(chartType);
 			initialize();
             
         }

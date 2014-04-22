@@ -19,6 +19,32 @@ namespace TFG.src.ViewModels
 			Model = createModel();
         }
 
+		public DiscreteDataVisualizerViewModel(List<DataPoint> points, IList<string> labels)
+		{
+			Model = createModel(points, labels);
+		}
+
+		private PlotModel createModel(List<DataPoint> points, IList<string> labels)
+		{
+			var plotModel1 = new PlotModel();
+			var functionSeries1 = new StairStepSeries();
+			var categoryAxis2 = new CategoryAxis(AxisPosition.Left);
+			categoryAxis2.AxislineStyle = LineStyle.Solid;
+			categoryAxis2.MinorStep = 1;
+			categoryAxis2.TickStyle = TickStyle.None;
+
+			categoryAxis2.Labels = labels;
+			plotModel1.Axes.Add(categoryAxis2);
+
+			foreach (DataPoint point in points)
+			{
+				functionSeries1.Points.Add(point);
+			}
+			plotModel1.Series.Add(functionSeries1);
+			Points = functionSeries1.Points;
+			return plotModel1;
+		}
+
 		protected override void loadData()
 		{
 			throw new NotImplementedException();
@@ -28,7 +54,7 @@ namespace TFG.src.ViewModels
 		{
 			var plotModel1 = new PlotModel();
 
-			var categoryAxis2 = new CategoryAxis(AxisPosition.Left); ;
+			var categoryAxis2 = new CategoryAxis(AxisPosition.Left);
 			categoryAxis2.AxislineStyle = LineStyle.Solid;
 			categoryAxis2.MinorStep = 1;
 			categoryAxis2.TickStyle = TickStyle.None;
@@ -41,19 +67,6 @@ namespace TFG.src.ViewModels
 
 			plotModel1.Axes.Add(categoryAxis2);
 
-			var categoryAxis1 = new CategoryAxis(AxisPosition.Bottom);
-			categoryAxis1.AxislineStyle = LineStyle.Solid;
-			categoryAxis1.MinorStep = 1;
-			categoryAxis1.TickStyle = TickStyle.None;
-			categoryAxis1.Labels.Add("Jan");
-			categoryAxis1.Labels.Add("Feb");
-			categoryAxis1.Labels.Add("Mar");
-			categoryAxis1.Labels.Add("Apr");
-			categoryAxis1.Labels.Add("May");
-			categoryAxis1.Labels.Add("Jun");
-
-			plotModel1.Axes.Add(categoryAxis1);
-
 			var functionSeries1 = new StairStepSeries();
 			functionSeries1.Points.Add(new DataPoint(0, 1));
 			functionSeries1.Points.Add(new DataPoint(1, 0));
@@ -61,13 +74,12 @@ namespace TFG.src.ViewModels
 			functionSeries1.Points.Add(new DataPoint(3, 5));
 			functionSeries1.Points.Add(new DataPoint(4, 3));
 			functionSeries1.Points.Add(new DataPoint(5, 4));
+
 			plotModel1.Series.Add(functionSeries1);
 			//plotModel1.DefaultXAxis.AbsoluteMinimum = 0;
 			//plotModel1.DefaultXAxis.AbsoluteMaximum = 50;
 			return plotModel1;
 		}
-
-
 
 	}
 }

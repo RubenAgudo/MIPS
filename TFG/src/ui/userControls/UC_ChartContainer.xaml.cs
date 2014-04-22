@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace TFG.src.ui.userControls
 				LayoutAnchorable doc = new LayoutAnchorable();
 				doc.CanHide = false;
 				doc.CanClose = true;
-				doc.Title = "Pane " + ++paneNumber;
+				//doc.Title = "Pane " + ++paneNumber;
 				doc.Content = objectToAdd;
                 mainPanelChartContainer.Children.Add(doc);
 
@@ -80,22 +81,39 @@ namespace TFG.src.ui.userControls
 			addToAnchorablePane(dataVisualizer);
 		}
 
+		/// <summary>
+		/// Loads a valid XML File an creates the charts
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
-
+			mainPanelChartContainer.Children.Clear();
 			string pathToXML = GraphicActions.openXML();
-			LinkedList<AbstractDataVisualizerViewModel> viewModels = XMLLoader.LoadXMLData(pathToXML);
-
-			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
+			try
 			{
-				if (viewModel is ContinousDataVisualizerViewModel)
+				LinkedList<AbstractDataVisualizerViewModel> viewModels = XMLLoader.LoadXMLData(pathToXML);
+				
+				foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
 				{
-					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
-					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
-					addToAnchorablePane(dataVisualizer);
+					//comprobamos que no sea de la clase abstracta
+					if (viewModel is ContinousDataVisualizerViewModel ||
+						viewModel is DiscreteDataVisualizerViewModel)
+					{
+						UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
+						GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
+						addToAnchorablePane(dataVisualizer);
+					}
 				}
 			}
+			catch (FileFormatException ex)
+			{
+				Console.WriteLine(ex.StackTrace);
+				MessageBoxResult msg = MessageBox.Show("Error validando el XML");
+			}
+			
 
+			
 			//TreeViewItem newChild = new TreeViewItem();
 			//newChild.Header = paneNumber++;
 			//observationsAndProperties.Items.Add(newChild);

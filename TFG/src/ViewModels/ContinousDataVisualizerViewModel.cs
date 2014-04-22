@@ -22,7 +22,6 @@ namespace TFG.src.ViewModels
 
 		public ContinousDataVisualizerViewModel(List<DataPoint> points)
 		{
-			
 			Model = createModel(points);
 		}
 

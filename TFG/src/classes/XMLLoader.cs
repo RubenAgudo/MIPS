@@ -56,15 +56,18 @@ namespace TFG.src.classes
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="pathToXml"></param>
+		/// <returns></returns>
 		public static LinkedList<AbstractDataVisualizerViewModel> LoadXMLData(string pathToXml)
 		{
 			LinkedList<AbstractDataVisualizerViewModel> viewModels = new LinkedList<AbstractDataVisualizerViewModel>();
 
-			if (Validate(pathToXml, "C:/Users/Ruben/GitHub/TFG/TFG/src/schemas/ObservationModelData.xsd"))
+			if (Validate(pathToXml, "schemas/ObservationModelData.xsd"))
 			{
 				
-
-
 				XElement xml = XElement.Load(pathToXml);
 				//IEnumerable<XElement> valores =
 				//	from ins in xml.Descendants("propiedad")
@@ -103,8 +106,12 @@ namespace TFG.src.classes
 				process(propiedadesContinuas, true, viewModels);
 
 				IEnumerable<XElement> propiedadesDiscretas = getDiscreteData(xml);
-				//process(propiedadesDiscretas, false);
+				process(propiedadesDiscretas, false, viewModels);
 
+			}
+			else
+			{
+				throw new FileFormatException();
 			}
 			return viewModels;
 		}
@@ -120,18 +127,38 @@ namespace TFG.src.classes
 					select da;
 
 				ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
+				Dictionary<string, double> labels = new Dictionary<string, double>(data.Count());
+
 				foreach (XElement instant in data)
 				{
-					double x = Double.Parse(instant.Attribute("ins").Value.ToString());
-					double y = Double.Parse(instant.Attribute("value").Value.ToString());
+					double x = Double.Parse(instant.Attribute("ins").Value);
+					double y = 0;
+					if (!EsContinuo)
+					{
+						
+						bool success = labels.TryGetValue(instant.Attribute("value").Value, out y);
+						if(!success) {
+							y = labels.Count;
+							labels.Add(instant.Attribute("value").Value, labels.Count);
+						}
+					}
+					else
+					{
+						y = Double.Parse(instant.Attribute("value").Value);
+					}
 
 					pointCollection.Add(new DataPoint(x, y));
-
-					
-
 				}
 				List<DataPoint> points = new List<DataPoint>(pointCollection);
-				ContinousDataVisualizerViewModel avm = new ContinousDataVisualizerViewModel(points);
+				AbstractDataVisualizerViewModel avm;
+				if (EsContinuo)
+				{
+					avm = new ContinousDataVisualizerViewModel(points);
+				}
+				else
+				{
+					avm = new DiscreteDataVisualizerViewModel(points, labels.Keys.ToList());
+				}
 				viewModels.AddLast(avm);
 			}
 			
@@ -141,6 +168,7 @@ namespace TFG.src.classes
 		{
 			return 	from prop in xml.Descendants("property")
 					where (string)prop.Attribute("type") == "continous"
+					orderby (string)prop.Attribute("ins") ascending
 					select prop;
 		}
 
@@ -148,6 +176,7 @@ namespace TFG.src.classes
 		{
 			return from prop in xml.Descendants("property")
 				   where (string)prop.Attribute("type") == "discrete"
+				   orderby (string)prop.Attribute("ins") ascending
 				   select prop;
 		}
 

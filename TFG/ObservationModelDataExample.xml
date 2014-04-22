@@ -42,13 +42,15 @@
 			<instant ins="1" value="3"/>
 			<instant ins="2" value="4"/>
 		</property>
-		<property name="prop4" type="continous">
+		<property name="prop5" type="continous">
 			<instant ins="1" value="4"/>
 			<instant ins="2" value="5"/>
 		</property>
 		<property name="prop4" type="discrete">
 			<instant ins="1" value="hola"/>
 			<instant ins="2" value="que tal"/>
+			<instant ins="3" value="hola"/>
+			<instant ins="4" value="que tal"/>
 		</property>
 	</observation>
 </data>
