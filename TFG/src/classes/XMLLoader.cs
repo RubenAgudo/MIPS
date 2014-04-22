@@ -60,7 +60,7 @@ namespace TFG.src.classes
 		{
 			LinkedList<AbstractDataVisualizerViewModel> viewModels = new LinkedList<AbstractDataVisualizerViewModel>();
 
-			if (Validate(pathToXml, "C:/Users/Rubén/GitHub/TFG/TFG/src/schemas/ObservationModelData.xsd"))
+			if (Validate(pathToXml, "C:/Users/Ruben/GitHub/TFG/TFG/src/schemas/ObservationModelData.xsd"))
 			{
 				
 

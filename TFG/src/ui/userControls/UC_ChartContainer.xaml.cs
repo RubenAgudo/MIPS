@@ -83,7 +83,7 @@ namespace TFG.src.ui.userControls
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
 
-			string pathToXML = "C:/Users/Rubén/GitHub/TFG/TFG/ObservationModelDataExample.xml";
+			string pathToXML = GraphicActions.openXML();
 			LinkedList<AbstractDataVisualizerViewModel> viewModels = XMLLoader.LoadXMLData(pathToXML);
 
 			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
