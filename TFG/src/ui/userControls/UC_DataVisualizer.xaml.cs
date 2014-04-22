@@ -42,8 +42,22 @@ namespace TFG.src.ui.userControls
 			//DataContext = new ContinousDataVisualizerViewModel();
 
             InitializeComponent();
-			startx = double.NaN;
+			
 
+			initialize();
+            
+        }
+		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel)
+		{
+			InitializeComponent();
+			this.viewModel = viewModel;
+			oxyplot.Model = this.viewModel.Model;
+			initialize();
+		}
+
+		private void initialize()
+		{
+			startx = double.NaN;
 			RangeSelection = new RectangleAnnotation();
 			RangeSelection.Fill = OxyColor.FromArgb(120, 135, 206, 235);
 			RangeSelection.MinimumX = 0;
@@ -59,8 +73,9 @@ namespace TFG.src.ui.userControls
 			Progress.MinimumX = 0;
 			Progress.MaximumX = 0;
 			oxyplot.Model.Annotations.Add(Progress);
-            
-        }
+		}
+
+		
 
 		/// <summary>
 		/// Method that selects the DataContext based on which button clicked the user

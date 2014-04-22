@@ -11,6 +11,7 @@ using System.Data;
 using OxyPlot;
 using TFG.src.exceptions;
 using Microsoft.Win32;
+using TFG.src.ViewModels;
 
 namespace TFG.src.classes
 {
@@ -55,10 +56,14 @@ namespace TFG.src.classes
 
 		}
 
-		public static void LoadXMLData(string pathToXml)
+		public static LinkedList<AbstractDataVisualizerViewModel> LoadXMLData(string pathToXml)
 		{
-			if (Validate(pathToXml, "D:/GitHub/TFG/TFG/src/schemas/ObservationModelData.xsd"))
+			LinkedList<AbstractDataVisualizerViewModel> viewModels = new LinkedList<AbstractDataVisualizerViewModel>();
+
+			if (Validate(pathToXml, "C:/Users/Rubén/GitHub/TFG/TFG/src/schemas/ObservationModelData.xsd"))
 			{
+				
+
 
 				XElement xml = XElement.Load(pathToXml);
 				//IEnumerable<XElement> valores =
@@ -93,31 +98,57 @@ namespace TFG.src.classes
 				//}
 
 				//Obtenemos los datos de las propiedades y creamos los graficos
-				IEnumerable<XElement> propiedades =
-					from prop in xml.Descendants("property")
-					select prop;
 
-				foreach (XElement prop in propiedades)
-				{
-					IEnumerable<XElement> data =
-						from da in prop.Descendants("instant")
-						select da;
+				IEnumerable<XElement> propiedadesContinuas = getContinousData(xml);
+				process(propiedadesContinuas, true, viewModels);
 
-					ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
-					foreach (XElement instant in data)
-					{
-						double x = Double.Parse(instant.Attribute("ins").Value.ToString());
-						double y = Double.Parse(instant.Attribute("value").Value.ToString());
-
-						pointCollection.Add(new DataPoint(x, y));
-
-						List<DataPoint> points = new List<DataPoint>(pointCollection);
-
-					}
-				} 
+				IEnumerable<XElement> propiedadesDiscretas = getDiscreteData(xml);
+				//process(propiedadesDiscretas, false);
 
 			}
+			return viewModels;
+		}
 
+
+		private static void process(IEnumerable<XElement> propiedades, bool EsContinuo, LinkedList<AbstractDataVisualizerViewModel> viewModels)
+		{
+
+			foreach (XElement prop in propiedades)
+			{
+				IEnumerable<XElement> data =
+					from da in prop.Descendants("instant")
+					select da;
+
+				ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
+				foreach (XElement instant in data)
+				{
+					double x = Double.Parse(instant.Attribute("ins").Value.ToString());
+					double y = Double.Parse(instant.Attribute("value").Value.ToString());
+
+					pointCollection.Add(new DataPoint(x, y));
+
+					
+
+				}
+				List<DataPoint> points = new List<DataPoint>(pointCollection);
+				ContinousDataVisualizerViewModel avm = new ContinousDataVisualizerViewModel(points);
+				viewModels.AddLast(avm);
+			}
+			
+		}
+
+		private static IEnumerable<XElement> getContinousData(XElement xml)
+		{
+			return 	from prop in xml.Descendants("property")
+					where (string)prop.Attribute("type") == "continous"
+					select prop;
+		}
+
+		private static IEnumerable<XElement> getDiscreteData(XElement xml)
+		{
+			return from prop in xml.Descendants("property")
+				   where (string)prop.Attribute("type") == "discrete"
+				   select prop;
 		}
 
 		public static void loadXMLModel(string pathToXml)

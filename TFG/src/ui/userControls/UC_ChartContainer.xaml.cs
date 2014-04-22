@@ -82,8 +82,22 @@ namespace TFG.src.ui.userControls
 
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
-			TreeViewItem newChild = new TreeViewItem();
-			newChild.Header = paneNumber++;
+
+			string pathToXML = "C:/Users/Rubén/GitHub/TFG/TFG/ObservationModelDataExample.xml";
+			LinkedList<AbstractDataVisualizerViewModel> viewModels = XMLLoader.LoadXMLData(pathToXML);
+
+			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
+			{
+				if (viewModel is ContinousDataVisualizerViewModel)
+				{
+					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
+					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
+					addToAnchorablePane(dataVisualizer);
+				}
+			}
+
+			//TreeViewItem newChild = new TreeViewItem();
+			//newChild.Header = paneNumber++;
 			//observationsAndProperties.Items.Add(newChild);
 		}
 	}

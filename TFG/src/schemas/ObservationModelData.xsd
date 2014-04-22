@@ -46,6 +46,14 @@
 			
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="continous" />
+					<xs:enumeration value="discrete" />			
+				</xs:restriction>			
+			</xs:simpleType>			
+		</xs:attribute>
 	</xs:complexType>
 	
 	<!--Complex type that describes the instant nodes. They simply have two attributes. The instant, and the value

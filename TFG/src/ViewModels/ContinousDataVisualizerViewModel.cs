@@ -14,10 +14,33 @@ namespace TFG.src.ViewModels
 	public class ContinousDataVisualizerViewModel : AbstractDataVisualizerViewModel
 	{
 
+
 		public ContinousDataVisualizerViewModel()
 		{
 			Model = createModel();
 		}
+
+		public ContinousDataVisualizerViewModel(List<DataPoint> points)
+		{
+			
+			Model = createModel(points);
+		}
+
+		private PlotModel createModel(List<DataPoint> points)
+		{
+			var plotModel1 = new PlotModel();
+			var functionSeries1 = new FunctionSeries();
+
+			foreach (DataPoint point in points)
+			{
+				functionSeries1.Points.Add(point);
+			}
+			plotModel1.Series.Add(functionSeries1);
+			Points = functionSeries1.Points;
+			return plotModel1;
+		}
+
+		
 
 		protected override void loadData()
 		{
@@ -28,8 +51,6 @@ namespace TFG.src.ViewModels
 		{
 			var plotModel1 = new PlotModel();
 			var functionSeries1 = new FunctionSeries();
-
-
 
 			functionSeries1.Points.Add(new DataPoint(0, 4));
 			functionSeries1.Points.Add(new DataPoint(1, 13));
@@ -43,6 +64,7 @@ namespace TFG.src.ViewModels
 			plotModel1.Series.Add(functionSeries1);
 			//plotModel1.DefaultXAxis.AbsoluteMinimum = 0;
 			//plotModel1.DefaultXAxis.AbsoluteMaximum = 50;
+
 			return plotModel1;
 		}
 	}
