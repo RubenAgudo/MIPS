@@ -111,12 +111,39 @@ namespace TFG.src.ui.userControls
 				Console.WriteLine(ex.StackTrace);
 				MessageBoxResult msg = MessageBox.Show("Error validando el XML");
 			}
-			
 
+			List<string> observations = XMLLoader.getObservations(pathToXML);
+
+			foreach (string observation in observations)
+			{
+				List<string> properties = XMLLoader.getPropertiesOf(observation, pathToXML);
+
+				TreeViewItem newObservation = new TreeViewItem();
+				newObservation.Header = observation;
+
+				foreach (string property in properties)
+				{
+					TreeViewItem newProperty = new TreeViewItem();
+					newProperty.Header = property;
+					newObservation.Items.Add(newProperty);
+				}
+
+				observationsAndProperties.Items.Add(newObservation);
+			}
 			
-			//TreeViewItem newChild = new TreeViewItem();
-			//newChild.Header = paneNumber++;
-			//observationsAndProperties.Items.Add(newChild);
+		}
+
+		private void observationsAndProperties_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+
+			TreeViewItem item = (TreeViewItem) observationsAndProperties.SelectedItem;
+			TreeViewItem parent = null;
+			if (item.Parent != null)
+			{
+				parent = (TreeViewItem) item.Parent;
+			}
+
+			MessageBoxResult test = MessageBox.Show("Has pinchado en: " + item.Header+ " y el padre es: " + parent.Header);
 		}
 	}
 }

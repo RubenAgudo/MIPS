@@ -22,7 +22,7 @@
 <data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	  EspObservation="ObservationModelExample.xml" instantLength="1">
 	<observation name="observacion1">
-		<property name="prop1" type="continous">
+		<property name="prop11" type="1">
 			<instant ins="1" value="1"/>
 			<instant ins="2" value="2"/>
 			<instant ins="3" value="6"/>
@@ -34,19 +34,40 @@
 			<instant ins="12" value="100"/>
 			<instant ins="13" value="-10"/>
 		</property>
-		<property name="prop2" type="continous">
+		<property name="prop12" type="1">
 			<instant ins="1" value="2"/>
 			<instant ins="2" value="3"/>
 		</property>
-		<property name="prop3" type ="continous">
+		<property name="prop13" type ="1">
 			<instant ins="1" value="3"/>
 			<instant ins="2" value="4"/>
 		</property>
-		<property name="prop5" type="continous">
+		<property name="prop14" type="1">
 			<instant ins="1" value="4"/>
 			<instant ins="2" value="5"/>
 		</property>
-		<property name="prop4" type="discrete">
+		<property name="prop15" type="0">
+			<instant ins="1" value="hola"/>
+			<instant ins="2" value="que tal"/>
+			<instant ins="3" value="hola"/>
+			<instant ins="4" value="que tal"/>
+		</property>
+	</observation>
+	<observation name="observacion2">
+		<property name="prop21" type="1">
+			<instant ins="1" value="1"/>
+			<instant ins="-4" value="-100"/>
+			<instant ins="2" value="2"/>
+			<instant ins="3" value="6"/>
+			<instant ins="4" value="45"/>
+			<instant ins="5" value="48"/>
+			<instant ins="6" value="2"/>
+			<instant ins="10" value="6"/>
+			<instant ins="11" value="10"/>
+			<instant ins="12" value="100"/>
+			<instant ins="13" value="-10"/>
+		</property>
+		<property name="prop22" type="0">
 			<instant ins="1" value="hola"/>
 			<instant ins="2" value="que tal"/>
 			<instant ins="3" value="hola"/>

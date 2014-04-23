@@ -129,10 +129,10 @@
   <data name="_addStepPanel.Header" xml:space="preserve">
     <value>Añadir paso</value>
   </data>
-  <data name="_hiddenCharts.Title" xml:space="preserve">
-    <value>Observaciones y propiedades</value>
-  </data>
   <data name="_loadXML.Header" xml:space="preserve">
     <value>Cargar datos desde XML</value>
+  </data>
+  <data name="_ObservationsAndProperties.Title" xml:space="preserve">
+    <value>Observaciones y propiedades</value>
   </data>
 </root>

@@ -63,7 +63,14 @@
 	<xs:complexType name="EspPropertyType" >
 
 		<xs:attribute name="name" type="xs:string"/>
-		<xs:attribute name="type" type="xs:string" />
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:enumeration id="continous" value="1" />
+					<xs:enumeration id="discrete" value="0" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
 		
 	</xs:complexType>
 	

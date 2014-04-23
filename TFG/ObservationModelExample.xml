@@ -2,46 +2,23 @@
 <ObservationModel name="KinectOM.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="src\\schemas\\LoadDataModel.xsd">
 
-	<EspObservation name="Axis">
-		<InputData>
-			<IData id="Skeleton" />
-			<IData id="TrackingState" />
-			<IData id="FinKinect" />
-			<IData id="Train" />
-			<IData id="Save" />
-			<IData id="SituacionSaque"/>
-		</InputData>
+	<EspObservation name="observacion1">
 
 		<Properties>
-			<EspProperty name="Matrix" type="string" />
-			<EspProperty name="Matrix2" type="string" />
-			<EspProperty name="Matrix3" type="string" />
-			<EspProperty name="Matrix4" type="string" />
-			<EspProperty name="Matrix5" type="string" />
-			<EspProperty name="Matrix6" type="string" />
-			<EspProperty name="Matrix7" type="string" />
+			<EspProperty name="prop11" type="1" />
+			<EspProperty name="prop12" type="1" />
+			<EspProperty name="prop13" type="1" />
+			<EspProperty name="prop14" type="1" />
+			<EspProperty name="prop15" type="0" />
 		</Properties>
 		
 	</EspObservation>
 
-	<EspObservation name="Axis2">
-		<InputData>
-			<IData id="Skeleton" />
-			<IData id="TrackingState" />
-			<IData id="FinKinect" />
-			<IData id="Train" />
-			<IData id="Save" />
-			<IData id="SituacionSaque"/>
-		</InputData>
+	<EspObservation name="observacion2">
 
 		<Properties>
-			<EspProperty name="Matrix" type="string" />
-			<EspProperty name="Matrix2" type="string" />
-			<EspProperty name="Matrix3" type="string" />
-			<EspProperty name="Matrix4" type="string" />
-			<EspProperty name="Matrix5" type="string" />
-			<EspProperty name="Matrix6" type="string" />
-			<EspProperty name="Matrix7" type="string" />
+			<EspProperty name="prop21" type="1" />
+			<EspProperty name="prop22" type="0" />
 		</Properties>
 
 	</EspObservation>

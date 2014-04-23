@@ -69,43 +69,11 @@ namespace TFG.src.classes
 			{
 				
 				XElement xml = XElement.Load(pathToXml);
-				//IEnumerable<XElement> valores =
-				//	from ins in xml.Descendants("propiedad")
-				//	where (string)ins.Attribute("name") == "prop1"
-				//	select ins;
 
-				//foreach (XElement instante in valores)
-				//{
-				//	Console.WriteLine(instante.Parent.Parent.Attribute("numInstante"));
-				//	Console.WriteLine("Propiedad: " + instante.Attribute("name") + ", Valor: " + instante.Attribute("value"));
-				//}
-
-				//IEnumerable<XElement> observaciones =
-				//	from obs in xml.Descendants("observation")
-				//	select obs;
-
-				//foreach (XElement obs in observaciones)
-				//{
-				//	Console.WriteLine(obs.Attribute("name"));
-				//	Console.WriteLine("Propiedades de la observacion:");
-				//	Console.WriteLine("================================");
-				//	IEnumerable<XElement> propiedades =
-				//		from prop in obs.Descendants()
-				//		select prop;
-
-				//	foreach (XElement prop in propiedades)
-				//	{
-				//		Console.WriteLine(prop.Attribute("name"));
-				//	}
-				//	//Console.WriteLine();
-				//}
-
-				//Obtenemos los datos de las propiedades y creamos los graficos
-
-				IEnumerable<XElement> propiedadesContinuas = getContinousData(xml);
+				IEnumerable<XElement> propiedadesContinuas = getData(xml, AbstractDataVisualizerViewModel.CONTINOUS);
 				process(propiedadesContinuas, true, viewModels);
 
-				IEnumerable<XElement> propiedadesDiscretas = getDiscreteData(xml);
+				IEnumerable<XElement> propiedadesDiscretas = getData(xml, AbstractDataVisualizerViewModel.DISCRETE);
 				process(propiedadesDiscretas, false, viewModels);
 
 			}
@@ -117,72 +85,78 @@ namespace TFG.src.classes
 		}
 
 
-		private static void process(IEnumerable<XElement> propiedades, bool EsContinuo, LinkedList<AbstractDataVisualizerViewModel> viewModels)
+		private static void process(IEnumerable<XElement> propiedades, bool EsContinuo, 
+			LinkedList<AbstractDataVisualizerViewModel> viewModels)
 		{
 
 			foreach (XElement prop in propiedades)
 			{
 				IEnumerable<XElement> data =
 					from da in prop.Descendants("instant")
+					orderby (double)da.Attribute("ins") ascending
 					select da;
 
-				ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
+
 				Dictionary<string, double> labels = new Dictionary<string, double>(data.Count());
+				ICollection<DataPoint> pointCollection = createPoints(EsContinuo, data, labels);
 
-				foreach (XElement instant in data)
-				{
-					double x = Double.Parse(instant.Attribute("ins").Value);
-					double y = 0;
-					if (!EsContinuo)
-					{
-						
-						bool success = labels.TryGetValue(instant.Attribute("value").Value, out y);
-						if(!success) {
-							y = labels.Count;
-							labels.Add(instant.Attribute("value").Value, labels.Count);
-						}
-					}
-					else
-					{
-						y = Double.Parse(instant.Attribute("value").Value);
-					}
-
-					pointCollection.Add(new DataPoint(x, y));
-				}
 				List<DataPoint> points = new List<DataPoint>(pointCollection);
-				AbstractDataVisualizerViewModel avm;
-				if (EsContinuo)
-				{
-					avm = new ContinousDataVisualizerViewModel(points);
-				}
-				else
-				{
-					avm = new DiscreteDataVisualizerViewModel(points, labels.Keys.ToList());
-				}
+
+				AbstractDataVisualizerViewModel avm = createViewModel(EsContinuo, points, labels);
 				viewModels.AddLast(avm);
 			}
 			
 		}
 
-		private static IEnumerable<XElement> getContinousData(XElement xml)
+		private static AbstractDataVisualizerViewModel createViewModel(bool EsContinuo, 
+			List<DataPoint> points, Dictionary<string, double> labels)
+		{
+			AbstractDataVisualizerViewModel avm = null;
+			if (EsContinuo)
+			{
+				avm = new ContinousDataVisualizerViewModel(points);
+			}
+			else
+			{
+				avm = new DiscreteDataVisualizerViewModel(points, labels.Keys.ToList());
+			}
+			return avm;
+		}
+
+		private static ICollection<DataPoint> createPoints(bool EsContinuo, IEnumerable<XElement> data, 
+			Dictionary<string, double> labels)
+		{
+			ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
+			
+			foreach (XElement instant in data)
+			{
+				double x = Double.Parse(instant.Attribute("ins").Value);
+				double y = 0;
+				if (!EsContinuo)
+				{
+
+					bool success = labels.TryGetValue(instant.Attribute("value").Value, out y);
+					if (!success)
+					{
+						y = labels.Count;
+						labels.Add(instant.Attribute("value").Value, labels.Count);
+					}
+				}
+				else
+				{
+					y = Double.Parse(instant.Attribute("value").Value);
+				}
+
+				pointCollection.Add(new DataPoint(x, y));
+			}
+			return pointCollection;
+		}
+
+		private static IEnumerable<XElement> getData(XElement xml, int dataType)
 		{
 			return 	from prop in xml.Descendants("property")
-					where (string)prop.Attribute("type") == "continous"
-					orderby (string)prop.Attribute("ins") ascending
+					where (int)prop.Attribute("type") == dataType
 					select prop;
-		}
-
-		private static IEnumerable<XElement> getDiscreteData(XElement xml)
-		{
-			return from prop in xml.Descendants("property")
-				   where (string)prop.Attribute("type") == "discrete"
-				   orderby (string)prop.Attribute("ins") ascending
-				   select prop;
-		}
-
-		public static void loadXMLModel(string pathToXml)
-		{
-
 		}
 
 		public static string openFile()
@@ -211,5 +185,50 @@ namespace TFG.src.classes
 			}
 			return filename;
 		}
+
+		internal static List<string> getObservations(string pathToXML)
+		{
+			List<string> listObservations = null;
+			if (Validate(pathToXML, "schemas/ObservationModelData.xsd"))
+			{
+				XElement xml = XElement.Load(pathToXML);
+				
+				IEnumerable<XElement> observations = 
+					from obs in xml.Descendants("observation")
+					select obs;
+
+				listObservations = addElements(observations);
+			}
+			return listObservations;
+		}
+
+		private static List<string> addElements(IEnumerable<XElement> elements)
+		{
+			List<string> listObservations = new List<string>(elements.Count());
+
+			foreach (XElement observation in elements)
+			{
+				listObservations.Add(observation.Attribute("name").Value);
+			}
+			return listObservations;
+		}
+
+		internal static List<string> getPropertiesOf(string observation, string pathToXML)
+		{
+			List<string> listProperties = null;
+			if (Validate(pathToXML, "schemas/ObservationModelData.xsd"))
+			{
+				XElement xml = XElement.Load(pathToXML);
+
+				IEnumerable<XElement> properties =
+					from prop in xml.Descendants("property")
+					where (string)prop.Parent.Attribute("name") == observation
+					select prop;
+
+				listProperties = addElements(properties);
+			}
+			return listProperties;
+		}
+
 	}
 }	
