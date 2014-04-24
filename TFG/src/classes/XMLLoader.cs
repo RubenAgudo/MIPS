@@ -15,34 +15,26 @@ using TFG.src.ViewModels;
 
 namespace TFG.src.classes
 {
-	public static class XMLLoader
+	public class XMLLoader
 	{
-		//private static XMLLoader myXMLLoader;
+		private XElement xml;
 
-		//public static XMLLoader getXMLLoader()
-		//{
-		//	if (myXMLLoader == null)
-		//	{
-		//		myXMLLoader = new XMLLoader();
-		//	}
-
-		//	return myXMLLoader;
-		//}
-
+		public XMLLoader(string pathToXml)
+		{
+			xml = XElement.Load(pathToXml);
+		}
 
 		/// <summary>
 		/// Method that validates an XML with a given XSD
 		/// </summary>
-		/// <param name="pathToXml"></param>
 		/// <param name="pathToXsd"></param>
 		/// <returns>A boolean indicating if the given XML complies with the XSD</returns>
-		public static bool Validate(string pathToXml, string pathToXsd)
+		private bool Validate(string pathToXsd)
 		{
-
 			XmlSchemaSet schemas = new XmlSchemaSet();
 			schemas.Add("", XmlReader.Create(new StreamReader(pathToXsd)));
 
-			XDocument xml = XDocument.Load(pathToXml);
+			XDocument xml = XDocument.Load(this.xml.CreateReader());
 
 			Console.WriteLine("Validating xml");
 			bool errors = false;
@@ -56,36 +48,7 @@ namespace TFG.src.classes
 
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="pathToXml"></param>
-		/// <returns></returns>
-		public static LinkedList<AbstractDataVisualizerViewModel> LoadXMLData(string pathToXml)
-		{
-			LinkedList<AbstractDataVisualizerViewModel> viewModels = new LinkedList<AbstractDataVisualizerViewModel>();
-
-			if (Validate(pathToXml, "schemas/ObservationModelData.xsd"))
-			{
-				
-				XElement xml = XElement.Load(pathToXml);
-
-				IEnumerable<XElement> propiedadesContinuas = getData(xml, AbstractDataVisualizerViewModel.CONTINOUS);
-				process(propiedadesContinuas, true, viewModels);
-
-				IEnumerable<XElement> propiedadesDiscretas = getData(xml, AbstractDataVisualizerViewModel.DISCRETE);
-				process(propiedadesDiscretas, false, viewModels);
-
-			}
-			else
-			{
-				throw new FileFormatException();
-			}
-			return viewModels;
-		}
-
-
-		private static void process(IEnumerable<XElement> propiedades, bool EsContinuo, 
+		private void process(IEnumerable<XElement> propiedades, 
 			LinkedList<AbstractDataVisualizerViewModel> viewModels)
 		{
 
@@ -96,20 +59,26 @@ namespace TFG.src.classes
 					orderby (double)da.Attribute("ins") ascending
 					select da;
 
+				bool EsContinuo = isContinousProperty(prop);
 
 				Dictionary<string, double> labels = new Dictionary<string, double>(data.Count());
 				ICollection<DataPoint> pointCollection = createPoints(EsContinuo, data, labels);
 
 				List<DataPoint> points = new List<DataPoint>(pointCollection);
 
-				AbstractDataVisualizerViewModel avm = createViewModel(EsContinuo, points, labels);
+				AbstractDataVisualizerViewModel avm = createViewModel(points, labels, EsContinuo);
 				viewModels.AddLast(avm);
 			}
 			
 		}
 
-		private static AbstractDataVisualizerViewModel createViewModel(bool EsContinuo, 
-			List<DataPoint> points, Dictionary<string, double> labels)
+		private bool isContinousProperty(XElement prop)
+		{
+			return int.Parse(prop.Attribute("type").Value) == AbstractDataVisualizerViewModel.CONTINOUS;
+		}
+
+		private AbstractDataVisualizerViewModel createViewModel(List<DataPoint> points,
+			Dictionary<string, double> labels, bool EsContinuo)
 		{
 			AbstractDataVisualizerViewModel avm = null;
 			if (EsContinuo)
@@ -123,7 +92,7 @@ namespace TFG.src.classes
 			return avm;
 		}
 
-		private static ICollection<DataPoint> createPoints(bool EsContinuo, IEnumerable<XElement> data, 
+		private ICollection<DataPoint> createPoints(bool EsContinuo, IEnumerable<XElement> data, 
 			Dictionary<string, double> labels)
 		{
 			ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
@@ -152,14 +121,8 @@ namespace TFG.src.classes
 			return pointCollection;
 		}
 
-		private static IEnumerable<XElement> getData(XElement xml, int dataType)
-		{
-			return 	from prop in xml.Descendants("property")
-					where (int)prop.Attribute("type") == dataType
-					select prop;
-		}
 
-		public static string openFile()
+		public static string openXML()
 		{
 			string filename = null;
 			// Configure open file dialog box
@@ -168,7 +131,7 @@ namespace TFG.src.classes
 			dlg.Multiselect = false;
 			dlg.DefaultExt = ".xml"; // Default file extension
 			// Filter files by extension
-			dlg.Filter = "XML Files|*.xml";
+			dlg.Filter = "XML files|*.xml";
 
 			// Show open file dialog box
 			Nullable<bool> result = dlg.ShowDialog();
@@ -186,13 +149,11 @@ namespace TFG.src.classes
 			return filename;
 		}
 
-		internal static List<string> getObservations(string pathToXML)
+		internal List<string> getObservations()
 		{
 			List<string> listObservations = null;
-			if (Validate(pathToXML, "schemas/ObservationModelData.xsd"))
-			{
-				XElement xml = XElement.Load(pathToXML);
-				
+			if (Validate("schemas/ObservationModelData.xsd"))
+			{				
 				IEnumerable<XElement> observations = 
 					from obs in xml.Descendants("observation")
 					select obs;
@@ -202,7 +163,7 @@ namespace TFG.src.classes
 			return listObservations;
 		}
 
-		private static List<string> addElements(IEnumerable<XElement> elements)
+		private List<string> addElements(IEnumerable<XElement> elements)
 		{
 			List<string> listObservations = new List<string>(elements.Count());
 
@@ -213,13 +174,11 @@ namespace TFG.src.classes
 			return listObservations;
 		}
 
-		internal static List<string> getPropertiesOf(string observation, string pathToXML)
+		internal List<string> getPropertiesOf(string observation)
 		{
 			List<string> listProperties = null;
-			if (Validate(pathToXML, "schemas/ObservationModelData.xsd"))
+			if (Validate("schemas/ObservationModelData.xsd"))
 			{
-				XElement xml = XElement.Load(pathToXML);
-
 				IEnumerable<XElement> properties =
 					from prop in xml.Descendants("property")
 					where (string)prop.Parent.Attribute("name") == observation
@@ -228,6 +187,90 @@ namespace TFG.src.classes
 				listProperties = addElements(properties);
 			}
 			return listProperties;
+		}
+
+
+		private IEnumerable<XElement> getData(XElement xml)
+		{
+			return from prop in xml.Descendants("property")
+				   select prop;
+		}
+
+		private IEnumerable<XElement> getData(string observacion)
+		{
+			return from prop in xml.Descendants("property")
+				   where (string)prop.Parent.Attribute("name") == observacion
+				   select prop;
+		}
+
+		private IEnumerable<XElement> getData(string propiedad, string observacion)
+		{
+			return from prop in xml.Descendants("property")
+				   where (string)prop.Parent.Attribute("name") == observacion && (string)prop.Attribute("name") == propiedad
+				   select prop;
+		}
+
+
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//Metodos dignos de refactorizar
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		internal LinkedList<AbstractDataVisualizerViewModel> LoadXMLData(string observacion)
+		{
+			LinkedList<AbstractDataVisualizerViewModel> viewModels = new LinkedList<AbstractDataVisualizerViewModel>();
+			
+			if (Validate("schemas/ObservationModelData.xsd"))
+			{
+
+				IEnumerable<XElement> propiedades = getData(observacion);
+				process(propiedades, viewModels);
+
+			}
+			else
+			{
+				throw new FileFormatException();
+			}
+			return viewModels;
+		}
+
+		internal LinkedList<AbstractDataVisualizerViewModel> LoadXMLData(string propiedad, string observacion)
+		{
+			LinkedList<AbstractDataVisualizerViewModel> viewModels = new LinkedList<AbstractDataVisualizerViewModel>();
+			
+			if (Validate("schemas/ObservationModelData.xsd"))
+			{
+				IEnumerable<XElement> propiedades = getData(propiedad, observacion);
+				process(propiedades, viewModels);
+
+			}
+			else
+			{
+				throw new FileFormatException();
+			}
+			return viewModels;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="pathToXml"></param>
+		/// <returns></returns>
+		public LinkedList<AbstractDataVisualizerViewModel> LoadXMLData()
+		{
+			LinkedList<AbstractDataVisualizerViewModel> viewModels = new LinkedList<AbstractDataVisualizerViewModel>();
+
+			if (Validate("schemas/ObservationModelData.xsd"))
+			{
+
+				IEnumerable<XElement> propiedades = getData(xml);
+				process(propiedades, viewModels);
+
+			}
+			else
+			{
+				throw new FileFormatException();
+			}
+			return viewModels;
 		}
 
 	}

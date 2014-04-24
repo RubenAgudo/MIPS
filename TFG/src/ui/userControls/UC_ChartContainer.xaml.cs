@@ -26,7 +26,7 @@ namespace TFG.src.ui.userControls
     public partial class UC_ChartContainer : UserControl
     {
         private int paneNumber;
-
+		private XMLLoader xmlLoader;
         public UC_ChartContainer()
         {
             InitializeComponent();
@@ -89,22 +89,29 @@ namespace TFG.src.ui.userControls
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
 			mainPanelChartContainer.Children.Clear();
-			string pathToXML = GraphicActions.openXML();
+			string pathToXML = XMLLoader.openXML();
 			try
 			{
-				LinkedList<AbstractDataVisualizerViewModel> viewModels = XMLLoader.LoadXMLData(pathToXML);
-				
-				foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
+				xmlLoader = new XMLLoader(pathToXML);
+				List<string> observations = xmlLoader.getObservations();
+
+				foreach (string observation in observations)
 				{
-					//comprobamos que no sea de la clase abstracta
-					if (viewModel is ContinousDataVisualizerViewModel ||
-						viewModel is DiscreteDataVisualizerViewModel)
+					List<string> properties = xmlLoader.getPropertiesOf(observation);
+
+					TreeViewItem newObservation = new TreeViewItem();
+					newObservation.Header = observation;
+
+					foreach (string property in properties)
 					{
-						UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
-						GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
-						addToAnchorablePane(dataVisualizer);
+						TreeViewItem newProperty = new TreeViewItem();
+						newProperty.Header = property;
+						newObservation.Items.Add(newProperty);
 					}
+
+					observationsAndProperties.Items.Add(newObservation);
 				}
+
 			}
 			catch (FileFormatException ex)
 			{
@@ -112,38 +119,41 @@ namespace TFG.src.ui.userControls
 				MessageBoxResult msg = MessageBox.Show("Error validando el XML");
 			}
 
-			List<string> observations = XMLLoader.getObservations(pathToXML);
-
-			foreach (string observation in observations)
-			{
-				List<string> properties = XMLLoader.getPropertiesOf(observation, pathToXML);
-
-				TreeViewItem newObservation = new TreeViewItem();
-				newObservation.Header = observation;
-
-				foreach (string property in properties)
-				{
-					TreeViewItem newProperty = new TreeViewItem();
-					newProperty.Header = property;
-					newObservation.Items.Add(newProperty);
-				}
-
-				observationsAndProperties.Items.Add(newObservation);
-			}
+			
 			
 		}
 
 		private void observationsAndProperties_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
+			LinkedList<AbstractDataVisualizerViewModel> viewModels;
+			TreeViewItem anItem = (TreeViewItem) observationsAndProperties.SelectedItem;
+			
+			string itemHeader = anItem.Header.ToString(), 
+				parentHeader;
 
-			TreeViewItem item = (TreeViewItem) observationsAndProperties.SelectedItem;
-			TreeViewItem parent = null;
-			if (item.Parent != null)
+			if (!anItem.HasItems)
 			{
-				parent = (TreeViewItem) item.Parent;
+				parentHeader = ((TreeViewItem)anItem.Parent).Header.ToString();
+				viewModels = xmlLoader.LoadXMLData(itemHeader, parentHeader);
+			}
+			else
+			{
+				viewModels = xmlLoader.LoadXMLData(itemHeader);
 			}
 
-			MessageBoxResult test = MessageBox.Show("Has pinchado en: " + item.Header+ " y el padre es: " + parent.Header);
+
+			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
+			{
+				//comprobamos que no sea de la clase abstracta
+				if (viewModel is ContinousDataVisualizerViewModel ||
+					viewModel is DiscreteDataVisualizerViewModel)
+				{
+					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
+					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
+					addToAnchorablePane(dataVisualizer);
+				}
+			}
+
 		}
 	}
 }

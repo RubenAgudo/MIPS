@@ -34,33 +34,6 @@ namespace TFG.src.classes
 			return myGraphicActions;
 		}
 
-		public static string openXML()
-		{
-			string filename = null;
-            // Configure open file dialog box
-            OpenFileDialog dlg = new OpenFileDialog();
-            //dlg.FileName = "Document"; // Default file name
-            dlg.Multiselect = false;
-            dlg.DefaultExt = ".xml"; // Default file extension
-            // Filter files by extension
-            dlg.Filter = "XML files|*.xml"; 
-
-            // Show open file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Process open file dialog box results 
-            if (result == true)
-            {
-                // Open document 
-                filename = dlg.FileName;
-            }
-            else
-            {
-                throw new FileNotSelectedException();
-            }
-            return filename;
-        }
-
         public void addLast(UC_DataVisualizer dataVisualizer)
         {
             this.data.AddLast(dataVisualizer);
