@@ -21,7 +21,7 @@ namespace TFG.src.ViewModels
 			protected set;
 		}
 
-		public IList<IDataPoint> Points
+		public IList<DataPoint> Points
 		{
 			get;
 			protected set;

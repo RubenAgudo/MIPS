@@ -25,21 +25,19 @@ namespace TFG.src.ui.userControls
     /// </summary>
     public partial class UC_ChartContainer : UserControl
     {
-        private int paneNumber;
 		private HashSet<string> loaded;
 		private XMLLoader xmlLoader;
         public UC_ChartContainer()
         {
             InitializeComponent();
 			loaded = new HashSet<string>();
-            paneNumber = 0;
         }
 
         /// <summary>
         /// Method that adds to the GraphicsContainer a LayoutAnchorable that contains a Data visualizer user control
         /// </summary>
         /// <param name="objectToAdd"></param>
-        private void addToAnchorablePane(UserControl objectToAdd)
+        private void addToAnchorablePane(UC_DataVisualizer objectToAdd, string title)
         {
 
             if (mainPanelChartContainer != null)
@@ -47,7 +45,7 @@ namespace TFG.src.ui.userControls
 				LayoutAnchorable doc = new LayoutAnchorable();
 				doc.CanHide = false;
 				doc.CanClose = true;
-				//doc.Title = "Pane " + ++paneNumber;
+				doc.Title = title;
 				doc.Content = objectToAdd;
                 mainPanelChartContainer.Children.Add(doc);
 
@@ -138,7 +136,7 @@ namespace TFG.src.ui.userControls
 					loaded.Add(viewModel.Title);
 					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
 					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
-					addToAnchorablePane(dataVisualizer);
+					addToAnchorablePane(dataVisualizer, viewModel.Title);
 				}
 			}
 		}

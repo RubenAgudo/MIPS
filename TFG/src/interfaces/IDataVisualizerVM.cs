@@ -15,7 +15,7 @@ namespace TFG.src.interfaces
 		void loadData();
 		String Title{get; set;}
 		PlotModel createModel();
-		IList<IDataPoint> Points { get; set; }
+		IList<DataPoint> Points { get; set; }
 		PlotModel Model { get; set; }
 	}
 }

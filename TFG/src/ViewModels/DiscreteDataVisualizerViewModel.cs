@@ -24,18 +24,15 @@ namespace TFG.src.ViewModels
 		{
 			var plotModel1 = new PlotModel();
 			var functionSeries1 = new StairStepSeries();
-			var categoryAxis2 = new CategoryAxis(AxisPosition.Left);
+			var categoryAxis2 = new CategoryAxis();
+
+			categoryAxis2.Position = AxisPosition.Left;
 			categoryAxis2.AxislineStyle = LineStyle.Solid;
 			categoryAxis2.MinorStep = 1;
 			categoryAxis2.TickStyle = TickStyle.None;
-
-			categoryAxis2.Labels = labels;
+			categoryAxis2.Labels.AddRange(labels);
 			plotModel1.Axes.Add(categoryAxis2);
-
-			foreach (DataPoint point in points)
-			{
-				functionSeries1.Points.Add(point);
-			}
+			functionSeries1.Points.AddRange(points);
 			plotModel1.Series.Add(functionSeries1);
 			plotModel1.Title = Title;
 			Points = functionSeries1.Points;

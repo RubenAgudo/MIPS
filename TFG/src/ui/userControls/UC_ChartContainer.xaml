@@ -53,7 +53,7 @@
 
 							<avalonDock:LayoutAnchorGroup>
 
-								<avalonDock:LayoutAnchorable Title="{Resx Key=ObservationsAndProperties.Title}">
+								<avalonDock:LayoutAnchorable Title="{Resx Key=ObservationsAndProperties.Title}" CanHide="False">
 
 									<TreeView Name="observationsAndProperties" 
 											  MouseDoubleClick="observationsAndProperties_MouseDoubleClick" >

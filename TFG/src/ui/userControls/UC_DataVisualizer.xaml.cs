@@ -62,6 +62,7 @@ namespace TFG.src.ui.userControls
 			Progress.MinimumX = 0;
 			Progress.MaximumX = 0;
 			oxyplot.Model.Annotations.Add(Progress);
+			
 		}
 
 		
@@ -87,26 +88,27 @@ namespace TFG.src.ui.userControls
 		/// <param name="e"></param>
         private void Model_MouseMove(object sender, OxyMouseEventArgs e)
         {
-			if (e.ChangedButton == OxyMouseButton.Left && !double.IsNaN(startx))
+			
+			if (!double.IsNaN(startx))
 			{
 				var x = RangeSelection.InverseTransform(e.Position).X;
 				RangeSelection.MinimumX = Math.Min(x, startx);
 				RangeSelection.MaximumX = Math.Max(x, startx);
 				RangeSelection.Text = string.Format("{0:0.00}", RangeSelection.MaximumX - RangeSelection.MinimumX);
 				oxyplot.Model.Subtitle = string.Format("{0:0.00} to {1:0.00}", RangeSelection.MinimumX, RangeSelection.MaximumX);
-				oxyplot.Model.RefreshPlot(true);
+				oxyplot.InvalidatePlot();
 				e.Handled = true;
 			}
         }
 
-        private void Model_MouseDown(object sender, OxyMouseEventArgs e)
+        private void Model_MouseDown(object sender, OxyMouseDownEventArgs e)
         {
 			if (e.ChangedButton == OxyMouseButton.Left)
 			{
 				startx = RangeSelection.InverseTransform(e.Position).X;
 				RangeSelection.MinimumX = startx;
 				RangeSelection.MaximumX = startx;
-				oxyplot.RefreshPlot(true);
+				oxyplot.InvalidatePlot();
 				e.Handled = true;
 			}
             
@@ -119,7 +121,8 @@ namespace TFG.src.ui.userControls
 		internal void update(double p)
 		{
 			Progress.MaximumX = p;
-			oxyplot.RefreshPlot(true);
+			oxyplot.InvalidatePlot();
+
 		}
 
 		/// <summary>

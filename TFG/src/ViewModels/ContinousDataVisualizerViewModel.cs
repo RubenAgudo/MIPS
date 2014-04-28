@@ -24,11 +24,7 @@ namespace TFG.src.ViewModels
 		{
 			var plotModel1 = new PlotModel();
 			var functionSeries1 = new FunctionSeries();
-
-			foreach (DataPoint point in points)
-			{
-				functionSeries1.Points.Add(point);
-			}
+			functionSeries1.Points.AddRange(points);
 			plotModel1.Series.Add(functionSeries1);
 			plotModel1.Title = Title;
 			Points = functionSeries1.Points;
