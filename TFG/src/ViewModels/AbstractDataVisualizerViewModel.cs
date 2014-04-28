@@ -33,8 +33,5 @@ namespace TFG.src.ViewModels
 			get;
 			protected set;
 		}
-
-		abstract protected void loadData();
-		abstract protected PlotModel createModel();
 	}
 }

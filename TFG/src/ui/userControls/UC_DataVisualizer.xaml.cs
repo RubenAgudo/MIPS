@@ -36,16 +36,6 @@ namespace TFG.src.ui.userControls
 		private AbstractDataVisualizerViewModel viewModel;
 		private double startx;
 
-        public UC_DataVisualizer(int chartType)
-        {
-
-			//DataContext = new ContinousDataVisualizerViewModel();
-
-            InitializeComponent();
-			selectDataContext(chartType);
-			initialize();
-            
-        }
 		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel)
 		{
 			InitializeComponent();
@@ -84,25 +74,6 @@ namespace TFG.src.ui.userControls
 		/// an exception is raised.
 		/// </exception>
 		/// <param name="chartType">The constant</param>
-		private void selectDataContext(int chartType)
-		{
-			switch (chartType)
-			{
-				case AbstractDataVisualizerViewModel.CONTINOUS:
-					//DataContext = new ContinousDataVisualizerViewModel();
-					viewModel = new ContinousDataVisualizerViewModel();
-					oxyplot.Model = viewModel.Model;
-					break;
-				case AbstractDataVisualizerViewModel.DISCRETE:
-					//DataContext = new DiscreteDataVisualizerViewModel();
-					viewModel = new DiscreteDataVisualizerViewModel();
-					oxyplot.Model = viewModel.Model;
-					break;
-				default:
-					throw new NotImplementedException();
-			}
-		}
-
 
         private void Model_MouseUp(object sender, OxyMouseEventArgs e)
         {

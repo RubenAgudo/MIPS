@@ -66,7 +66,8 @@ namespace TFG.src.classes
 
 				List<DataPoint> points = new List<DataPoint>(pointCollection);
 
-				AbstractDataVisualizerViewModel avm = createViewModel(points, labels, EsContinuo);
+				string nombreProp = prop.Attribute("name").Value;
+				AbstractDataVisualizerViewModel avm = createViewModel(points, labels, EsContinuo, nombreProp);
 				viewModels.AddLast(avm);
 			}
 			
@@ -78,16 +79,16 @@ namespace TFG.src.classes
 		}
 
 		private AbstractDataVisualizerViewModel createViewModel(List<DataPoint> points,
-			Dictionary<string, double> labels, bool EsContinuo)
+			Dictionary<string, double> labels, bool EsContinuo, string title)
 		{
 			AbstractDataVisualizerViewModel avm = null;
 			if (EsContinuo)
 			{
-				avm = new ContinousDataVisualizerViewModel(points);
+				avm = new ContinousDataVisualizerViewModel(points, title);
 			}
 			else
 			{
-				avm = new DiscreteDataVisualizerViewModel(points, labels.Keys.ToList());
+				avm = new DiscreteDataVisualizerViewModel(points, labels.Keys.ToList(), title);
 			}
 			return avm;
 		}

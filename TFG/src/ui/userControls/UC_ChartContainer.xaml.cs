@@ -26,11 +26,12 @@ namespace TFG.src.ui.userControls
     public partial class UC_ChartContainer : UserControl
     {
         private int paneNumber;
+		private HashSet<string> loaded;
 		private XMLLoader xmlLoader;
         public UC_ChartContainer()
         {
             InitializeComponent();
-
+			loaded = new HashSet<string>();
             paneNumber = 0;
         }
 
@@ -64,21 +65,6 @@ namespace TFG.src.ui.userControls
 		internal void Update(double p)
 		{
 			GraphicActions.getMyGraphicActions().update(p);
-		}
-
-		private void mnitAddContinousChart_Click(object sender, RoutedEventArgs e)
-		{
-			UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(AbstractDataVisualizerViewModel.CONTINOUS);
-			GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
-			addToAnchorablePane(dataVisualizer);
-		}
-
-		private void mnitAddDiscreteChart_Click(object sender, RoutedEventArgs e)
-		{
-			
-			UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(AbstractDataVisualizerViewModel.DISCRETE);
-			GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
-			addToAnchorablePane(dataVisualizer);
 		}
 
 		/// <summary>
@@ -131,6 +117,7 @@ namespace TFG.src.ui.userControls
 			string itemHeader = anItem.Header.ToString(), 
 				parentHeader;
 
+			
 			if (!anItem.HasItems)
 			{
 				parentHeader = ((TreeViewItem)anItem.Parent).Header.ToString();
@@ -145,15 +132,16 @@ namespace TFG.src.ui.userControls
 			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
 			{
 				//comprobamos que no sea de la clase abstracta
-				if (viewModel is ContinousDataVisualizerViewModel ||
-					viewModel is DiscreteDataVisualizerViewModel)
+				if ((viewModel is ContinousDataVisualizerViewModel ||
+					viewModel is DiscreteDataVisualizerViewModel) && !loaded.Contains(viewModel.Title))
 				{
+					loaded.Add(viewModel.Title);
 					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
 					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
 					addToAnchorablePane(dataVisualizer);
 				}
 			}
-
 		}
+		
 	}
 }
