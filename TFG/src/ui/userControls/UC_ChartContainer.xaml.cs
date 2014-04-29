@@ -78,7 +78,7 @@ namespace TFG.src.ui.userControls
 			{
 				xmlLoader = new XMLLoader(pathToXML);
 				List<string> observations = xmlLoader.getObservations();
-
+                loaded = new HashSet<string>();
 				foreach (string observation in observations)
 				{
 					List<string> properties = xmlLoader.getPropertiesOf(observation);
