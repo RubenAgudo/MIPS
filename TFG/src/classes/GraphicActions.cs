@@ -67,5 +67,10 @@ namespace TFG.src.classes
 			}
 			return result;
 		}
+
+		internal void remove(UC_DataVisualizer content)
+		{
+			data.Remove(content);
+		}
 	}
 }

@@ -61,6 +61,7 @@ namespace TFG.src.ui.userControls
 		{
 			LayoutAnchorable doc = (LayoutAnchorable)sender;
 			UC_DataVisualizer content = (UC_DataVisualizer)doc.Content;
+			GraphicActions.getMyGraphicActions().remove(content);
 			loaded.Remove(content.getPropertyName());
 		}
 
