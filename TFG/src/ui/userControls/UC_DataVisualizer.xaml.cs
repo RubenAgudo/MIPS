@@ -140,5 +140,20 @@ namespace TFG.src.ui.userControls
 								
 			}
 		}
+
+		internal double[] getRangeSelection()
+		{
+			return new double[] { RangeSelection.MinimumX, RangeSelection.MaximumX };
+		}
+
+		internal string getPropertyName()
+		{
+			return viewModel.Property;
+		}
+
+		internal string getObservationName()
+		{
+			return viewModel.Observation;
+		}
 	}
 }

@@ -11,17 +11,11 @@
         <DockPanel>
 
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="{Resx Key=_loadXML.Header}" Name="mnitLoadXML" Click="mnitLoadXML_Click" />
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-				<MenuItem Header="_Tools">
-					<MenuItem Header="_Open"/>
-					<MenuItem Header="_Close"/>
-					<MenuItem Header="_Save"/>
+				<MenuItem Header="_File">
+					<MenuItem Header="{Resx Key=_loadXML.Header}" Name="mnitLoadXML" Click="mnitLoadXML_Click" />
+					<MenuItem Header="{Resx Key=_saveRange.Header}" Name="mnitSave" Click="mnitSave_Click"/>
 				</MenuItem>
-            </Menu>
+			</Menu>
 
             
             <avalonDock:DockingManager x:Name="chartContainer" >

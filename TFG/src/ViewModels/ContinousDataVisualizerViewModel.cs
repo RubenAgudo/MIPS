@@ -14,9 +14,9 @@ namespace TFG.src.ViewModels
 	public class ContinousDataVisualizerViewModel : AbstractDataVisualizerViewModel
 	{
 
-		public ContinousDataVisualizerViewModel(List<DataPoint> points, string title)
+		public ContinousDataVisualizerViewModel(List<DataPoint> points, 
+			string property, string observation) : base(property, observation)
 		{
-			Title = title;
 			Model = createModel(points);
 		}
 

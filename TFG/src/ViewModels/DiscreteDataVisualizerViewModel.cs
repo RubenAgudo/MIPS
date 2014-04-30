@@ -14,13 +14,13 @@ namespace TFG.src.ViewModels
     public class DiscreteDataVisualizerViewModel: AbstractDataVisualizerViewModel
     {
 
-		public DiscreteDataVisualizerViewModel(List<DataPoint> points, IList<string> labels, string title)
+		public DiscreteDataVisualizerViewModel(List<DataPoint> points, 
+			List<string> labels, string property, string observation) : base(property, observation)
 		{
-			Title = title;
 			Model = createModel(points, labels);
 		}
 
-		private PlotModel createModel(List<DataPoint> points, IList<string> labels)
+		private PlotModel createModel(List<DataPoint> points, List<string> labels)
 		{
 			var plotModel1 = new PlotModel();
 			var functionSeries1 = new StairStepSeries();

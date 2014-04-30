@@ -33,5 +33,16 @@ namespace TFG.src.ViewModels
 			get;
 			protected set;
 		}
+
+		public string Observation { get; protected set; }
+
+		public string Property { get; protected set; }
+
+		protected AbstractDataVisualizerViewModel(string property, string observation)
+		{
+			Title = property;
+			Property = property;
+			Observation = observation;
+		}
 	}
 }

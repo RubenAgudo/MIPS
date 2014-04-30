@@ -140,6 +140,11 @@ namespace TFG.src.ui.userControls
 				}
 			}
 		}
+
+		private void mnitSave_Click(object sender, RoutedEventArgs e)
+		{
+			double[] range = GraphicActions.getMyGraphicActions().getRange();
+		}
 		
 	}
 }

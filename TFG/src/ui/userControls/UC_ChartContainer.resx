@@ -120,19 +120,13 @@
   <data name="_addContinousChartPanel.Header" xml:space="preserve">
     <value>Añadir gráfico continuo</value>
   </data>
-  <data name="_addDiscreteChartPanel.Header" xml:space="preserve">
-    <value>Añadir gráfico discreto</value>
-  </data>
-  <data name="_addObservationPanel.Header" xml:space="preserve">
-    <value>Añadir observación</value>
-  </data>
-  <data name="_addStepPanel.Header" xml:space="preserve">
-    <value>Añadir paso</value>
-  </data>
   <data name="_loadXML.Header" xml:space="preserve">
     <value>Cargar datos desde XML</value>
   </data>
   <data name="ObservationsAndProperties.Title" xml:space="preserve">
     <value>Observaciones y propiedades</value>
+  </data>
+  <data name="_saveRange.Header" xml:space="preserve">
+    <value>Guardar Rango</value>
   </data>
 </root>

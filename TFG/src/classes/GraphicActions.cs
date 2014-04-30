@@ -47,5 +47,25 @@ namespace TFG.src.classes
 				datav.update(p);
 			}
 		}
+
+		/// <summary>
+		/// Returns the first not empty range
+		/// </summary>
+		/// <returns></returns>
+		internal double[] getRange()
+		{
+			double[] result = null;
+			foreach (UC_DataVisualizer datav in data)
+			{
+				double[] range = datav.getRangeSelection();
+				
+				if (Math.Abs((range[1] - range[0])) > 0d)
+				{
+					result = range;
+					break;
+				}
+			}
+			return result;
+		}
 	}
 }
