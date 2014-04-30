@@ -43,6 +43,7 @@ namespace TFG.src.ui.userControls
             if (mainPanelChartContainer != null)
             {
 				LayoutAnchorable doc = new LayoutAnchorable();
+				doc.Closing += doc_Closing;
 				doc.CanHide = false;
 				doc.CanClose = true;
 				doc.Title = title;
@@ -55,6 +56,13 @@ namespace TFG.src.ui.userControls
                 throw new NotImplementedException();
             }
         }
+
+		private void doc_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			LayoutAnchorable doc = (LayoutAnchorable)sender;
+			UC_DataVisualizer content = (UC_DataVisualizer)doc.Content;
+			loaded.Remove(content.getPropertyName());
+		}
 
 		/// <summary>
 		/// Method that updates the chart progress indicator.
@@ -144,6 +152,7 @@ namespace TFG.src.ui.userControls
 		private void mnitSave_Click(object sender, RoutedEventArgs e)
 		{
 			double[] range = GraphicActions.getMyGraphicActions().getRange();
+			//dosomething
 		}
 		
 	}

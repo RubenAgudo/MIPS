@@ -24,10 +24,10 @@
 
 					<avalonDock:LayoutPanel x:Name="chartLayoutPanel" Orientation="Horizontal">
 						
-						<avalonDock:LayoutAnchorablePane x:Name="mainPanelChartContainer">
+						<avalonDock:LayoutDocumentPane x:Name="mainPanelChartContainer">
 							
 
-                        </avalonDock:LayoutAnchorablePane>
+                        </avalonDock:LayoutDocumentPane>
 
 
                         <!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
