@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.AvalonDock;
+using Xceed.Wpf.AvalonDock.Layout;
+using TFG.src.classes;
+using TFG.src.ui.userControls;
+using Xceed.Wpf.AvalonDock.Themes;
 
 namespace TFG.src.ui.userControls
 {
@@ -23,9 +28,39 @@ namespace TFG.src.ui.userControls
 		private UC_VideoContainer videoContainer;
 		private UC_ChartContainer chartContainer;
 
-		public UC_ObservationContainer()
+		public string Observation { get; private set; }
+		public UC_ObservationContainer(string observation)
 		{
 			InitializeComponent();
+			Observation = observation;
+		}
+
+		private void mnitSave_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void mnitAddVideo_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		internal void addToAnchorablePane(UserControl objectToAdd, string title)
+		{
+			if (mainObservationContainer != null)
+			{
+				LayoutAnchorable doc = new LayoutAnchorable();
+				doc.CanHide = false;
+				doc.CanClose = true;
+				doc.Title = title;
+				doc.Content = objectToAdd;
+				mainObservationContainer.Children.Add(doc);
+
+			}
+			else
+			{
+				throw new NotImplementedException();
+			}
 		}
 	}
 }

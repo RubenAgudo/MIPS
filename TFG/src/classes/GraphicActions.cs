@@ -17,11 +17,13 @@ namespace TFG.src.classes
     {
 
         private Dictionary<string, LinkedList<UC_DataVisualizer>> data;
+		private LinkedList<UC_ObservationContainer> observationContainers;
 		private static GraphicActions myGraphicActions;
 
         private GraphicActions()
         {
             data = new Dictionary<string, LinkedList<UC_DataVisualizer>>();
+			observationContainers = new LinkedList<UC_ObservationContainer>();
         }
 
 		public static GraphicActions getMyGraphicActions()
@@ -36,11 +38,19 @@ namespace TFG.src.classes
 
         public void addLast(UC_DataVisualizer dataVisualizer)
         {
-			LinkedList<UC_DataVisualizer> charts;
-			if (data.TryGetValue(dataVisualizer.Observation, out charts))
+			LinkedList<UC_DataVisualizer> datav;
+			if (data.TryGetValue(dataVisualizer.Observation, out datav))
 			{
-				charts.AddLast(dataVisualizer);
+				datav.AddLast(dataVisualizer);
 			}
+			else
+			{
+				datav = new LinkedList<UC_DataVisualizer>();
+				datav.AddLast(dataVisualizer);
+				data.Add(dataVisualizer.Observation, datav);
+			}
+			
+			
         }
 
 
@@ -96,6 +106,30 @@ namespace TFG.src.classes
 		internal bool exists(string observation)
 		{
 			return data.ContainsKey(observation);
+		}
+
+		internal void addObservationContainer(UC_ObservationContainer container)
+		{
+			observationContainers.AddLast(container);
+		}
+
+		internal void remove(UC_ObservationContainer content)
+		{
+			observationContainers.Remove(content);
+		}
+
+		internal void addToContainer(string observacion, UC_DataVisualizer dataVisualizer)
+		{
+			IEnumerator<UC_ObservationContainer> iterator = observationContainers.GetEnumerator();
+			bool exit = false;
+			while (iterator.MoveNext() && !exit)
+			{
+				UC_ObservationContainer container = iterator.Current;
+				if(container.Observation == observacion) {
+					container.addToAnchorablePane(dataVisualizer, dataVisualizer.Property);
+					exit = true;
+				}
+			}
 		}
 	}
 }

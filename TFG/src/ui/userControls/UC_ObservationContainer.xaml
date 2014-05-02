@@ -12,15 +12,15 @@
 
 			<Menu DockPanel.Dock="Top">
 				<MenuItem Header="{Resx Key=_saveRange.Header}" Name="mnitSave" Click="mnitSave_Click"/>
-				<MenuItem Header="{Resx Key=_añadirVideoMenuItem.Header}" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
+				<MenuItem Header="{Resx Key=_añadirVideoMenuItem.Header}" Name="mnitAddVideo" Click="mnitAddVideo_Click" />
 			</Menu>
 
 
-			<avalonDock:DockingManager x:Name="chartContainer" >
+			<avalonDock:DockingManager x:Name="observationContainer" >
 
-				<avalonDock:LayoutRoot x:Name="chartLayoutRoot">
+				<avalonDock:LayoutRoot x:Name="observationLayoutRoot">
 
-					<avalonDock:LayoutPanel x:Name="chartLayoutPanel" Orientation="Horizontal">
+					<avalonDock:LayoutPanel x:Name="observationLayoutPanel" Orientation="Horizontal">
 
 						<avalonDock:LayoutDocumentPane x:Name="mainObservationContainer">
 

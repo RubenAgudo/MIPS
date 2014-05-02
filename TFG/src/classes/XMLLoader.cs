@@ -162,6 +162,10 @@ namespace TFG.src.classes
 
 				listObservations = addElements(observations);
 			}
+			else
+			{
+				throw new FileFormatException();
+			}
 			return listObservations;
 		}
 

@@ -53,17 +53,17 @@
     <Reference Include="Infralution.Localization.Wpf">
       <HintPath>..\packages\Localization\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="OxyPlot, Version=2014.1.293.1, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+    <Reference Include="OxyPlot, Version=2014.1.296.1, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\OxyPlot.Core.2014.1.293.1\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
+      <HintPath>..\packages\OxyPlot.Core.2014.1.296.1\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
     </Reference>
-    <Reference Include="OxyPlot.Wpf, Version=2014.1.293.1, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+    <Reference Include="OxyPlot.Wpf, Version=2014.1.296.1, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\OxyPlot.Wpf.2014.1.293.1\lib\NET45\OxyPlot.Wpf.dll</HintPath>
+      <HintPath>..\packages\OxyPlot.Wpf.2014.1.296.1\lib\NET45\OxyPlot.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="OxyPlot.Xps, Version=2014.1.293.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="OxyPlot.Xps, Version=2014.1.296.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\OxyPlot.Wpf.2014.1.293.1\lib\NET45\OxyPlot.Xps.dll</HintPath>
+      <HintPath>..\packages\OxyPlot.Wpf.2014.1.296.1\lib\NET45\OxyPlot.Xps.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -120,6 +120,9 @@
     <Compile Include="src\ui\userControls\UC_DataVisualizer.xaml.cs">
       <DependentUpon>UC_DataVisualizer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\ui\userControls\UC_ObservationContainer.xaml.cs">
+      <DependentUpon>UC_ObservationContainer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\ui\userControls\UC_VideoContainer.xaml.cs">
       <DependentUpon>UC_VideoContainer.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
     <Page Include="src\ui\userControls\UC_DataVisualizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\ui\userControls\UC_ObservationContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="src\ui\userControls\UC_VideoContainer.xaml">
       <SubType>Designer</SubType>
@@ -170,18 +177,11 @@
     <EmbeddedResource Include="diagrams\SequenceDiagram1.sequencediagram.layout">
       <DependentUpon>SequenceDiagram1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\ui\MainWindow.resx">
-      <CustomToolNamespace>TFG.src.ui</CustomToolNamespace>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\ui\userControls\UC_ChartContainer.resx">
-      <CustomToolNamespace>TFG.src.ui.userControls</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\ui\userControls\UC_DataVisualizer.resx" />
-    <EmbeddedResource Include="src\ui\userControls\UC_VideoContainer.resx" />
+    <EmbeddedResource Include="res\strings\strings.resx" />
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\SequenceDiagram1.sequencediagram" />
     <None Include="src\schemas\LoadDataModel.xsd">
