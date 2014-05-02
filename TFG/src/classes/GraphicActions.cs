@@ -16,12 +16,12 @@ namespace TFG.src.classes
     public class GraphicActions
     {
 
-        private LinkedList<UC_DataVisualizer> data;
+        private Dictionary<string, LinkedList<UC_DataVisualizer>> data;
 		private static GraphicActions myGraphicActions;
 
         private GraphicActions()
         {
-            data = new LinkedList<UC_DataVisualizer>();
+            data = new Dictionary<string, LinkedList<UC_DataVisualizer>>();
         }
 
 		public static GraphicActions getMyGraphicActions()
@@ -36,41 +36,61 @@ namespace TFG.src.classes
 
         public void addLast(UC_DataVisualizer dataVisualizer)
         {
-            this.data.AddLast(dataVisualizer);
+			LinkedList<UC_DataVisualizer> charts;
+			if (data.TryGetValue(dataVisualizer.Observation, out charts))
+			{
+				charts.AddLast(dataVisualizer);
+			}
         }
 
 
 		internal void update(double p)
 		{
-			foreach (UC_DataVisualizer datav in data)
+			foreach (string key in data.Keys)
 			{
-				datav.update(p);
+				LinkedList<UC_DataVisualizer> dataVisualizers;
+				data.TryGetValue(key, out dataVisualizers);
+				foreach (UC_DataVisualizer datav in dataVisualizers)
+				{
+					datav.update(p);
+				}
 			}
+			
 		}
 
 		/// <summary>
-		/// Returns the first not empty range
+		/// Returns the first range of the given observation
 		/// </summary>
 		/// <returns></returns>
-		internal double[] getRange()
+		internal double[] getRange(string observation)
 		{
 			double[] result = null;
-			foreach (UC_DataVisualizer datav in data)
+			LinkedList<UC_DataVisualizer> dataVisualizers;
+			if (data.TryGetValue(observation, out dataVisualizers))
 			{
-				double[] range = datav.getRangeSelection();
-				
+				double[] range = dataVisualizers.First().getRangeSelection();
 				if (Math.Abs((range[1] - range[0])) > 0d)
 				{
 					result = range;
-					break;
 				}
 			}
+
 			return result;
 		}
 
 		internal void remove(UC_DataVisualizer content)
 		{
-			data.Remove(content);
+			LinkedList<UC_DataVisualizer> datav;
+			if (data.TryGetValue(content.Observation, out datav))
+			{
+				datav.Remove(content);
+			}
+
+		}
+
+		internal void clear()
+		{
+			data.Clear();
 		}
 	}
 }

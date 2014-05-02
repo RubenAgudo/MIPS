@@ -62,7 +62,7 @@ namespace TFG.src.ui.userControls
 			LayoutAnchorable doc = (LayoutAnchorable)sender;
 			UC_DataVisualizer content = (UC_DataVisualizer)doc.Content;
 			GraphicActions.getMyGraphicActions().remove(content);
-			loaded.Remove(content.getPropertyName());
+			loaded.Remove(content.Property);
 		}
 
 		/// <summary>
@@ -88,6 +88,7 @@ namespace TFG.src.ui.userControls
 				xmlLoader = new XMLLoader(pathToXML);
 				List<string> observations = xmlLoader.getObservations();
                 loaded = new HashSet<string>();
+				GraphicActions.getMyGraphicActions().clear();
 				foreach (string observation in observations)
 				{
 					List<string> properties = xmlLoader.getPropertiesOf(observation);
@@ -152,7 +153,7 @@ namespace TFG.src.ui.userControls
 
 		private void mnitSave_Click(object sender, RoutedEventArgs e)
 		{
-			double[] range = GraphicActions.getMyGraphicActions().getRange();
+			double[] range = GraphicActions.getMyGraphicActions().getRange("someObservation");
 			//dosomething
 		}
 		

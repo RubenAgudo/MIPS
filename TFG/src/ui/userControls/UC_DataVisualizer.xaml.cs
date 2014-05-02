@@ -36,6 +36,9 @@ namespace TFG.src.ui.userControls
 		private AbstractDataVisualizerViewModel viewModel;
 		private double startx;
 
+		public string Observation { get { return viewModel.Observation; } }
+		public string Property { get { return viewModel.Property; } }
+
 		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel)
 		{
 			InitializeComponent();
@@ -146,14 +149,6 @@ namespace TFG.src.ui.userControls
 			return new double[] { RangeSelection.MinimumX, RangeSelection.MaximumX };
 		}
 
-		internal string getPropertyName()
-		{
-			return viewModel.Property;
-		}
-
-		internal string getObservationName()
-		{
-			return viewModel.Observation;
-		}
+		
 	}
 }
