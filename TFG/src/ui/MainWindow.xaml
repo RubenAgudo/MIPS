@@ -1,4 +1,4 @@
-﻿<Window ResxExtension.DefaultResxName="TFG.src.ui.MainWindow" Language="{UICulture}"
+﻿<Window ResxExtension.DefaultResxName="TFG.res.strings.strings" Language="{UICulture}"
 		x:Class="TFG.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,34 +12,17 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
 				<MenuItem Header="{Resx _fileMenuItem.Header}">
-					<MenuItem Header="{Resx _fileMenuItem.Open}" Name="_Open" />
-					<MenuItem Header="{Resx _fileMenuItem.Save}"/>
-					<MenuItem Header="{Resx _fileMenuItem.Exit}" Name="mnitExit" Click="mnitExit_Click"/>
-                </MenuItem>
-
-				<MenuItem Header="{Resx _addMenuItem.Header}">
-					<MenuItem Header="{Resx _addMenuItem.AddChartContainer}" Name="mnitAnadirPanelGrafico" Click="mnitAddChartContainer_Click" />
-					<MenuItem Header="{Resx _addMenuItem.AddVideoContainer}" Name="mnitAnadirVideo" Click="mnitAddVideoContainer_Click" />
-                </MenuItem>
-            </Menu>
+					<MenuItem Header="{Resx Key=_loadXML.Header}" Name="mnitLoadXML" Click="mnitLoadXML_Click" />
+					<MenuItem Header="{Resx Key=_fileMenuItem.Exit}" Name="mnitExit" Click="mnitExit_Click"/>
+				</MenuItem>
+			</Menu>
 
             <avalonDock:DockingManager x:Name="dockingManager"
                                        DockPanel.Dock="Bottom">
                 
                 <avalonDock:LayoutRoot>
 
-                    <avalonDock:LayoutPanel Orientation="Horizontal">
-                        
-                        <!--<avalonDock:LayoutAnchorablePaneGroup DockWidth="150" Orientation="Vertical">
-                            
-                            <avalonDock:LayoutAnchorablePane x:Name="mainPanel" >
-
-                                
-
-                            </avalonDock:LayoutAnchorablePane>
-
-
-                        </avalonDock:LayoutAnchorablePaneGroup>-->
+					<avalonDock:LayoutPanel Orientation="Horizontal">
 
 						<avalonDock:LayoutDocumentPane x:Name="mainPanel">
 								
@@ -49,7 +32,28 @@
 
 					</avalonDock:LayoutPanel>
 
-                </avalonDock:LayoutRoot>
+					<avalonDock:LayoutRoot.LeftSide>
+
+						<avalonDock:LayoutAnchorSide>
+
+							<avalonDock:LayoutAnchorGroup>
+
+								<avalonDock:LayoutAnchorable Title="{Resx Key=ObservationsAndProperties.Title}" CanHide="False">
+
+									<TreeView Name="observationsAndProperties" 
+											  MouseDoubleClick="observationsAndProperties_MouseDoubleClick" >
+
+									</TreeView>
+
+								</avalonDock:LayoutAnchorable>
+
+							</avalonDock:LayoutAnchorGroup>
+
+						</avalonDock:LayoutAnchorSide>
+
+					</avalonDock:LayoutRoot.LeftSide>
+
+				</avalonDock:LayoutRoot>
 				
             </avalonDock:DockingManager>
 			

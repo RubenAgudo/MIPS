@@ -124,15 +124,17 @@ namespace TFG.src.ui.userControls
 			
 			string itemHeader = anItem.Header.ToString(), 
 				parentHeader;
-
+			bool createNewObservationContainer;
 			
 			if (!anItem.HasItems)
 			{
 				parentHeader = ((TreeViewItem)anItem.Parent).Header.ToString();
+				createNewObservationContainer = GraphicActions.getMyGraphicActions().exists(parentHeader);
 				viewModels = xmlLoader.LoadXMLData(itemHeader, parentHeader);
 			}
 			else
 			{
+				createNewObservationContainer = GraphicActions.getMyGraphicActions().exists(itemHeader);
 				viewModels = xmlLoader.LoadXMLData(itemHeader);
 			}
 

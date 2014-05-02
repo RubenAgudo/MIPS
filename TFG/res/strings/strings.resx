@@ -117,7 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Window.Title" xml:space="preserve">
+    <value>Workbench</value>
+  </data>
+  <data name="_addContinousChartPanel.Header" xml:space="preserve">
+    <value>Añadir gráfico continuo</value>
+  </data>
+  <data name="_addMenuItem.AddChartContainer" xml:space="preserve">
+    <value>Añadir contenedor para gráficos</value>
+  </data>
+  <data name="_addMenuItem.AddVideoContainer" xml:space="preserve">
+    <value>Añadir contenedor para videos</value>
+  </data>
+  <data name="_addMenuItem.Header" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
   <data name="_añadirVideoMenuItem.Header" xml:space="preserve">
     <value>Añadir Vídeo</value>
+  </data>
+  <data name="_fileMenuItem.Exit" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="_fileMenuItem.Header" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="_fileMenuItem.Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="_fileMenuItem.Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="_layoutAnchorable.HiddenContainers" xml:space="preserve">
+    <value>Contenedores ocultos</value>
+  </data>
+  <data name="_loadXML.Header" xml:space="preserve">
+    <value>Cargar datos desde XML</value>
+  </data>
+  <data name="_ObservationsAndProperties.Title" xml:space="preserve">
+    <value>Observaciones y propiedades</value>
+  </data>
+  <data name="_plotModel.Subtitle" xml:space="preserve">
+    <value>Click izquierdo y arrastrar para seleccionar un rango</value>
+  </data>
+  <data name="_plotModel.Title" xml:space="preserve">
+    <value>Seleccionar rango</value>
+  </data>
+  <data name="_saveRange.Header" xml:space="preserve">
+    <value>Guardar Rango</value>
+  </data>
+  <data name="_saveRange.Header1" xml:space="preserve">
+    <value>Guardar rango</value>
   </data>
 </root>

@@ -92,5 +92,10 @@ namespace TFG.src.classes
 		{
 			data.Clear();
 		}
+
+		internal bool exists(string observation)
+		{
+			return data.ContainsKey(observation);
+		}
 	}
 }

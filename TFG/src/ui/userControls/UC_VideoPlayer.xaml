@@ -1,4 +1,4 @@
-﻿<UserControl ResxExtension.DefaultResxName="TFG.src.ui.userControls.UC_VideoPlayer" Language="{UICulture}"
+﻿<UserControl ResxExtension.DefaultResxName="TFG.res.strings.strings" Language="{UICulture}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="TFG.src.ui.userControls.UC_VideoPlayer"
