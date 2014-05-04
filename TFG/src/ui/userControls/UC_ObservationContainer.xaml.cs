@@ -17,6 +17,7 @@ using Xceed.Wpf.AvalonDock.Layout;
 using TFG.src.classes;
 using TFG.src.ui.userControls;
 using Xceed.Wpf.AvalonDock.Themes;
+using System.Windows.Threading;
 
 namespace TFG.src.ui.userControls
 {
@@ -27,6 +28,7 @@ namespace TFG.src.ui.userControls
 	{
 		private UC_VideoContainer videoContainer;
 		private UC_ChartContainer chartContainer;
+		private DispatcherTimer timer;
 
 		public string Observation { get; private set; }
 
@@ -34,9 +36,19 @@ namespace TFG.src.ui.userControls
 		{
 			InitializeComponent();
 			Observation = observation;
-			//videoContainer = new UC_VideoContainer();
-			//chartContainer = new UC_ChartContainer();
+			timer = new DispatcherTimer();
+			timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+			timer.Tick += timer_Tick;
+			timer.Start();
 			
+		}
+
+		private void timer_Tick(object sender, EventArgs e)
+		{
+			if (chartContainer != null && videoContainer != null)
+			{
+				chartContainer.Update(videoContainer.Progress);
+			}
 		}
 
 		private void mnitSave_Click(object sender, RoutedEventArgs e)

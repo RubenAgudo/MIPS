@@ -30,7 +30,7 @@ namespace TFG
     {
         private HashSet<string> loaded;
 		private XMLLoader xmlLoader;
-		private DispatcherTimer timer;
+		
 
         public MainWindow()
         {
@@ -38,20 +38,10 @@ namespace TFG
             
             this.DataContext = this;
 			loaded = new HashSet<string>();
-			timer = new DispatcherTimer();
-			timer.Interval = new TimeSpan(0,0,0,0,1000);
-			timer.Tick += timer_Tick;
-			timer.Start();
+			
         }
 
-		private void timer_Tick(object sender, EventArgs e)
-		{
-			//if (chartContainer != null && videoContainer != null)
-			//{
-
-			//	chartContainer.Update(videoContainer.Progress);
-			//}
-		}
+		
         
 
           /// <summary>
