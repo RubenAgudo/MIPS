@@ -28,16 +28,16 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_DataVisualizer.xaml
     /// </summary>
-	public partial class UC_DataVisualizer : UserControl
+	public partial class UC_DataVisualizer : UserControl, INotifyPropertyChanged
     {
-
-        private RectangleAnnotation RangeSelection;
 		private RectangleAnnotation Progress;
 		private AbstractDataVisualizerViewModel viewModel;
 		private double startx;
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		public string Observation { get { return viewModel.Observation; } }
 		public string Property { get { return viewModel.Property; } }
+		public RectangleAnnotation RangeSelection { get; private set; }
 
 		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel)
 		{
@@ -45,6 +45,16 @@ namespace TFG.src.ui.userControls
 			this.viewModel = viewModel;
 			oxyplot.Model = this.viewModel.Model;
 			initialize();
+
+			
+		}
+
+		private void NotifyPropertyChanged(string info)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(info));
+			}
 		}
 
 		private void initialize()
@@ -82,6 +92,7 @@ namespace TFG.src.ui.userControls
         private void Model_MouseUp(object sender, OxyMouseEventArgs e)
         {
 			startx = double.NaN;
+			
         }
 
 		/// <summary>
@@ -97,7 +108,7 @@ namespace TFG.src.ui.userControls
 				var x = RangeSelection.InverseTransform(e.Position).X;
 				RangeSelection.MinimumX = Math.Min(x, startx);
 				RangeSelection.MaximumX = Math.Max(x, startx);
-				RangeSelection.Text = string.Format("{0:0.00}", RangeSelection.MaximumX - RangeSelection.MinimumX);
+				NotifyPropertyChanged("RangeSelection");
 				oxyplot.Model.Subtitle = string.Format("{0:0.00} to {1:0.00}", RangeSelection.MinimumX, RangeSelection.MaximumX);
 				oxyplot.InvalidatePlot();
 				e.Handled = true;
@@ -149,6 +160,12 @@ namespace TFG.src.ui.userControls
 			return new double[] { RangeSelection.MinimumX, RangeSelection.MaximumX };
 		}
 
-		
+		internal void updateRangeSelection(RectangleAnnotation rectangleAnnotation)
+		{
+			RangeSelection.MaximumX = rectangleAnnotation.MaximumX;
+			RangeSelection.MinimumX = rectangleAnnotation.MinimumX;
+			oxyplot.Model.Subtitle = string.Format("{0:0.00} to {1:0.00}", RangeSelection.MinimumX, RangeSelection.MaximumX);
+			oxyplot.InvalidatePlot();
+		}
 	}
 }

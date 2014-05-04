@@ -27,6 +27,7 @@ namespace TFG.src.ui.userControls
     {
 		private HashSet<string> loaded;
 		private XMLLoader xmlLoader;
+
         public UC_ChartContainer()
         {
             InitializeComponent();
@@ -37,18 +38,23 @@ namespace TFG.src.ui.userControls
         /// Method that adds to the GraphicsContainer a LayoutAnchorable that contains a Data visualizer user control
         /// </summary>
         /// <param name="objectToAdd"></param>
-        private void addToAnchorablePane(UC_DataVisualizer objectToAdd, string title)
+        internal void addToAnchorablePane(UC_DataVisualizer objectToAdd, string title)
         {
 
             if (mainPanelChartContainer != null)
             {
-				LayoutAnchorable doc = new LayoutAnchorable();
-				doc.Closing += doc_Closing;
-				doc.CanHide = false;
-				doc.CanClose = true;
-				doc.Title = title;
-				doc.Content = objectToAdd;
-                mainPanelChartContainer.Children.Add(doc);
+				if(!loaded.Contains(title))
+				{
+					loaded.Add(title);
+					LayoutAnchorable doc = new LayoutAnchorable();
+					doc.Closing += doc_Closing;
+					doc.CanHide = false;
+					doc.CanClose = true;
+					doc.Title = title;
+					doc.Content = objectToAdd;
+					mainPanelChartContainer.Children.Add(doc);
+				}
+				
 
             }
             else
@@ -72,91 +78,6 @@ namespace TFG.src.ui.userControls
 		internal void Update(double p)
 		{
 			GraphicActions.getMyGraphicActions().update(p);
-		}
-
-		/// <summary>
-		/// Loads a valid XML File an creates the charts
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
-		{
-			mainPanelChartContainer.Children.Clear();
-			string pathToXML = XMLLoader.openXML();
-			try
-			{
-				xmlLoader = new XMLLoader(pathToXML);
-				List<string> observations = xmlLoader.getObservations();
-                loaded = new HashSet<string>();
-				GraphicActions.getMyGraphicActions().clear();
-				foreach (string observation in observations)
-				{
-					List<string> properties = xmlLoader.getPropertiesOf(observation);
-
-					TreeViewItem newObservation = new TreeViewItem();
-					newObservation.Header = observation;
-
-					foreach (string property in properties)
-					{
-						TreeViewItem newProperty = new TreeViewItem();
-						newProperty.Header = property;
-						newObservation.Items.Add(newProperty);
-					}
-
-					observationsAndProperties.Items.Add(newObservation);
-				}
-
-			}
-			catch (FileFormatException ex)
-			{
-				Console.WriteLine(ex.StackTrace);
-				MessageBoxResult msg = MessageBox.Show("Error validando el XML");
-			}
-
-			
-			
-		}
-
-		private void observationsAndProperties_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-		{
-			LinkedList<AbstractDataVisualizerViewModel> viewModels;
-			TreeViewItem anItem = (TreeViewItem) observationsAndProperties.SelectedItem;
-			
-			string itemHeader = anItem.Header.ToString(), 
-				parentHeader;
-			bool createNewObservationContainer;
-			
-			if (!anItem.HasItems)
-			{
-				parentHeader = ((TreeViewItem)anItem.Parent).Header.ToString();
-				createNewObservationContainer = GraphicActions.getMyGraphicActions().exists(parentHeader);
-				viewModels = xmlLoader.LoadXMLData(itemHeader, parentHeader);
-			}
-			else
-			{
-				createNewObservationContainer = GraphicActions.getMyGraphicActions().exists(itemHeader);
-				viewModels = xmlLoader.LoadXMLData(itemHeader);
-			}
-
-
-			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
-			{
-				//comprobamos que no sea de la clase abstracta
-				if ((viewModel is ContinousDataVisualizerViewModel ||
-					viewModel is DiscreteDataVisualizerViewModel) && !loaded.Contains(viewModel.Title))
-				{
-					loaded.Add(viewModel.Title);
-					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
-					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
-					addToAnchorablePane(dataVisualizer, viewModel.Title);
-				}
-			}
-		}
-
-		private void mnitSave_Click(object sender, RoutedEventArgs e)
-		{
-			double[] range = GraphicActions.getMyGraphicActions().getRange("someObservation");
-			//dosomething
 		}
 		
 	}

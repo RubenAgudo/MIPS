@@ -68,7 +68,7 @@ namespace TFG.src.ui.userControls
 
         }
 
-        private void addToAnchorablePane(UserControl objectToAdd)
+        internal void addToAnchorablePane(UserControl objectToAdd)
         {
             
             if (mainPanelVideoContainer != null)
@@ -131,5 +131,5 @@ namespace TFG.src.ui.userControls
 			VideoActions.getMyVideoActions().sync(position);
         }
 
-    }
+	}
 }

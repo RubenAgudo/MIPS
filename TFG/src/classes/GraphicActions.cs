@@ -38,6 +38,7 @@ namespace TFG.src.classes
 
         public void addLast(UC_DataVisualizer dataVisualizer)
         {
+			dataVisualizer.PropertyChanged += dataVisualizer_PropertyChanged;
 			LinkedList<UC_DataVisualizer> datav;
 			if (data.TryGetValue(dataVisualizer.Observation, out datav))
 			{
@@ -52,6 +53,20 @@ namespace TFG.src.classes
 			
 			
         }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void dataVisualizer_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == "RangeSelection")
+			{
+				UC_DataVisualizer modifiedChart = (UC_DataVisualizer)sender;
+				updateSelections(modifiedChart);
+			}
+		}
 
 
 		internal void update(double p)
@@ -129,6 +144,17 @@ namespace TFG.src.classes
 					container.addToAnchorablePane(dataVisualizer, dataVisualizer.Property);
 					exit = true;
 				}
+			}
+		}
+
+		internal void updateSelections(UC_DataVisualizer modifiedChart)
+		{
+
+			LinkedList<UC_DataVisualizer> dataVisualizers;
+			data.TryGetValue(modifiedChart.Observation, out dataVisualizers);
+			foreach (UC_DataVisualizer datav in dataVisualizers)
+			{
+				datav.updateRangeSelection(modifiedChart.RangeSelection);
 			}
 		}
 	}

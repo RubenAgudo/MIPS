@@ -29,10 +29,14 @@ namespace TFG.src.ui.userControls
 		private UC_ChartContainer chartContainer;
 
 		public string Observation { get; private set; }
+
 		public UC_ObservationContainer(string observation)
 		{
 			InitializeComponent();
 			Observation = observation;
+			//videoContainer = new UC_VideoContainer();
+			//chartContainer = new UC_ChartContainer();
+			
 		}
 
 		private void mnitSave_Click(object sender, RoutedEventArgs e)
@@ -42,18 +46,39 @@ namespace TFG.src.ui.userControls
 
 		private void mnitAddVideo_Click(object sender, RoutedEventArgs e)
 		{
-
+			if (videoContainer == null)
+			{
+				videoContainer = new UC_VideoContainer();
+				addToAnchorablePane(videoContainer, "Videos");
+			} 
 		}
 
 		internal void addToAnchorablePane(UserControl objectToAdd, string title)
 		{
 			if (mainObservationContainer != null)
 			{
+				
 				LayoutAnchorable doc = new LayoutAnchorable();
 				doc.CanHide = false;
 				doc.CanClose = true;
 				doc.Title = title;
 				doc.Content = objectToAdd;
+
+				if(objectToAdd is UC_DataVisualizer) {
+					if(chartContainer == null) {
+						chartContainer = new UC_ChartContainer();
+						addToAnchorablePane(chartContainer, "Gráficos");
+					}
+
+					chartContainer.addToAnchorablePane((UC_DataVisualizer) objectToAdd, title);
+					return;
+				}
+				else if(objectToAdd is UC_VideoPlayer)
+				{
+					videoContainer.addToAnchorablePane(objectToAdd);
+					return;
+				}
+				
 				mainObservationContainer.Children.Add(doc);
 
 			}
