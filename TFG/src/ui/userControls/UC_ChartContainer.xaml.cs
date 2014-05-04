@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TFG.src.classes;
 using TFG.src.ViewModels;
+using TFG.src.interfaces;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;
 
@@ -23,10 +24,9 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para GraphicsContainer.xaml
     /// </summary>
-    public partial class UC_ChartContainer : UserControl
+    public partial class UC_ChartContainer : UserControl, IContainer
     {
 		private HashSet<string> loaded;
-		private XMLLoader xmlLoader;
 
         public UC_ChartContainer()
         {
@@ -38,24 +38,22 @@ namespace TFG.src.ui.userControls
         /// Method that adds to the GraphicsContainer a LayoutAnchorable that contains a Data visualizer user control
         /// </summary>
         /// <param name="objectToAdd"></param>
-        internal void addToAnchorablePane(UC_DataVisualizer objectToAdd, string title)
+        public void addToAnchorablePane(UserControl objectToAdd, string Title)
         {
 
             if (mainPanelChartContainer != null)
             {
-				if(!loaded.Contains(title))
+				if(!loaded.Contains(Title))
 				{
-					loaded.Add(title);
+					loaded.Add(Title);
 					LayoutAnchorable doc = new LayoutAnchorable();
 					doc.Closing += doc_Closing;
 					doc.CanHide = false;
 					doc.CanClose = true;
-					doc.Title = title;
+					doc.Title = Title;
 					doc.Content = objectToAdd;
 					mainPanelChartContainer.Children.Add(doc);
 				}
-				
-
             }
             else
             {

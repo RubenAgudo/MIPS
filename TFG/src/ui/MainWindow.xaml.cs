@@ -159,7 +159,6 @@ namespace TFG
 				if ((viewModel is ContinousDataVisualizerViewModel ||
 					viewModel is DiscreteDataVisualizerViewModel) && !loaded.Contains(viewModel.Title))
 				{
-					loaded.Add(viewModel.Title);
 					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
 					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
 					GraphicActions.getMyGraphicActions().addToContainer(observacion, dataVisualizer);

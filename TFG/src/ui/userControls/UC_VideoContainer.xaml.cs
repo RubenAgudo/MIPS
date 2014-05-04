@@ -23,7 +23,7 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_VideoContainer.xaml
     /// </summary>
-    public partial class UC_VideoContainer : UserControl
+    public partial class UC_VideoContainer : UserControl, IContainer
     {
         private int paneNumber;
 
@@ -52,7 +52,7 @@ namespace TFG.src.ui.userControls
                 {
                     UC_VideoPlayer video = new UC_VideoPlayer(path);
                     VideoActions.getMyVideoActions().addVideo(video);
-                    addToAnchorablePane(video);
+                    addToAnchorablePane(video, "Video " + ++paneNumber);
                 } 
 
             }
@@ -68,24 +68,7 @@ namespace TFG.src.ui.userControls
 
         }
 
-        internal void addToAnchorablePane(UserControl objectToAdd)
-        {
-            
-            if (mainPanelVideoContainer != null)
-            {
-                LayoutAnchorable doc = new LayoutAnchorable();
-                doc.CanHide = false;
-                doc.CanClose = true;
-                doc.Title = "Pane " + ++paneNumber;
-                doc.Content = objectToAdd;
-                mainPanelVideoContainer.Children.Add(doc);
 
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
 
         #region PlayBackControlEvents
         /// <summary>
@@ -126,10 +109,22 @@ namespace TFG.src.ui.userControls
         #endregion
 
 
-        public void sync(TimeSpan position)
-        {
-			VideoActions.getMyVideoActions().sync(position);
-        }
+		public void addToAnchorablePane(UserControl objectToAdd, string Title)
+		{
+			if (mainPanelVideoContainer != null)
+			{
+				LayoutAnchorable doc = new LayoutAnchorable();
+				doc.CanHide = false;
+				doc.CanClose = true;
+				doc.Title = Title;
+				doc.Content = objectToAdd;
+				mainPanelVideoContainer.Children.Add(doc);
 
+			}
+			else
+			{
+				throw new NotImplementedException();
+			}
+		}
 	}
 }

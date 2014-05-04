@@ -18,13 +18,14 @@ using TFG.src.classes;
 using TFG.src.ui.userControls;
 using Xceed.Wpf.AvalonDock.Themes;
 using System.Windows.Threading;
+using TFG.src.interfaces;
 
 namespace TFG.src.ui.userControls
 {
 	/// <summary>
 	/// Lógica de interacción para UC_ObservationContainer.xaml
 	/// </summary>
-	public partial class UC_ObservationContainer : UserControl
+	public partial class UC_ObservationContainer : UserControl, IContainer
 	{
 		private UC_VideoContainer videoContainer;
 		private UC_ChartContainer chartContainer;
@@ -65,7 +66,7 @@ namespace TFG.src.ui.userControls
 			} 
 		}
 
-		internal void addToAnchorablePane(UserControl objectToAdd, string title)
+		public void addToAnchorablePane(UserControl objectToAdd, string Title)
 		{
 			if (mainObservationContainer != null)
 			{
@@ -73,7 +74,7 @@ namespace TFG.src.ui.userControls
 				LayoutAnchorable doc = new LayoutAnchorable();
 				doc.CanHide = false;
 				doc.CanClose = true;
-				doc.Title = title;
+				doc.Title = Title;
 				doc.Content = objectToAdd;
 
 				if(objectToAdd is UC_DataVisualizer) {
@@ -82,12 +83,12 @@ namespace TFG.src.ui.userControls
 						addToAnchorablePane(chartContainer, "Gráficos");
 					}
 
-					chartContainer.addToAnchorablePane((UC_DataVisualizer) objectToAdd, title);
+					chartContainer.addToAnchorablePane((UC_DataVisualizer) objectToAdd, Title);
 					return;
 				}
 				else if(objectToAdd is UC_VideoPlayer)
 				{
-					videoContainer.addToAnchorablePane(objectToAdd);
+					videoContainer.addToAnchorablePane(objectToAdd, null);
 					return;
 				}
 				

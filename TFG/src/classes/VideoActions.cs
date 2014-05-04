@@ -30,33 +30,6 @@ namespace TFG.src.classes
 			return myVideoActions;
 		}
 
-        public void sync(TimeSpan position) {
-
-            bool first = true;
-            UC_VideoPlayer baseVideo = null;
-            
-            foreach (UC_VideoPlayer actualVideo in videos)
-            {
-
-                if (first)
-                {
-                    baseVideo = actualVideo;
-                    first = false;
-                }
-
-                actualVideo.pause();
-                actualVideo.sync(baseVideo.Position);
-                //baseVideo = actualVideo;
-
-            }
-
-            foreach (UC_VideoPlayer actualVideo in videos)
-            {
-                actualVideo.play();
-            }
-
-        }
-
         public static string[] openFile()
         {
             string[] filenames = null;
