@@ -139,22 +139,6 @@ namespace TFG.src.ui.userControls
 
 		}
 
-		/// <summary>
-		/// Saves into the BD the selected range and all the points in the selection
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
-		{
-			double start = RangeSelection.MinimumX, 
-				end = RangeSelection.MaximumX;
-			
-			if (end != start) //if a range is selected
-			{
-								
-			}
-		}
-
 		internal double[] getRangeSelection()
 		{
 			return new double[] { RangeSelection.MinimumX, RangeSelection.MaximumX };

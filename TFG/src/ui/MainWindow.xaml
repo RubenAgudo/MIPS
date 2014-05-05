@@ -1,8 +1,7 @@
-﻿<Window ResxExtension.DefaultResxName="TFG.res.strings.strings" Language="{UICulture}"
-		x:Class="TFG.MainWindow"
+﻿<Window x:Class="TFG.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="{Resx Key=Window.Title}" Height="507" Width="854" 
+        Title="Workbench" Height="507" Width="854" 
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock" WindowState="Maximized">
 
 
@@ -11,10 +10,11 @@
 
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-				<MenuItem Header="{Resx _fileMenuItem.Header}">
-					<MenuItem Header="{Resx Key=_loadXML.Header}" Name="mnitLoadXML" Click="mnitLoadXML_Click" />
-					<MenuItem Header="{Resx Key=_fileMenuItem.Exit}" Name="mnitExit" Click="mnitExit_Click"/>
+				<MenuItem Header="File">
+					<MenuItem Header="Load XML file" Name="mnitLoadXML" Click="mnitLoadXML_Click" />
+					<MenuItem Header="Close workbench" Name="mnitExit" Click="mnitExit_Click"/>
 				</MenuItem>
+				<MenuItem Header="Add video container" Name="mnitAddVideoContainer" Click="mnitAddVideoContainer_Click" />
 			</Menu>
 
             <avalonDock:DockingManager x:Name="dockingManager"
@@ -24,11 +24,11 @@
 
 					<avalonDock:LayoutPanel Orientation="Horizontal">
 
-						<avalonDock:LayoutDocumentPane x:Name="mainPanel">
+						<avalonDock:LayoutAnchorablePane x:Name="mainPanel">
 								
 								
 								
-						</avalonDock:LayoutDocumentPane>
+						</avalonDock:LayoutAnchorablePane>
 
 					</avalonDock:LayoutPanel>
 
@@ -38,7 +38,7 @@
 
 							<avalonDock:LayoutAnchorGroup>
 
-								<avalonDock:LayoutAnchorable Title="{Resx Key=ObservationsAndProperties.Title}" CanHide="False">
+								<avalonDock:LayoutAnchorable Title="Observations and properties tree" CanHide="False" CanFloat="False">
 
 									<TreeView Name="observationsAndProperties" 
 											  MouseDoubleClick="observationsAndProperties_MouseDoubleClick" >

@@ -17,13 +17,13 @@ namespace TFG.src.classes
     {
 
         private Dictionary<string, LinkedList<UC_DataVisualizer>> data;
-		private LinkedList<UC_ObservationContainer> observationContainers;
+		private LinkedList<UC_ChartContainer> observationContainers;
 		private static GraphicActions myGraphicActions;
 
         private GraphicActions()
         {
             data = new Dictionary<string, LinkedList<UC_DataVisualizer>>();
-			observationContainers = new LinkedList<UC_ObservationContainer>();
+			observationContainers = new LinkedList<UC_ChartContainer>();
         }
 
 		public static GraphicActions getMyGraphicActions()
@@ -123,12 +123,12 @@ namespace TFG.src.classes
 			return data.ContainsKey(observation);
 		}
 
-		internal void addObservationContainer(UC_ObservationContainer container)
+		internal void addObservationContainer(UC_ChartContainer container)
 		{
 			observationContainers.AddLast(container);
 		}
 
-		internal void remove(UC_ObservationContainer content)
+		internal void remove(UC_ChartContainer content)
 		{
 			observationContainers.Remove(content);
 			data.Remove(content.Observation);
@@ -136,11 +136,11 @@ namespace TFG.src.classes
 
 		internal void addToContainer(string observacion, UC_DataVisualizer dataVisualizer)
 		{
-			IEnumerator<UC_ObservationContainer> iterator = observationContainers.GetEnumerator();
+			IEnumerator<UC_ChartContainer> iterator = observationContainers.GetEnumerator();
 			bool exit = false;
 			while (iterator.MoveNext() && !exit)
 			{
-				UC_ObservationContainer container = iterator.Current;
+				UC_ChartContainer container = iterator.Current;
 				if(container.Observation == observacion) {
 					container.addToAnchorablePane(dataVisualizer, dataVisualizer.Property);
 					exit = true;

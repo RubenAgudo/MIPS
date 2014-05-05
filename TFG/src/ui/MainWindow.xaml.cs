@@ -26,11 +26,12 @@ namespace TFG
     /// <summary>
     /// Lógica de interacción para MainWindow2.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, TFG.src.interfaces.IContainer
     {
         private HashSet<string> loaded;
 		private XMLLoader xmlLoader;
-		
+		private UC_VideoContainer videoContainer;
+		private DispatcherTimer timer;
 
         public MainWindow()
         {
@@ -38,6 +39,10 @@ namespace TFG
             
             this.DataContext = this;
 			loaded = new HashSet<string>();
+			timer = new DispatcherTimer();
+			timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+			timer.Tick += timer_Tick;
+			timer.Start();
 			
         }
 
@@ -48,7 +53,7 @@ namespace TFG
         /// Method that adds to the GraphicsContainer a LayoutAnchorable that contains a Data visualizer user control
         /// </summary>
         /// <param name="objectToAdd"></param>
-        private void addToAnchorablePane(UC_ObservationContainer objectToAdd)
+        public void addToAnchorablePane(UserControl objectToAdd, string Title)
         {
 
             if (mainPanel != null)
@@ -57,7 +62,7 @@ namespace TFG
 				doc.Closing += doc_Closing;
 				doc.CanHide = false;
 				doc.CanClose = true;
-				doc.Title = objectToAdd.Observation;
+				doc.Title = Title;
 				doc.Content = objectToAdd;
                 mainPanel.Children.Add(doc);
 
@@ -71,7 +76,7 @@ namespace TFG
 		private void doc_Closing(object sender, CancelEventArgs e)
 		{
  			LayoutAnchorable doc = (LayoutAnchorable)sender;
-			UC_ObservationContainer content = (UC_ObservationContainer)doc.Content;
+			UC_ChartContainer content = (UC_ChartContainer)doc.Content;
 			GraphicActions.getMyGraphicActions().remove(content);
 			loaded.Remove(content.Observation);
 		}
@@ -112,7 +117,7 @@ namespace TFG
 			catch (FileFormatException ex)
 			{
 				Console.WriteLine(ex.StackTrace);
-				MessageBoxResult msg = MessageBox.Show("Error validando el XML");
+				MessageBoxResult msg = MessageBox.Show("Error validating XML");
 			}
 		}
 
@@ -144,15 +149,15 @@ namespace TFG
 
 			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
 			{
-				UC_ObservationContainer newContainer = null;
+				UC_ChartContainer newContainer = null;
 				string observacion = viewModel.Observation;
 				
 				if (createNewObservationContainer)
 				{
 					createNewObservationContainer = false;
-					newContainer = new UC_ObservationContainer(observacion);
+					newContainer = new UC_ChartContainer(observacion);
 					GraphicActions.getMyGraphicActions().addObservationContainer(newContainer);
-					addToAnchorablePane(newContainer);
+					addToAnchorablePane(newContainer, newContainer.Observation);
 				}
 
 				//comprobamos que no sea de la clase abstracta
@@ -165,5 +170,23 @@ namespace TFG
 				}
 			}
 		}
+
+		private void mnitAddVideoContainer_Click(object sender, RoutedEventArgs e)
+		{
+			//if (videoContainer == null)
+			//{
+			//	videoContainer = new UC_VideoContainer();
+			//	addToAnchorablePane(videoContainer, "Videos");
+			//}
+		}
+
+		private void timer_Tick(object sender, EventArgs e)
+		{
+			if (videoContainer != null)
+			{
+				GraphicActions.getMyGraphicActions().update(VideoActions.getMyVideoActions().getLongestVideoProgress());
+			}
+		}
+
     }
 }

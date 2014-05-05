@@ -28,10 +28,13 @@ namespace TFG.src.ui.userControls
     {
 		private HashSet<string> loaded;
 
-        public UC_ChartContainer()
+		public string Observation { get; private set; }
+
+        public UC_ChartContainer(string observation)
         {
             InitializeComponent();
 			loaded = new HashSet<string>();
+			Observation = observation;
         }
 
         /// <summary>

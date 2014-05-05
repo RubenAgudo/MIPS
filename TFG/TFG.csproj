@@ -50,9 +50,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Infralution.Localization.Wpf">
-      <HintPath>..\packages\Localization\Infralution.Localization.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="OxyPlot, Version=2014.1.297.1, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\OxyPlot.Core.2014.1.297.1\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
@@ -119,9 +116,6 @@
     <Compile Include="src\ui\userControls\UC_DataVisualizer.xaml.cs">
       <DependentUpon>UC_DataVisualizer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\ui\userControls\UC_ObservationContainer.xaml.cs">
-      <DependentUpon>UC_ObservationContainer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="src\ui\userControls\UC_VideoContainer.xaml.cs">
       <DependentUpon>UC_VideoContainer.xaml</DependentUpon>
     </Compile>
@@ -142,10 +136,6 @@
     <Page Include="src\ui\userControls\UC_DataVisualizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="src\ui\userControls\UC_ObservationContainer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="src\ui\userControls\UC_VideoContainer.xaml">
       <SubType>Designer</SubType>
@@ -180,12 +170,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="res\strings\strings.resx" />
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\SequenceDiagram1.sequencediagram" />
-    <None Include="src\schemas\LoadDataModel.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="src\schemas\ObservationModelData.xsd">
       <SubType>Designer</SubType>
     </None>

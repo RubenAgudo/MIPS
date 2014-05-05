@@ -1,5 +1,4 @@
-﻿<UserControl ResxExtension.DefaultResxName="TFG.res.strings.strings" Language="{UICulture}"
-			 x:Class="TFG.src.ui.userControls.UC_ChartContainer"
+﻿<UserControl x:Class="TFG.src.ui.userControls.UC_ChartContainer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,10 +16,10 @@
 
 					<avalonDock:LayoutPanel x:Name="chartLayoutPanel" Orientation="Horizontal">
 
-						<avalonDock:LayoutDocumentPane x:Name="mainPanelChartContainer">
+						<avalonDock:LayoutAnchorablePane x:Name="mainPanelChartContainer">
 
 
-						</avalonDock:LayoutDocumentPane>
+						</avalonDock:LayoutAnchorablePane>
 
 
 						<!--<avalonDock:LayoutDocumentPaneGroup x:Name="prueba">
