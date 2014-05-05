@@ -15,6 +15,7 @@
 					<MenuItem Header="Close workbench" Name="mnitExit" Click="mnitExit_Click"/>
 				</MenuItem>
 				<MenuItem Header="Add video container" Name="mnitAddVideoContainer" Click="mnitAddVideoContainer_Click" />
+				<MenuItem Header="Save selected range" Name="mnitSaveRange" Click="mnitSaveRange_Click"/>
 			</Menu>
 
             <avalonDock:DockingManager x:Name="dockingManager"

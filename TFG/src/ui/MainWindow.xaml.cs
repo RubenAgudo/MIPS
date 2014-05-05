@@ -59,8 +59,8 @@ namespace TFG
             if (mainPanel != null)
             {
 				LayoutAnchorable doc = new LayoutAnchorable();
-				doc.Closing += doc_Closing;
-				doc.CanHide = false;
+				doc.Hiding += doc_Hiding;
+				doc.CanHide = true;
 				doc.CanClose = true;
 				doc.Title = Title;
 				doc.Content = objectToAdd;
@@ -73,12 +73,20 @@ namespace TFG
             }
         }
 
-		private void doc_Closing(object sender, CancelEventArgs e)
+		private void doc_Hiding(object sender, CancelEventArgs e)
 		{
  			LayoutAnchorable doc = (LayoutAnchorable)sender;
-			UC_ChartContainer content = (UC_ChartContainer)doc.Content;
-			GraphicActions.getMyGraphicActions().remove(content);
-			loaded.Remove(content.Observation);
+			if (sender is UC_ChartContainer)
+			{
+				UC_ChartContainer content = (UC_ChartContainer)doc.Content;
+				GraphicActions.getMyGraphicActions().remove(content);
+				loaded.Remove(content.Observation);
+			}
+			else
+			{
+				videoContainer = null;
+			}
+			
 		}
 
         private void mnitExit_Click(object sender, RoutedEventArgs e)
@@ -89,13 +97,16 @@ namespace TFG
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
 			mainPanel.Children.Clear();
+			GraphicActions.getMyGraphicActions().clear();
+			videoContainer = null;
+
 			string pathToXML = XMLLoader.openXML();
+			
 			try
 			{
 				xmlLoader = new XMLLoader(pathToXML);
 				List<string> observations = xmlLoader.getObservations();
                 loaded = new HashSet<string>();
-				GraphicActions.getMyGraphicActions().clear();
 				foreach (string observation in observations)
 				{
 					List<string> properties = xmlLoader.getPropertiesOf(observation);
@@ -173,11 +184,11 @@ namespace TFG
 
 		private void mnitAddVideoContainer_Click(object sender, RoutedEventArgs e)
 		{
-			//if (videoContainer == null)
-			//{
-			//	videoContainer = new UC_VideoContainer();
-			//	addToAnchorablePane(videoContainer, "Videos");
-			//}
+			if (videoContainer == null)
+			{
+				videoContainer = new UC_VideoContainer();
+				addToAnchorablePane(videoContainer, "Videos");
+			}
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -186,6 +197,11 @@ namespace TFG
 			{
 				GraphicActions.getMyGraphicActions().update(VideoActions.getMyVideoActions().getLongestVideoProgress());
 			}
+		}
+
+		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 
     }

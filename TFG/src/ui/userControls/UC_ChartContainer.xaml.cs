@@ -50,8 +50,8 @@ namespace TFG.src.ui.userControls
 				{
 					loaded.Add(Title);
 					LayoutAnchorable doc = new LayoutAnchorable();
-					doc.Closing += doc_Closing;
-					doc.CanHide = false;
+					doc.Hiding += doc_Hiding;
+					doc.CanHide = true;
 					doc.CanClose = true;
 					doc.Title = Title;
 					doc.Content = objectToAdd;
@@ -64,7 +64,7 @@ namespace TFG.src.ui.userControls
             }
         }
 
-		private void doc_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		private void doc_Hiding(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			LayoutAnchorable doc = (LayoutAnchorable)sender;
 			UC_DataVisualizer content = (UC_DataVisualizer)doc.Content;

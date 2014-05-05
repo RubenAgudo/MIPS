@@ -17,13 +17,13 @@ namespace TFG.src.classes
     {
 
         private Dictionary<string, LinkedList<UC_DataVisualizer>> data;
-		private LinkedList<UC_ChartContainer> observationContainers;
+		private LinkedList<UC_ChartContainer> chartContainers;
 		private static GraphicActions myGraphicActions;
 
         private GraphicActions()
         {
             data = new Dictionary<string, LinkedList<UC_DataVisualizer>>();
-			observationContainers = new LinkedList<UC_ChartContainer>();
+			chartContainers = new LinkedList<UC_ChartContainer>();
         }
 
 		public static GraphicActions getMyGraphicActions()
@@ -116,6 +116,7 @@ namespace TFG.src.classes
 		internal void clear()
 		{
 			data.Clear();
+			chartContainers.Clear();
 		}
 
 		internal bool exists(string observation)
@@ -125,18 +126,18 @@ namespace TFG.src.classes
 
 		internal void addObservationContainer(UC_ChartContainer container)
 		{
-			observationContainers.AddLast(container);
+			chartContainers.AddLast(container);
 		}
 
 		internal void remove(UC_ChartContainer content)
 		{
-			observationContainers.Remove(content);
+			chartContainers.Remove(content);
 			data.Remove(content.Observation);
 		}
 
 		internal void addToContainer(string observacion, UC_DataVisualizer dataVisualizer)
 		{
-			IEnumerator<UC_ChartContainer> iterator = observationContainers.GetEnumerator();
+			IEnumerator<UC_ChartContainer> iterator = chartContainers.GetEnumerator();
 			bool exit = false;
 			while (iterator.MoveNext() && !exit)
 			{
