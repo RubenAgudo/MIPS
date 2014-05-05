@@ -175,3 +175,6 @@ $RECYCLE.BIN/
 *.mtc1
 *.out
 *.synctex.gz
+
+*.dll
+
