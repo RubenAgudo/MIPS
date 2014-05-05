@@ -131,6 +131,7 @@ namespace TFG.src.classes
 		internal void remove(UC_ObservationContainer content)
 		{
 			observationContainers.Remove(content);
+			data.Remove(content.Observation);
 		}
 
 		internal void addToContainer(string observacion, UC_DataVisualizer dataVisualizer)
@@ -151,11 +152,15 @@ namespace TFG.src.classes
 		{
 
 			LinkedList<UC_DataVisualizer> dataVisualizers;
-			data.TryGetValue(modifiedChart.Observation, out dataVisualizers);
-			foreach (UC_DataVisualizer datav in dataVisualizers)
+			foreach (string key in data.Keys)
 			{
-				datav.updateRangeSelection(modifiedChart.RangeSelection);
+				data.TryGetValue(key, out dataVisualizers);
+				foreach (UC_DataVisualizer datav in dataVisualizers)
+				{
+					datav.updateRangeSelection(modifiedChart.RangeSelection);
+				}
 			}
+			
 		}
 	}
 }
