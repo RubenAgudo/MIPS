@@ -170,15 +170,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="diagrams\SequenceDiagram1.sequencediagram.layout">
-      <DependentUpon>SequenceDiagram1.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="diagrams\MainWindow_mnitLoadXML_Click.sequencediagram.layout">
+      <DependentUpon>MainWindow_mnitLoadXML_Click.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="diagrams\MainWindow_observationsAndProperties_MouseDoubleClick_2.sequencediagram.layout">
+      <DependentUpon>MainWindow_observationsAndProperties_MouseDoubleClick_2.sequencediagram</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="diagrams\ClassDiagram1.cd" />
-    <None Include="diagrams\SequenceDiagram1.sequencediagram" />
+    <None Include="diagrams\MainWindow_mnitLoadXML_Click.sequencediagram" />
+    <None Include="diagrams\MainWindow_observationsAndProperties_MouseDoubleClick_2.sequencediagram" />
     <None Include="src\schemas\ObservationModelData.xsd">
       <SubType>Designer</SubType>
     </None>
