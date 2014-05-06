@@ -20,6 +20,7 @@ using Xceed.Wpf.AvalonDock.Themes;
 using System.Windows.Threading;
 using System.IO;
 using TFG.src.ViewModels;
+using TFG.src.ui.dialogs;
 
 namespace TFG
 {
@@ -195,13 +196,14 @@ namespace TFG
 		{
 			if (videoContainer != null)
 			{
-				GraphicActions.getMyGraphicActions().update(VideoActions.getMyVideoActions().getLongestVideoProgress());
+				GraphicActions.getMyGraphicActions().update(VideoActions.getMyVideoActions().getVideoProgress());
 			}
 		}
 
 		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
 		{
-
+			SaveDialog sd = new SaveDialog();
+			sd.Show();
 		}
 
     }

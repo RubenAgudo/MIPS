@@ -14,6 +14,8 @@ namespace TFG.src.classes
     {
         private LinkedList<UC_VideoPlayer> videos;
 		private static VideoActions myVideoActions;
+		private double startReference;
+		private UC_VideoPlayer referenceVideo;
 
         private VideoActions() 
         {
@@ -59,8 +61,18 @@ namespace TFG.src.classes
 
         public void addVideo(UC_VideoPlayer video)
         {
+			video.PropertyChanged += video_PropertyChanged;
             videos.AddLast(video);
         }
+
+		void video_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == "StartHere")
+			{
+				startReference = ((UC_VideoPlayer)sender).StartHere;
+				referenceVideo = (UC_VideoPlayer)sender;
+			}
+		}
 
         internal void play()
         {
@@ -96,11 +108,12 @@ namespace TFG.src.classes
             }
         }
 
-		internal double getLongestVideoProgress()
+		internal double getVideoProgress()
 		{
-			if (videos.Count > 0)
+			if (referenceVideo != null)
 			{
-				return videos.First.Value.Position.TotalSeconds;
+				double value = referenceVideo.Position.TotalSeconds - startReference;
+				return value;
 			}
 			else
 			{

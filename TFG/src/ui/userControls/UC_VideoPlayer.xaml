@@ -35,6 +35,7 @@
                     <Button x:FieldModifier="private" Click="OnMouseDownStopMedia" x:Name="Stop" FontSize="15" Content="[#]"/>
 
                     <Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
+					<Button x:FieldModifier="private" Name="btnStartHere" Click="StartHere_Click" Content="Start here" FontSize="15" />
 
                 </StackPanel>
             </StackPanel>

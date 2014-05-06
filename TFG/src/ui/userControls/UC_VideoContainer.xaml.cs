@@ -31,7 +31,7 @@ namespace TFG.src.ui.userControls
 		{
 			get
 			{
-				return VideoActions.getMyVideoActions().getLongestVideoProgress();
+				return VideoActions.getMyVideoActions().getVideoProgress();
 			}
 		}
 

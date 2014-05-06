@@ -23,12 +23,37 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_VideoPlayer.xaml
     /// </summary>
-	public partial class UC_VideoPlayer : UserControl
+	public partial class UC_VideoPlayer : UserControl, INotifyPropertyChanged
     {
-
+		private double startHere;
         private bool isDragging;
         private DispatcherTimer timer;
         private Uri uriPath;
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public double StartHere
+		{
+			get
+			{
+				return myMediaElement.Position.TotalSeconds;
+			}
+
+			private set
+			{
+				if (value != startHere)
+				{
+					startHere = value;
+					NotiftyPropertyChanged("StartHere");
+				}
+			}
+		}
+
+		public void NotiftyPropertyChanged(string info) {
+			if(PropertyChanged != null) {
+				PropertyChanged(this, new PropertyChangedEventArgs(info));
+			}
+		}
 
         public UC_VideoPlayer(string path)
         {
@@ -172,6 +197,11 @@ namespace TFG.src.ui.userControls
 
 			}
 			timelineSlider.SelectionEnd = Position.TotalSeconds;
+		}
+
+		private void StartHere_Click(object sender, RoutedEventArgs e)
+		{
+			StartHere = Position.TotalSeconds;
 		}
 
 	}
