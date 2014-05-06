@@ -15,6 +15,11 @@ using TFG.src.ViewModels;
 
 namespace TFG.src.classes
 {
+	/// <summary>
+	/// Author: Ruben Agudo Santos
+	/// Singleton class that manages all the operations that are common for the "Graphics" class,
+	/// that is, the UC_ChartContainers and UC_DataVisualizer.
+	/// </summary>
 	public class XMLLoader
 	{
 		private XElement xml;

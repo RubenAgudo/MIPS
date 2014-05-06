@@ -196,7 +196,7 @@ namespace TFG
 		{
 			if (videoContainer != null)
 			{
-				GraphicActions.getMyGraphicActions().update(VideoActions.getMyVideoActions().getVideoProgress());
+				GraphicActions.getMyGraphicActions().updateProgressBar(VideoActions.getMyVideoActions().getVideoProgress());
 			}
 		}
 

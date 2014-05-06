@@ -10,6 +10,12 @@ using TFG.src.exceptions;
 
 namespace TFG.src.classes
 {
+	/// <summary>
+	/// Author: Ruben Agudo Santos
+	/// Singleton class that manages all the operations that are common for the "Video" class,
+	/// that is, the UC_VideoPlayers. It also keeps track of the video being the reference
+	/// to the synchronization
+	/// </summary>
     public class VideoActions
     {
         private LinkedList<UC_VideoPlayer> videos;
@@ -22,6 +28,10 @@ namespace TFG.src.classes
             videos = new LinkedList<UC_VideoPlayer>();
         }
 
+		/// <summary>
+		/// Gets the unique instance of this class
+		/// </summary>
+		/// <returns>The VideoActions instance</returns>
 		public static VideoActions getMyVideoActions()
 		{
 			if (myVideoActions == null)
@@ -32,6 +42,12 @@ namespace TFG.src.classes
 			return myVideoActions;
 		}
 
+		/// <summary>
+		/// This method shows an Open File Dialog to open videos.
+		/// It can open .mp4 and .avi videos. It supports multiple selection
+		/// </summary>
+		/// <returns>The path to the selected files</returns>
+		/// <exception cref="FileNotSelectedException">Thrown if not file was selected</exception>
         public static string[] openFile()
         {
             string[] filenames = null;
@@ -59,13 +75,24 @@ namespace TFG.src.classes
             return filenames;
         }
 
+		/// <summary>
+		/// Adds the UC_VideoPlayer to the loaded videos
+		/// </summary>
+		/// <param name="video">The UC_VideoPlayer to be added</param>
         public void addVideo(UC_VideoPlayer video)
         {
 			video.PropertyChanged += video_PropertyChanged;
             videos.AddLast(video);
         }
 
-		void video_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		/// <summary>
+		/// Event that handles where the video should begin and which video has to be taken as
+		/// reference, this event is called whenever the user clicks on the Start here button in any
+		/// UC_VideoPlayer
+		/// </summary>
+		/// <param name="sender">The UC_VideoPlayer that generated this event</param>
+		/// <param name="e"></param>
+		private void video_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == "StartHere")
 			{
@@ -74,6 +101,9 @@ namespace TFG.src.classes
 			}
 		}
 
+		/// <summary>
+		/// Play every video loaded
+		/// </summary>
         internal void play()
         {
             foreach (UC_VideoPlayer actualVideo in videos)
@@ -82,6 +112,9 @@ namespace TFG.src.classes
             }
         }
 
+		/// <summary>
+		/// Pauses every video loaded
+		/// </summary>
         internal void pause()
         {
             foreach (UC_VideoPlayer actualVideo in videos)
@@ -90,6 +123,9 @@ namespace TFG.src.classes
             }
         }
 
+		/// <summary>
+		/// Stops every video loaded
+		/// </summary>
         internal void stop()
         {
             foreach (UC_VideoPlayer actualVideo in videos)
@@ -98,8 +134,9 @@ namespace TFG.src.classes
             }
         }
 
-
-
+		/// <summary>
+		/// Advances every video the specified frames in the Settings.
+		/// </summary>
         internal void advanceFrame()
         {
             foreach (UC_VideoPlayer actualVideo in videos)
@@ -108,6 +145,11 @@ namespace TFG.src.classes
             }
         }
 
+		/// <summary>
+		/// Gets the progress of the reference video.
+		/// </summary>
+		/// <returns>The actual progress minus the start if a video is taken as a reference,
+		/// or zero otherwise</returns>
 		internal double getVideoProgress()
 		{
 			if (referenceVideo != null)

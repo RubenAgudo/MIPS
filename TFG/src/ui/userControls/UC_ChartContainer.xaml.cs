@@ -71,15 +71,6 @@ namespace TFG.src.ui.userControls
 			GraphicActions.getMyGraphicActions().remove(content);
 			loaded.Remove(content.Property);
 		}
-
-		/// <summary>
-		/// Method that updates the chart progress indicator.
-		/// </summary>
-		/// <param name="p">The new position of the indicator</param>
-		internal void Update(double p)
-		{
-			GraphicActions.getMyGraphicActions().update(p);
-		}
 		
 	}
 }
