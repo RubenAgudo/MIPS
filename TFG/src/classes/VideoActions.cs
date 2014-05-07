@@ -47,7 +47,7 @@ namespace TFG.src.classes
 		/// It can open .mp4 and .avi videos. It supports multiple selection
 		/// </summary>
 		/// <returns>The path to the selected files</returns>
-		/// <exception cref="FileNotSelectedException">Thrown if not file was selected</exception>
+		/// <exception cref="FileNotSelectedException">Thrown if no file was selected</exception>
         public static string[] openFile()
         {
             string[] filenames = null;
