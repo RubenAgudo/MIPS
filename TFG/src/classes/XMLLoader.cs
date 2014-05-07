@@ -143,14 +143,21 @@ namespace TFG.src.classes
 			Dictionary<string, double> labels)
 		{
 			ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
-			int instaltLength = getInstantLength();
-			double lastX = double.NaN;
+			int instantLength = getInstantLength();
+			double lastX = double.MinValue;
 			foreach (XElement instant in data)
 			{
 				double x = Double.Parse(instant.Attribute("ins").Value);
 				double y = 0;
 
-				//Por aqui hay que hacer el codigo que cree un salto en el grafico
+				//si la diferencia entre el ultimo x, y el x actual es mayor que instantLength
+				//metemos un NaN para que el grafico sepa que ha de romperse.
+				//Y lo metemos en x-instantLength porque sabemos que ahi no va a haber ningun punto
+				if (Math.Abs(x - lastX) > instantLength)
+				{
+					pointCollection.Add(new DataPoint(x-instantLength, double.NaN));
+				}
+
 
 				if (!EsContinuo)
 				{
@@ -168,6 +175,9 @@ namespace TFG.src.classes
 				}
 
 				pointCollection.Add(new DataPoint(x, y));
+
+				//actualizamos el ultimo valor conocido
+				lastX = x;
 			}
 			return pointCollection;
 		}
