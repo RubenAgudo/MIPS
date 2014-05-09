@@ -212,8 +212,7 @@ namespace TFG
 
 		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
 		{
-			SaveDialog sd = new SaveDialog();
-			sd.Show();
+			XMLExport.getMyXMLExport().saveData();
 		}
 
 		private void loadVideos()

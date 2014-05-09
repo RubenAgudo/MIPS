@@ -105,6 +105,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\classes\XMLExport.cs" />
     <Compile Include="src\classes\XMLLoader.cs" />
     <Compile Include="src\classes\GraphicActions.cs" />
     <Compile Include="src\classes\VideoActions.cs" />
