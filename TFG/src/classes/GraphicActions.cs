@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using System.Windows;
 using TFG.src.ui.userControls;
-using TFG.src.interfaces;
-using Microsoft.Win32;
-using TFG.src.exceptions;
 
 namespace TFG.src.classes
 {

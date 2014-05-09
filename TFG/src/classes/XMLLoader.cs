@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Linq;
-using System.Data;
-using OxyPlot;
-using TFG.src.exceptions;
-using Microsoft.Win32;
-using TFG.src.ViewModels;
+using System.Xml.Schema;
 using TFG.Properties;
+using TFG.src.exceptions;
+using TFG.src.ViewModels;
 
 namespace TFG.src.classes
 {

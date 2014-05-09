@@ -1,25 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TFG.src.interfaces;
-using TFG.src.classes;
-using OxyPlot;
-using OxyPlot.Axes;
-using OxyPlot.Series;
+﻿using OxyPlot;
 using OxyPlot.Annotations;
-using TFG.src.ViewModels;
+using System;
 using System.ComponentModel;
+using System.Windows.Controls;
+using TFG.src.ViewModels;
 
 
 namespace TFG.src.ui.userControls

@@ -1,27 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Xceed.Wpf.AvalonDock;
-using Xceed.Wpf.AvalonDock.Layout;
-using TFG.src.classes;
-using TFG.src.ui.userControls;
-using System.ComponentModel;
-using Xceed.Wpf.AvalonDock.Themes;
 using System.Windows.Threading;
-using System.IO;
-using TFG.src.ViewModels;
-using TFG.src.ui.dialogs;
+using TFG.src.classes;
 using TFG.src.exceptions;
+using TFG.src.ui.userControls;
+using TFG.src.ViewModels;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace TFG
 {
