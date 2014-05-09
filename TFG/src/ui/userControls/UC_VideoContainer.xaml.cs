@@ -25,50 +25,11 @@ namespace TFG.src.ui.userControls
     /// </summary>
     public partial class UC_VideoContainer : UserControl, IContainer
     {
-        private int paneNumber;
-
-		public double Progress
-		{
-			get
-			{
-				return VideoActions.getMyVideoActions().getVideoProgress();
-			}
-		}
 
         public UC_VideoContainer()
         {
             InitializeComponent();
-
-            paneNumber = 0;
         }
-
-        private void mnitAddVideoPane_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string[] paths = VideoActions.openFile();
-
-                foreach (string path in paths)
-                {
-                    UC_VideoPlayer video = new UC_VideoPlayer(path);
-                    VideoActions.getMyVideoActions().addVideo(video);
-                    addToAnchorablePane(video, "Video " + ++paneNumber);
-                } 
-
-            }
-            catch (NotImplementedException ex)
-            {
-                System.Console.WriteLine(ex.StackTrace);
-
-            }
-            catch (FileNotSelectedException ex2)
-            {
-                Console.WriteLine(ex2.StackTrace);
-            }
-
-        }
-
-
 
         #region PlayBackControlEvents
         /// <summary>

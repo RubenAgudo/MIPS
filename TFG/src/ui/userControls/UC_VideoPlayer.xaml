@@ -36,8 +36,9 @@
 
                     <Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
 					<Button x:FieldModifier="private" Name="btnStartHere" Click="StartHere_Click" Content="Start here" FontSize="15" />
+					<Button x:FieldModifier="private" Name="btnMute" Click="btnMute_Click" Content="Mute" FontSize="15" />
 
-                </StackPanel>
+				</StackPanel>
             </StackPanel>
         </DockPanel>
     </Grid>

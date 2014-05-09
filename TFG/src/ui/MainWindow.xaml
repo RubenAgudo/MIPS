@@ -14,7 +14,7 @@
 					<MenuItem Header="Load XML file" Name="mnitLoadXML" Click="mnitLoadXML_Click" />
 					<MenuItem Header="Close workbench" Name="mnitExit" Click="mnitExit_Click"/>
 				</MenuItem>
-				<MenuItem Header="Add video container" Name="mnitAddVideoContainer" Click="mnitAddVideoContainer_Click" />
+				<MenuItem Header="Add video" Name="mnitAddVideo" Click="mnitAddVideo_Click" />
 				<MenuItem Header="Save selected range" Name="mnitSaveRange" Click="mnitSaveRange_Click"/>
 			</Menu>
 
@@ -30,7 +30,7 @@
 								
 								
 						</avalonDock:LayoutAnchorablePane>
-
+						
 					</avalonDock:LayoutPanel>
 
 					<avalonDock:LayoutRoot.LeftSide>

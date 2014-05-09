@@ -121,5 +121,10 @@ namespace TFG.src.classes
 			}
 			
 		}
+
+		internal void clear()
+		{
+			videos.Clear();
+		}
 	}
 }

@@ -30,6 +30,8 @@ namespace TFG.src.ui.userControls
         private DispatcherTimer timer;
         private Uri uriPath;
 
+		public string VideoName { get; private set; }
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public double StartHere
@@ -59,6 +61,7 @@ namespace TFG.src.ui.userControls
         {
             InitializeComponent();
             this.uriPath = new Uri(path);
+			VideoName = uriPath.Segments[uriPath.Segments.Length - 1];
             myMediaElement.Source = uriPath;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1000);
@@ -202,6 +205,11 @@ namespace TFG.src.ui.userControls
 		private void StartHere_Click(object sender, RoutedEventArgs e)
 		{
 			StartHere = Position.TotalSeconds;
+		}
+
+		private void btnMute_Click(object sender, RoutedEventArgs e)
+		{
+			myMediaElement.IsMuted = !myMediaElement.IsMuted;
 		}
 
 	}

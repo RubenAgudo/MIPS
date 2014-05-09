@@ -21,6 +21,7 @@ using System.Windows.Threading;
 using System.IO;
 using TFG.src.ViewModels;
 using TFG.src.ui.dialogs;
+using TFG.src.exceptions;
 
 namespace TFG
 {
@@ -47,31 +48,29 @@ namespace TFG
 			
         }
 
-		
-        
-
-          /// <summary>
+        /// <summary>
         /// Method that adds to the GraphicsContainer a LayoutAnchorable that contains a Data visualizer user control
         /// </summary>
         /// <param name="objectToAdd"></param>
         public void addToAnchorablePane(UserControl objectToAdd, string Title)
         {
-
-            if (mainPanel != null)
-            {
+			
+			if (mainPanel != null)
+			{
 				LayoutAnchorable doc = new LayoutAnchorable();
 				doc.Hiding += doc_Hiding;
 				doc.CanHide = true;
 				doc.CanClose = true;
 				doc.Title = Title;
 				doc.Content = objectToAdd;
-                mainPanel.Children.Add(doc);
+				mainPanel.Children.Add(doc);
 
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
+			}
+			else
+			{
+				throw new NotImplementedException();
+			}
+            
         }
 
 		private void doc_Hiding(object sender, CancelEventArgs e)
@@ -85,7 +84,7 @@ namespace TFG
 			}
 			else
 			{
-				videoContainer = null;
+				VideoActions.getMyVideoActions().clear();
 			}
 			
 		}
@@ -101,10 +100,10 @@ namespace TFG
 			GraphicActions.getMyGraphicActions().clear();
 			videoContainer = null;
 
-			string pathToXML = XMLLoader.openXML();
 			
 			try
 			{
+				string pathToXML = XMLLoader.openXML();
 				xmlLoader = new XMLLoader(pathToXML);
 				List<string> observations = xmlLoader.getObservations();
                 loaded = new HashSet<string>();
@@ -131,6 +130,11 @@ namespace TFG
 				Console.WriteLine(ex.StackTrace);
 				MessageBoxResult msg = MessageBox.Show("Error validating XML");
 			}
+			catch (FileNotSelectedException ex)
+			{
+				Console.WriteLine(ex.StackTrace);
+				MessageBoxResult msg = MessageBox.Show("Select a XML file");
+			}
 		}
 
 		/// <summary>
@@ -143,6 +147,11 @@ namespace TFG
 			LinkedList<AbstractDataVisualizerViewModel> viewModels;
 			TreeViewItem anItem = (TreeViewItem) observationsAndProperties.SelectedItem;
 			
+			if (anItem == null)
+			{
+				return;
+			}
+
 			string itemHeader = anItem.Header.ToString(), 
 				parentHeader;
 			bool createNewObservationContainer;
@@ -183,13 +192,14 @@ namespace TFG
 			}
 		}
 
-		private void mnitAddVideoContainer_Click(object sender, RoutedEventArgs e)
+		private void mnitAddVideo_Click(object sender, RoutedEventArgs e)
 		{
 			if (videoContainer == null)
 			{
 				videoContainer = new UC_VideoContainer();
 				addToAnchorablePane(videoContainer, "Videos");
 			}
+			loadVideos();
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -204,6 +214,31 @@ namespace TFG
 		{
 			SaveDialog sd = new SaveDialog();
 			sd.Show();
+		}
+
+		private void loadVideos()
+		{
+			try
+			{
+				string[] paths = VideoActions.openFile();
+
+				foreach (string path in paths)
+				{
+					UC_VideoPlayer video = new UC_VideoPlayer(path);
+					VideoActions.getMyVideoActions().addVideo(video);
+					videoContainer.addToAnchorablePane(video, video.VideoName);
+				}
+
+			}
+			catch (NotImplementedException ex)
+			{
+				System.Console.WriteLine(ex.StackTrace);
+
+			}
+			catch (FileNotSelectedException ex2)
+			{
+				Console.WriteLine(ex2.StackTrace);
+			}
 		}
 
     }

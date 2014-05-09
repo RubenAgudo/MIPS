@@ -6,61 +6,52 @@
              xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <DockPanel>
+	<Grid>
 
-			<Menu DockPanel.Dock="Top">
-				<MenuItem Header="Add video" Name="mnitAddVideo" Click="mnitAddVideoPane_Click" />
-			</Menu>
+		<StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+			<avalonDock:DockingManager x:Name="videoContainer" >
 
-			<StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-				<avalonDock:DockingManager x:Name="videoContainer" >
+				<avalonDock:LayoutRoot x:Name="videoLayoutRoot">
 
-					<avalonDock:LayoutRoot x:Name="videoLayoutRoot">
+					<avalonDock:LayoutPanel x:Name="videoLayoutPanel" Orientation="Horizontal">
 
-						<avalonDock:LayoutPanel x:Name="videoLayoutPanel" Orientation="Horizontal">
-
-							<avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
+						<avalonDock:LayoutAnchorablePane x:Name="mainPanelVideoContainer">
 
 
-							</avalonDock:LayoutAnchorablePane>
-							
-						</avalonDock:LayoutPanel>
+						</avalonDock:LayoutAnchorablePane>
+
+					</avalonDock:LayoutPanel>
 
 
-					</avalonDock:LayoutRoot>
-				</avalonDock:DockingManager>
-				<StackPanel Orientation="Horizontal" >
-                        <!-- Play button. -->
-                        <Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
+				</avalonDock:LayoutRoot>
+			</avalonDock:DockingManager>
+			<StackPanel Orientation="Horizontal" >
+				<!-- Play button. -->
+				<Button x:FieldModifier="private" Click="OnMouseDownPlayMedia" x:Name="Play" FontSize="15" Content="[|&gt;]" />
 
-                        <!-- Pause button. -->
-                        <Button x:FieldModifier="private" Click="OnMouseDownPauseMedia" x:Name="Pause" FontSize="15" Content="[II]"/>
-                        <!-- Stop button. -->
-                        <Button x:FieldModifier="private" Click="OnMouseDownStopMedia" x:Name="Stop" FontSize="15" Content="[#]"/>
+				<!-- Pause button. -->
+				<Button x:FieldModifier="private" Click="OnMouseDownPauseMedia" x:Name="Pause" FontSize="15" Content="[II]"/>
+				<!-- Stop button. -->
+				<Button x:FieldModifier="private" Click="OnMouseDownStopMedia" x:Name="Stop" FontSize="15" Content="[#]"/>
 
-                        <Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
+				<Button x:FieldModifier="private" Click="AdvanceFrame_Click"  x:Name="AdvanceFrame" FontSize="15" Content="[&gt;&gt;]"/>
 
-                    </StackPanel>
+			</StackPanel>
 
-                    <!--<StatusBar Name="videoContainerStatusbar" >
-                        <TextBlock>Duration:</TextBlock>
-                        <TextBlock Name="txblDuration" ></TextBlock>
+			<!--<StatusBar Name="videoContainerStatusbar" >
+                    <TextBlock>Duration:</TextBlock>
+                    <TextBlock Name="txblDuration" ></TextBlock>
 
-                        <TextBlock >Actual Position:</TextBlock>
-                        <TextBlock Name="txblPosition"></TextBlock>
+                    <TextBlock >Actual Position:</TextBlock>
+                    <TextBlock Name="txblPosition"></TextBlock>
 
-                        <TextBlock >Frames skipped:</TextBlock>
-                        <TextBlock Name="txblFramesSkipped"></TextBlock>
+                    <TextBlock >Frames skipped:</TextBlock>
+                    <TextBlock Name="txblFramesSkipped"></TextBlock>
 
-                        <TextBlock >Speed:</TextBlock>
-                        <TextBlock Name="txblSpeed"></TextBlock>
-                    </StatusBar>-->
-                </StackPanel>
-            
-        </DockPanel>
+                    <TextBlock >Speed:</TextBlock>
+                    <TextBlock Name="txblSpeed"></TextBlock>
+                </StatusBar>-->
+		</StackPanel>
 
-
-
-    </Grid>
+	</Grid>
 </UserControl>
