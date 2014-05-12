@@ -20,11 +20,13 @@ namespace TFG.src.classes
         private Dictionary<string, LinkedList<UC_DataVisualizer>> data;
 		private LinkedList<UC_ChartContainer> chartContainers;
 		private static GraphicActions myGraphicActions;
+		private static int PROCESSOR_COUNT;
 
         private GraphicActions()
         {
             data = new Dictionary<string, LinkedList<UC_DataVisualizer>>();
 			chartContainers = new LinkedList<UC_ChartContainer>();
+			PROCESSOR_COUNT = Environment.ProcessorCount;
         }
 
 		/// <summary>
@@ -177,7 +179,10 @@ namespace TFG.src.classes
 			LinkedList<UC_DataVisualizer> dataVisualizers;
 			foreach (string key in data.Keys)
 			{
+				
+
 				data.TryGetValue(key, out dataVisualizers);
+
 				foreach (UC_DataVisualizer datav in dataVisualizers)
 				{
 					datav.updateRangeSelection(modifiedChart.getRangeSelection());
@@ -187,12 +192,14 @@ namespace TFG.src.classes
 		}
 
 		/// <summary>
-		/// Return the data currently loaded into an XML tree
+		/// Return the data currently loaded into an XML tree, that represents an interval
 		/// </summary>
 		/// <returns>The root XElement containing all the children</returns>
-		internal XElement getDataForXML(string fileName, double start, double end)
+		internal XElement getDataForXML(double start, double end)
 		{
-			XElement root = new XElement("paso");
+			XElement intervalo = new XElement("intervalo");
+			XAttribute intervalStart = new XAttribute("start", start);
+			XAttribute intervalEnd = new XAttribute("end", end);
 
 			//para cada observacion
 			foreach (string key in data.Keys)
@@ -250,14 +257,17 @@ namespace TFG.src.classes
 				}
 				//añadimos a la observacion su atributo y añadimos la observacion al nodo raiz
 				observation.Add(nombreObservacion);
-				root.Add(observation);
+				intervalo.Add(observation);
 			}
-			//le ponemos al nodo raiz su atributo
-			root.Add(new XAttribute("name", fileName));
-			
-			return root;
+			intervalo.Add(intervalStart);
+			intervalo.Add(intervalEnd);
+			return intervalo;
 		}
 
+		/// <summary>
+		/// Returns the selected range
+		/// </summary>
+		/// <returns>The first number of the array is the start of the range and the second the end</returns>
 		internal double[] getSelectedRange()
 		{
 			foreach (string key in data.Keys)

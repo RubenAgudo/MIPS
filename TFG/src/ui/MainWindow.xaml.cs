@@ -203,10 +203,8 @@ namespace TFG
 		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
 		{
 			double[] selectedRange = GraphicActions.getMyGraphicActions().getSelectedRange();
-			if (!XMLExport.getMyXMLExport().saveData(selectedRange[0], selectedRange[1]))
-			{
-				MessageBoxResult msg = MessageBox.Show("Error validating XML");
-			}
+			MessageBoxResult msg = MessageBox.Show("Do you want to add more intervals later?", "Add more intervals?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			XMLExport.getMyXMLExport().createInterval(selectedRange[0], selectedRange[1], msg == MessageBoxResult.No);
 		}
 
 		private void loadVideos()
