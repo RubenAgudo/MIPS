@@ -230,7 +230,7 @@ namespace TFG.src.classes
 								datap = new XElement("data", datapoint.Y);
 								break;
 							case AbstractDataVisualizerViewModel.DISCRETE:
-								datap = new XElement("data", datav.Labels[(int)datapoint.Y]);
+								datap = new XElement("data", (datapoint.Y >= 0) ? datav.Labels[(int)datapoint.Y]: "no value");
 								break;
 						} 
 						//creamos el atributo instante con el valor X (tiempo) y lo añadimos

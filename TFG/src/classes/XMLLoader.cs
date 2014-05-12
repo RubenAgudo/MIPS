@@ -108,9 +108,15 @@ namespace TFG.src.classes
 			ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
 			int instantLength = getInstantLength();
 			double lastX = double.MinValue;
+			bool isFirst = true;
 			foreach (XElement instant in data)
 			{
 				double x = Double.Parse(instant.Attribute("ins").Value);
+				if (isFirst)
+				{
+					lastX = x;
+					isFirst = false;
+				}
 				double y = 0;
 
 				//si la diferencia entre el ultimo x, y el x actual es mayor que instantLength
