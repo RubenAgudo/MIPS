@@ -114,9 +114,6 @@
     <Compile Include="src\classes\XMLValidation.cs" />
     <Compile Include="src\exceptions\FileNotSelectedException.cs" />
     <Compile Include="src\interfaces\IContainer.cs" />
-    <Compile Include="src\ui\dialogs\SaveDialog.xaml.cs">
-      <DependentUpon>SaveDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="src\ui\userControls\UC_ChartContainer.xaml.cs">
       <DependentUpon>UC_ChartContainer.xaml</DependentUpon>
     </Compile>
@@ -132,10 +129,6 @@
     <Compile Include="src\ViewModels\AbstractDataVisualizerViewModel.cs" />
     <Compile Include="src\ViewModels\ContinousDataVisualizerViewModel.cs" />
     <Compile Include="src\ViewModels\DiscreteDataVisualizerViewModel.cs" />
-    <Page Include="src\ui\dialogs\SaveDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="src\ui\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
