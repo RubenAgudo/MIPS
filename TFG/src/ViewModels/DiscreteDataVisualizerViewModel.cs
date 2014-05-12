@@ -12,7 +12,10 @@ namespace TFG.src.ViewModels
 			List<string> labels, string property, string observation, int propType) : base(property, observation, propType)
 		{
 			Model = createModel(points, labels);
+			Labels = labels;
 		}
+
+		public List<string> Labels { get; private set; }
 
 		private PlotModel createModel(List<DataPoint> points, List<string> labels)
 		{

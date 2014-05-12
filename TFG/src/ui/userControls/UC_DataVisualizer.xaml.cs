@@ -1,6 +1,7 @@
 ﻿using OxyPlot;
 using OxyPlot.Annotations;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Controls;
 using TFG.src.ViewModels;
@@ -40,7 +41,19 @@ namespace TFG.src.ui.userControls
 			}
 		}
 
-		public RectangleAnnotation RangeSelection { get; private set; }
+		public List<string> Labels
+		{
+			get
+			{
+				if (viewModel is DiscreteDataVisualizerViewModel)
+				{
+					return ((DiscreteDataVisualizerViewModel)viewModel).Labels;
+				}
+				return null;
+			}
+		}
+
+		private RectangleAnnotation RangeSelection { get; set; }
 
 		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel)
 		{
@@ -147,10 +160,10 @@ namespace TFG.src.ui.userControls
 			return new double[] { RangeSelection.MinimumX, RangeSelection.MaximumX };
 		}
 
-		internal void updateRangeSelection(RectangleAnnotation rectangleAnnotation)
+		internal void updateRangeSelection(double[] range)
 		{
-			RangeSelection.MaximumX = rectangleAnnotation.MaximumX;
-			RangeSelection.MinimumX = rectangleAnnotation.MinimumX;
+			RangeSelection.MaximumX = range[1];
+			RangeSelection.MinimumX = range[0];
 			oxyplot.Model.Subtitle = string.Format("{0:0.00} to {1:0.00}", RangeSelection.MinimumX, RangeSelection.MaximumX);
 			oxyplot.InvalidatePlot();
 		}

@@ -111,6 +111,7 @@
     <Compile Include="src\classes\XMLLoader.cs" />
     <Compile Include="src\classes\GraphicActions.cs" />
     <Compile Include="src\classes\VideoActions.cs" />
+    <Compile Include="src\classes\XMLValidation.cs" />
     <Compile Include="src\exceptions\FileNotSelectedException.cs" />
     <Compile Include="src\interfaces\IContainer.cs" />
     <Compile Include="src\ui\dialogs\SaveDialog.xaml.cs">

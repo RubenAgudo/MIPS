@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Linq;
+using System.Linq;
 using TFG.src.ui.userControls;
+using System;
+using TFG.src.ViewModels;
 
 namespace TFG.src.classes
 {
@@ -177,7 +180,7 @@ namespace TFG.src.classes
 				data.TryGetValue(key, out dataVisualizers);
 				foreach (UC_DataVisualizer datav in dataVisualizers)
 				{
-					datav.updateRangeSelection(modifiedChart.RangeSelection);
+					datav.updateRangeSelection(modifiedChart.getRangeSelection());
 				}
 			}
 			
@@ -187,47 +190,96 @@ namespace TFG.src.classes
 		/// Return the data currently loaded into an XML tree
 		/// </summary>
 		/// <returns>The root XElement containing all the children</returns>
-		internal XElement getDataForXML(string fileName)
+		internal XElement getDataForXML(string fileName, double start, double end)
 		{
 			XElement root = new XElement("paso");
 
+			//para cada observacion
 			foreach (string key in data.Keys)
 			{
+				//creamos la observacion y su atributo con el nombre
 				XElement observation = new XElement("observacion");
 				XAttribute nombreObservacion = new XAttribute("nombreObservacion", key);
 				
-
+				//obtenemos la lista de propiedades de esa observacion
 				LinkedList<UC_DataVisualizer> dataVisualizersOfObservation;
-
 				data.TryGetValue(key, out dataVisualizersOfObservation);
 
+				//para cada propiedad de la observacion
 				foreach(UC_DataVisualizer datav in dataVisualizersOfObservation) {
+
+					//creamos una propiedad con los atributos tipo y nombrepropiedad
 					XElement property = new XElement("propiedad");
 					XAttribute tipo = new XAttribute("tipo", datav.PropertyType);
 					XAttribute nombrePropiedad = new XAttribute("nombrePropiedad", datav.Property);
 
-					foreach (DataPoint datapoint in datav.Points)
+					//obtenemos todos los datapoints que esten en el rango seleccionado
+					IEnumerable<DataPoint> list =
+						from li in datav.Points
+						where li.X >= start && li.X <= end
+						select li;
+
+					//Para cada datapoint
+					foreach (DataPoint datapoint in list) 
 					{
-						XElement datap = new XElement("data", datapoint.Y);
+						//creamos el elemento y obtenemos su valor Y
+						XElement datap = null; 
+						switch (datav.PropertyType)
+						{
+							case AbstractDataVisualizerViewModel.CONTINOUS:
+								datap = new XElement("data", datapoint.Y);
+								break;
+							case AbstractDataVisualizerViewModel.DISCRETE:
+								datap = new XElement("data", datav.Labels[(int)datapoint.Y]);
+								break;
+						} 
+						//creamos el atributo instante con el valor X (tiempo) y lo añadimos
 						XAttribute instante = new XAttribute("instante", datapoint.X);
 						datap.Add(instante);
 						
+						//añadimos a la propiedad todos los datapoints
 						property.Add(datap);
-
 					}
+					//añadimos a la propiedad sus atributos
 					property.Add(tipo);
 					property.Add(nombrePropiedad);
 
+					//añadimos a la observacion la propiedad
 					observation.Add(property);
 
 				}
-
+				//añadimos a la observacion su atributo y añadimos la observacion al nodo raiz
 				observation.Add(nombreObservacion);
-				root.Add(new XAttribute("name", fileName));
 				root.Add(observation);
 			}
-
+			//le ponemos al nodo raiz su atributo
+			root.Add(new XAttribute("name", fileName));
+			
 			return root;
+		}
+
+		internal double[] getSelectedRange()
+		{
+			foreach (string key in data.Keys)
+			{
+				LinkedList<UC_DataVisualizer> datavisualizers;
+				if (data.TryGetValue(key, out datavisualizers))
+				{
+					if (datavisualizers.Count > 0)
+					{
+						UC_DataVisualizer datav = datavisualizers.First.Value;
+						double[] selection = datav.getRangeSelection();
+						if (selection[0] != selection[1])
+						{
+							return selection;
+						}
+						return null;
+					}
+					return null;
+				}
+				return null;
+			}
+			return null;
 		}
 	}
 }

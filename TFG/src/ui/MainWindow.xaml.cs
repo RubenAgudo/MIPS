@@ -202,7 +202,11 @@ namespace TFG
 
 		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
 		{
-			XMLExport.getMyXMLExport().saveData();
+			double[] selectedRange = GraphicActions.getMyGraphicActions().getSelectedRange();
+			if (!XMLExport.getMyXMLExport().saveData(selectedRange[0], selectedRange[1]))
+			{
+				MessageBoxResult msg = MessageBox.Show("Error validating XML");
+			}
 		}
 
 		private void loadVideos()

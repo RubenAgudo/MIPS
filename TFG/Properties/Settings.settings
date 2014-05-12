@@ -5,8 +5,11 @@
     <Setting Name="SecondsToAdvance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="pathToXsd" Type="System.String" Scope="User">
+    <Setting Name="pathToXsdLoad" Type="System.String" Scope="User">
       <Value Profile="(Default)">schemas/ObservationModelData.xsd</Value>
+    </Setting>
+    <Setting Name="pathToXsdSave" Type="System.String" Scope="User">
+      <Value Profile="(Default)">schemas/saveData.xsd</Value>
     </Setting>
   </Settings>
 </SettingsFile>
