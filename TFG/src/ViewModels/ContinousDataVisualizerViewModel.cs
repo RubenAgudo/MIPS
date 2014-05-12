@@ -8,7 +8,7 @@ namespace TFG.src.ViewModels
 	{
 
 		public ContinousDataVisualizerViewModel(List<DataPoint> points, 
-			string property, string observation) : base(property, observation)
+			string property, string observation, int propType) : base(property, observation, propType)
 		{
 			Model = createModel(points);
 		}

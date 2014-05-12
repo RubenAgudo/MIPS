@@ -9,7 +9,7 @@ namespace TFG.src.ViewModels
     {
 
 		public DiscreteDataVisualizerViewModel(List<DataPoint> points, 
-			List<string> labels, string property, string observation) : base(property, observation)
+			List<string> labels, string property, string observation, int propType) : base(property, observation, propType)
 		{
 			Model = createModel(points, labels);
 		}

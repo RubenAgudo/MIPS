@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using OxyPlot;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Xml.Linq;
 using TFG.src.ui.userControls;
 
 namespace TFG.src.classes
@@ -179,6 +181,53 @@ namespace TFG.src.classes
 				}
 			}
 			
+		}
+
+		/// <summary>
+		/// Return the data currently loaded into an XML tree
+		/// </summary>
+		/// <returns>The root XElement containing all the children</returns>
+		internal XElement getDataForXML(string fileName)
+		{
+			XElement root = new XElement("paso");
+
+			foreach (string key in data.Keys)
+			{
+				XElement observation = new XElement("observacion");
+				XAttribute nombreObservacion = new XAttribute("nombreObservacion", key);
+				
+
+				LinkedList<UC_DataVisualizer> dataVisualizersOfObservation;
+
+				data.TryGetValue(key, out dataVisualizersOfObservation);
+
+				foreach(UC_DataVisualizer datav in dataVisualizersOfObservation) {
+					XElement property = new XElement("propiedad");
+					XAttribute tipo = new XAttribute("tipo", datav.PropertyType);
+					XAttribute nombrePropiedad = new XAttribute("nombrePropiedad", datav.Property);
+
+					foreach (DataPoint datapoint in datav.Points)
+					{
+						XElement datap = new XElement("data", datapoint.Y);
+						XAttribute instante = new XAttribute("instante", datapoint.X);
+						datap.Add(instante);
+						
+						property.Add(datap);
+
+					}
+					property.Add(tipo);
+					property.Add(nombrePropiedad);
+
+					observation.Add(property);
+
+				}
+
+				observation.Add(nombreObservacion);
+				root.Add(new XAttribute("name", fileName));
+				root.Add(observation);
+			}
+
+			return root;
 		}
 	}
 }

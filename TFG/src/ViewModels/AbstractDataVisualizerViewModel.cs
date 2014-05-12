@@ -31,11 +31,14 @@ namespace TFG.src.ViewModels
 
 		public string Property { get; protected set; }
 
-		protected AbstractDataVisualizerViewModel(string property, string observation)
+		protected AbstractDataVisualizerViewModel(string property, string observation, int typeViewModel)
 		{
 			Title = property;
 			Property = property;
 			Observation = observation;
+			Type = typeViewModel;
 		}
+
+		public int Type { get; protected set; }
 	}
 }

@@ -21,6 +21,25 @@ namespace TFG.src.ui.userControls
 
 		public string Observation { get { return viewModel.Observation; } }
 		public string Property { get { return viewModel.Property; } }
+
+		/// <summary>
+		/// Gets the type of the viewModel associated to this DataVisualizer
+		/// </summary>
+		public int PropertyType
+		{
+			get
+			{
+				return viewModel.Type;
+			}
+		}
+
+		public System.Collections.Generic.IEnumerable<DataPoint> Points {
+			get
+			{
+				return viewModel.Points;
+			}
+		}
+
 		public RectangleAnnotation RangeSelection { get; private set; }
 
 		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel)
@@ -135,5 +154,6 @@ namespace TFG.src.ui.userControls
 			oxyplot.Model.Subtitle = string.Format("{0:0.00} to {1:0.00}", RangeSelection.MinimumX, RangeSelection.MaximumX);
 			oxyplot.InvalidatePlot();
 		}
+
 	}
 }

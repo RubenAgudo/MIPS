@@ -42,14 +42,15 @@ namespace TFG.src.classes
 		/// <summary>
 		/// Method that validates an XML with a given XSD
 		/// </summary>
+		/// <param name="pathToXml"></param>
 		/// <param name="pathToXsd"></param>
 		/// <returns>A boolean indicating if the given XML complies with the XSD</returns>
-		private bool Validate(string pathTostring, string pathToXsd)
+		private bool Validate(string pathToXml, string pathToXsd)
 		{
 			XmlSchemaSet schemas = new XmlSchemaSet();
 			schemas.Add("", XmlReader.Create(new StreamReader(pathToXsd)));
 
-			XDocument xml = XDocument.Load(pathTostring);
+			XDocument xml = XDocument.Load(pathToXml);
 
 			Console.WriteLine("Validating xml");
 			bool errors = false;
@@ -78,31 +79,21 @@ namespace TFG.src.classes
 					orderby (double)da.Attribute("ins") ascending
 					select da;
 
-				bool EsContinuo = isContinousProperty(prop);
+				int propType = int.Parse(prop.Attribute("type").Value);
 
 				Dictionary<string, double> labels = new Dictionary<string, double>(data.Count());
-				ICollection<DataPoint> pointCollection = createPoints(EsContinuo, data, labels);
+				ICollection<DataPoint> pointCollection = createPoints(propType, data, labels);
 
 				List<DataPoint> points = new List<DataPoint>(pointCollection);
 
 				string nombreProp = prop.Attribute("name").Value;
 				string observation = prop.Parent.Attribute("name").Value;
-				AbstractDataVisualizerViewModel avm = createViewModel(points, labels, EsContinuo, nombreProp, observation);
+				AbstractDataVisualizerViewModel avm = createViewModel(points, labels, propType, nombreProp, observation);
 				viewModels.AddLast(avm);
 			}
 
 			return viewModels;
 			
-		}
-
-		/// <summary>
-		/// Checks if a given property is continous or not
-		/// </summary>
-		/// <param name="prop">The property we want to check</param>
-		/// <returns>true if continous, false otherwise</returns>
-		private bool isContinousProperty(XElement prop)
-		{
-			return int.Parse(prop.Attribute("type").Value) == AbstractDataVisualizerViewModel.CONTINOUS;
 		}
 
 		/// <summary>
@@ -115,16 +106,18 @@ namespace TFG.src.classes
 		/// <param name="observation">The observation name</param>
 		/// <returns>An AbstractDataVisualizerViewModel that must be downcasted to use it correctly</returns>
 		private AbstractDataVisualizerViewModel createViewModel(List<DataPoint> points,
-			Dictionary<string, double> labels, bool EsContinuo, string title, string observation)
+			Dictionary<string, double> labels, int propType, string title, string observation)
 		{
 			AbstractDataVisualizerViewModel avm = null;
-			if (EsContinuo)
+
+			switch (propType)
 			{
-				avm = new ContinousDataVisualizerViewModel(points, title, observation);
-			}
-			else
-			{
-				avm = new DiscreteDataVisualizerViewModel(points, labels.Keys.ToList(), title, observation);
+				case AbstractDataVisualizerViewModel.CONTINOUS:
+					avm = new ContinousDataVisualizerViewModel(points, title, observation, propType);
+					break;
+				case AbstractDataVisualizerViewModel.DISCRETE:
+					avm = new DiscreteDataVisualizerViewModel(points, labels.Keys.ToList(), title, observation, propType);
+					break;
 			}
 			return avm;
 		}
@@ -136,7 +129,7 @@ namespace TFG.src.classes
 		/// <param name="data"></param>
 		/// <param name="labels"></param>
 		/// <returns></returns>
-		private ICollection<DataPoint> createPoints(bool EsContinuo, IEnumerable<XElement> data, 
+		private ICollection<DataPoint> createPoints(int propType, IEnumerable<XElement> data, 
 			Dictionary<string, double> labels)
 		{
 			ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
@@ -156,7 +149,7 @@ namespace TFG.src.classes
 				}
 
 
-				if (!EsContinuo)
+				if (propType != AbstractDataVisualizerViewModel.CONTINOUS)
 				{
 
 					bool success = labels.TryGetValue(instant.Attribute("value").Value, out y);
