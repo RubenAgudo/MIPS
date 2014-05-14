@@ -44,16 +44,20 @@ namespace TFG.src.classes
 		}
 
 		/// <summary>
-		/// Adds a new UC_DataVisualizer to the end of the data
+		/// Adds a new UC_DataVisualizer to the end of the data if not exists
 		/// </summary>
 		/// <param name="dataVisualizer"></param>
         public void addLast(UC_DataVisualizer dataVisualizer)
         {
-			dataVisualizer.PropertyChanged += dataVisualizer_PropertyChanged;
+			
 			LinkedList<UC_DataVisualizer> datav;
 			if (data.TryGetValue(dataVisualizer.Observation, out datav))
 			{
-				datav.AddLast(dataVisualizer);
+				dataVisualizer.PropertyChanged += dataVisualizer_PropertyChanged;
+				if (!datav.Contains(dataVisualizer))
+				{
+					datav.AddLast(dataVisualizer);
+				}
 			}
 			else
 			{
@@ -64,6 +68,11 @@ namespace TFG.src.classes
 			
 			
         }
+
+		private IEqualityComparer<UC_DataVisualizer> IEqualityComparer<T1>()
+		{
+			throw new NotImplementedException();
+		}
 
 		/// <summary>
 		/// Event handler that update the selection of the other charts
@@ -283,13 +292,13 @@ namespace TFG.src.classes
 						{
 							return selection;
 						}
-						return null;
+						return new double[] { 0d, 0d };
 					}
-					return null;
+					return new double[] { 0d, 0d };
 				}
-				return null;
+				return new double[] { 0d, 0d };
 			}
-			return null;
+			return new double[] { 0d, 0d };
 		}
 	}
 }

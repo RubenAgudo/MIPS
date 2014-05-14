@@ -13,7 +13,7 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_DataVisualizer.xaml
     /// </summary>
-	public partial class UC_DataVisualizer : UserControl, INotifyPropertyChanged
+	public partial class UC_DataVisualizer : UserControl, INotifyPropertyChanged, IEquatable<UC_DataVisualizer>
     {
 		private RectangleAnnotation Progress;
 		private AbstractDataVisualizerViewModel viewModel;
@@ -55,12 +55,12 @@ namespace TFG.src.ui.userControls
 
 		private RectangleAnnotation RangeSelection { get; set; }
 
-		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel)
+		public UC_DataVisualizer(AbstractDataVisualizerViewModel viewModel, double start, double end)
 		{
 			InitializeComponent();
 			this.viewModel = viewModel;
 			oxyplot.Model = this.viewModel.Model;
-			initialize();
+			initialize(start, end);
 
 			
 		}
@@ -73,13 +73,13 @@ namespace TFG.src.ui.userControls
 			}
 		}
 
-		private void initialize()
+		private void initialize(double start, double end)
 		{
 			startx = double.NaN;
 			RangeSelection = new RectangleAnnotation();
 			RangeSelection.Fill = OxyColor.FromArgb(120, 135, 206, 235);
-			RangeSelection.MinimumX = 0;
-			RangeSelection.MaximumX = 0;
+			RangeSelection.MinimumX = start;
+			RangeSelection.MaximumX = end;
 
 			oxyplot.Model.Annotations.Add(RangeSelection);
 			oxyplot.Model.MouseDown += Model_MouseDown;
@@ -168,5 +168,11 @@ namespace TFG.src.ui.userControls
 			oxyplot.InvalidatePlot();
 		}
 
+
+		public bool Equals(UC_DataVisualizer other)
+		{
+			//dos datavisualizers son iguales si tienen la misma propiedad y observacion
+			return this.Property == other.Property && this.Observation == other.Observation;
+		}
 	}
 }

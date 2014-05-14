@@ -20,17 +20,16 @@ namespace TFG
     /// </summary>
     public partial class MainWindow : Window, TFG.src.interfaces.IContainer
     {
-        private HashSet<string> loaded;
 		private XMLLoader xmlLoader;
 		private UC_VideoContainer videoContainer;
 		private DispatcherTimer timer;
 
         public MainWindow()
         {
-            InitializeComponent();
-            
             this.DataContext = this;
-			loaded = new HashSet<string>();
+            InitializeComponent();
+           
+
 			timer = new DispatcherTimer();
 			timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
 			timer.Tick += timer_Tick;
@@ -54,7 +53,6 @@ namespace TFG
 				doc.Title = Title;
 				doc.Content = objectToAdd;
 				mainPanel.Children.Add(doc);
-
 			}
 			else
 			{
@@ -65,12 +63,11 @@ namespace TFG
 
 		private void doc_Hiding(object sender, CancelEventArgs e)
 		{
- 			LayoutAnchorable doc = (LayoutAnchorable)sender;
+			LayoutAnchorable doc = (LayoutAnchorable)sender;
 			if (sender is UC_ChartContainer)
 			{
-				UC_ChartContainer content = (UC_ChartContainer)doc.Content;
+				UC_DataVisualizer content = (UC_DataVisualizer)doc.Content;
 				GraphicActions.getMyGraphicActions().remove(content);
-				loaded.Remove(content.Observation);
 			}
 			else
 			{
@@ -96,7 +93,7 @@ namespace TFG
 				string pathToXML = XMLLoader.openXML();
 				xmlLoader = new XMLLoader(pathToXML);
 				List<string> observations = xmlLoader.getObservations();
-                loaded = new HashSet<string>();
+
 				foreach (string observation in observations)
 				{
 					List<string> properties = xmlLoader.getPropertiesOf(observation);
@@ -128,7 +125,7 @@ namespace TFG
 		}
 
 		/// <summary>
-		/// Añade las propiedades seleccionadas al ObservationContainer que corresponda
+		/// Añade las propiedades seleccionadas al ChartContainer que corresponda
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -137,49 +134,58 @@ namespace TFG
 			LinkedList<AbstractDataVisualizerViewModel> viewModels;
 			TreeViewItem anItem = (TreeViewItem) observationsAndProperties.SelectedItem;
 			
-			if (anItem == null)
-			{
-				return;
-			}
+			if (anItem == null) { return; }
 
-			string itemHeader = anItem.Header.ToString(), 
-				parentHeader;
-			bool createNewObservationContainer;
-
-			if (!anItem.HasItems)
-			{
-				parentHeader = ((TreeViewItem)anItem.Parent).Header.ToString();
-				createNewObservationContainer = !GraphicActions.getMyGraphicActions().exists(parentHeader);
-				viewModels = xmlLoader.LoadXMLData(itemHeader, parentHeader);
-			}
-			else
-			{
-				createNewObservationContainer = !GraphicActions.getMyGraphicActions().exists(itemHeader);
-				viewModels = xmlLoader.LoadXMLData(itemHeader);
-			}
+			bool createNewChartContainer = LoadDataFromXML(anItem, out viewModels);
 
 			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
 			{
-				UC_ChartContainer newContainer = null;
 				string observacion = viewModel.Observation;
 				
-				if (createNewObservationContainer)
+				if (createNewChartContainer)
 				{
-					createNewObservationContainer = false;
-					newContainer = new UC_ChartContainer(observacion);
+					createNewChartContainer = false;
+					UC_ChartContainer newContainer = new UC_ChartContainer(observacion);
 					GraphicActions.getMyGraphicActions().addObservationContainer(newContainer);
 					addToAnchorablePane(newContainer, newContainer.Observation);
 				}
 
 				//comprobamos que no sea de la clase abstracta
-				if ((viewModel is ContinousDataVisualizerViewModel ||
-					viewModel is DiscreteDataVisualizerViewModel) && !loaded.Contains(viewModel.Title))
+				if (((viewModel is ContinousDataVisualizerViewModel) ||
+					(viewModel is DiscreteDataVisualizerViewModel)))
 				{
-					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel);
+					double[] startEnd = GraphicActions.getMyGraphicActions().getSelectedRange();
+					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel, startEnd[0], startEnd[1]);
 					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
 					GraphicActions.getMyGraphicActions().addToContainer(observacion, dataVisualizer);
 				}
 			}
+		}
+
+		/// <summary>
+		/// This method loads the data from the xml, and returns if a new container must be created.
+		/// It also returns in an out variable the viewModels to add
+		/// </summary>
+		/// <param name="anItem">the TreeViewItem that has been selected</param>
+		/// <param name="viewModels"> The viewModels that are going to be created</param>
+		/// <returns></returns>
+		private bool LoadDataFromXML(TreeViewItem anItem, out LinkedList<AbstractDataVisualizerViewModel> viewModels)
+		{
+			string parentHeader;
+			string itemHeader = anItem.Header.ToString();
+			bool result;
+			if (!anItem.HasItems)
+			{
+				parentHeader = ((TreeViewItem)anItem.Parent).Header.ToString();
+				result = !GraphicActions.getMyGraphicActions().exists(parentHeader);
+				viewModels = xmlLoader.LoadXMLData(itemHeader, parentHeader);
+			}
+			else
+			{
+				result = !GraphicActions.getMyGraphicActions().exists(itemHeader);
+				viewModels = xmlLoader.LoadXMLData(itemHeader);
+			}
+			return result;
 		}
 
 		private void mnitAddVideo_Click(object sender, RoutedEventArgs e)
@@ -203,8 +209,27 @@ namespace TFG
 		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
 		{
 			double[] selectedRange = GraphicActions.getMyGraphicActions().getSelectedRange();
-			MessageBoxResult msg = MessageBox.Show("Do you want to add more intervals later?", "Add more intervals?", MessageBoxButton.YesNo, MessageBoxImage.Question);
-			XMLExport.getMyXMLExport().createInterval(selectedRange[0], selectedRange[1], msg == MessageBoxResult.No);
+			if (selectedRange[0] == selectedRange[1])
+			{
+				MessageBoxResult msg = MessageBox.Show("You must select a range", "No range selected", 
+					MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			else
+			{
+				MessageBoxResult msgAddInterval = MessageBox.Show("Do you want to add more intervals later?", 
+					"Add more intervals?",
+					MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+				if ( !XMLExport.getMyXMLExport().createInterval(selectedRange[0], selectedRange[1]))
+				{
+					MessageBoxResult msg = MessageBox.Show("Selected interval overlaps! Aborting creation of new interval", 
+						"Interval NOT saved", MessageBoxButton.OK, MessageBoxImage.Warning);
+				}
+				
+				if (msgAddInterval == MessageBoxResult.No) { XMLExport.getMyXMLExport().saveData(); }
+
+			}
+			
 		}
 
 		private void loadVideos()

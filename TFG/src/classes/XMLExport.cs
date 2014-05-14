@@ -29,17 +29,24 @@ namespace TFG.src.classes
 			return myXMLExport;
 		}
 
-		public void createInterval(double start, double end, bool saveToDisk)
+		/// <summary>
+		/// Creates a new interval.
+		/// 
+		/// Checks if the given interval overlaps, and saves to disk if necessary
+		/// </summary>
+		/// <param name="start"></param>
+		/// <param name="end"></param>
+		/// <param name="saveToDisk"></param>
+		/// <returns>True if a new interval was created, false otherwise</returns>
+		public bool createInterval(double start, double end)
 		{
-			if (overlaps(start, end)) { return; }
-
+			if (overlaps(start, end)) { return false;	}
+	
 			XElement anInterval = GraphicActions.getMyGraphicActions().getDataForXML(start, end);
 			intervalsXML.AddLast(anInterval);
 			intervals.AddLast(new double[] { start, end });
-			if (saveToDisk)
-			{
-				saveData();
-			}
+			
+			return true;
 		}
 
 		/// <summary>
@@ -82,7 +89,7 @@ namespace TFG.src.classes
 			return false;
 		}
 
-		private bool saveData()
+		public bool saveData()
 		{
 			dlg.FileName = "Step " + System.DateTime.Today.Ticks; // Default file name
 			dlg.DefaultExt = ".xml"; // Default file extension
