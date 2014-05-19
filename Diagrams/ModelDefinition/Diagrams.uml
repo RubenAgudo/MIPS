@@ -3,6 +3,40 @@
   dslVersion="1.0.0.0"
   Id="1e73c008-fec4-42bf-bb8d-4d6441d95c3a"
   name="Diagrams" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="491061a8-e1bd-4afc-a283-1e48385bb7c8">
+      <body>Si se ha cargado alguna propiedad</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="8725b85f-798a-4159-839d-7e4e598dc64f"
+          LastKnownName="Guardar Rango"
+          LastKnownLocation="Diagrams.uml" />
+        <useCaseMoniker
+          Id="a1743512-5eb0-49a5-94ef-ea5330d33c43"
+          LastKnownName="Cerrar propiedad"
+          LastKnownLocation="Diagrams.uml" />
+        <useCaseMoniker
+          Id="beecbb05-f482-455f-aa7d-7e3828f1c9d3"
+          LastKnownName="Cerrar observación"
+          LastKnownLocation="Diagrams.uml" />
+        <useCaseMoniker
+          Id="13029cf2-0d54-424f-a646-d1de51b7864e"
+          LastKnownName="Seleccionar rango"
+          LastKnownLocation="Diagrams.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="80b10220-4b46-4068-9995-2126d4b32c29">
+      <body>Si se ha cargado algún vídeo</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="2ccee99e-f944-4002-97c8-b13e47b94e74"
+          LastKnownName="Cerrar vídeo"
+          LastKnownLocation="Diagrams.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -34,7 +68,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="17cf30f7-0ef3-4b70-89a3-003329f393cf"
-              LastKnownName="LoadXML"
+              LastKnownName="Cargar XML"
               LastKnownLocation="Diagrams.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -73,7 +107,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="3174a52d-fd43-4405-849c-c7add452725a"
-              LastKnownName="Load Property"
+              LastKnownName="Cargar propiedad"
               LastKnownLocation="Diagrams.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -112,7 +146,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="24eb06d5-4042-4144-98a0-105abcf320a5"
-              LastKnownName="Load Observation"
+              LastKnownName="Cargar observación"
               LastKnownLocation="Diagrams.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -220,29 +254,234 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="4bdd0ff6-5ebd-4a7d-94f6-642ff001c15e"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Seleccionar rango"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="13029cf2-0d54-424f-a646-d1de51b7864e"
+              LastKnownName="Seleccionar rango"
+              LastKnownLocation="Diagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cac7d302-af92-469d-a55c-07a643cc68ce"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2c9aaf5d-75ef-49dc-a1f3-c0268ffbe653"
+                  name="Seleccionar rango"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ed1018c9-131b-4dca-98ad-808b8567067d"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Guardar Rango"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="8725b85f-798a-4159-839d-7e4e598dc64f"
+              LastKnownName="Guardar Rango"
+              LastKnownLocation="Diagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4757beba-6672-4409-9cba-e6216002a539"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dd5079e1-b12c-443f-b50c-806a7000b60d"
+                  name="Guardar Rango"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="10bb7fa9-3d5d-42b9-bd03-6ffee62fb53e"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Cerrar observación"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="beecbb05-f482-455f-aa7d-7e3828f1c9d3"
+              LastKnownName="Cerrar observación"
+              LastKnownLocation="Diagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8bf2d109-d65c-46fa-a0b7-a51a3c3e4f8a"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ccc3fd4a-a23f-47aa-b0fc-be065257501e"
+                  name="Cerrar observación"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="c1424515-8bf8-43c2-b473-231efe2106f5"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Añadir vídeo"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="b2f5bbfa-945e-4a69-8c4e-1d7e54493ebd"
+              LastKnownName="Añadir vídeo"
+              LastKnownLocation="Diagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5b07e423-8b16-4039-9884-de38112dfa7b"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="84ff430f-51f0-4fef-b369-44e6e6e874fd"
+                  name="Añadir vídeo"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8806d260-bd10-49bc-a923-ce521d73b0ba"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Cerrar propiedad"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a1743512-5eb0-49a5-94ef-ea5330d33c43"
+              LastKnownName="Cerrar propiedad"
+              LastKnownLocation="Diagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="97701ab6-3938-49df-95c7-6b267368f4e9"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="81f5de35-7f08-4f3a-96f2-ec9ad680fade"
+                  name="Cerrar propiedad"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </actor>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="17cf30f7-0ef3-4b70-89a3-003329f393cf"
-        name="LoadXML"
+        name="Cargar XML"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="3174a52d-fd43-4405-849c-c7add452725a"
-        name="Load Property"
+        name="Cargar propiedad"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="24eb06d5-4042-4144-98a0-105abcf320a5"
-        name="Load Observation"
+        name="Cargar observación"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <additions>
+          <include
+            Id="7a2a8980-c7c4-43ae-adc1-182d60cbc677">
+            <useCaseMoniker
+              Id="3174a52d-fd43-4405-849c-c7add452725a"
+              LastKnownName="Cargar propiedad"
+              LastKnownLocation="Diagrams.uml" />
+          </include>
+        </additions>
+      </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
@@ -257,6 +496,98 @@
         name="Save Situation"
         isAbstract="false"
         isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8725b85f-798a-4159-839d-7e4e598dc64f"
+        name="Guardar Rango"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="f0c96921-d4cc-432d-a6ba-809c06764f05">
+            <useCaseMoniker
+              Id="3174a52d-fd43-4405-849c-c7add452725a"
+              LastKnownName="Cargar propiedad"
+              LastKnownLocation="Diagrams.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b2f5bbfa-945e-4a69-8c4e-1d7e54493ebd"
+        name="Añadir vídeo"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="13029cf2-0d54-424f-a646-d1de51b7864e"
+        name="Seleccionar rango"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="826d5b4c-cc38-49d4-aaae-aefe24b1083e">
+            <useCaseMoniker
+              Id="3174a52d-fd43-4405-849c-c7add452725a"
+              LastKnownName="Cargar propiedad"
+              LastKnownLocation="Diagrams.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="beecbb05-f482-455f-aa7d-7e3828f1c9d3"
+        name="Cerrar observación"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="64a7fcbd-9902-4bc8-801e-80a1b298f660">
+            <useCaseMoniker
+              Id="3174a52d-fd43-4405-849c-c7add452725a"
+              LastKnownName="Cargar propiedad"
+              LastKnownLocation="Diagrams.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a1743512-5eb0-49a5-94ef-ea5330d33c43"
+        name="Cerrar propiedad"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="4aa1e837-c4f2-4fc7-be38-8f7a52ca5266">
+            <useCaseMoniker
+              Id="3174a52d-fd43-4405-849c-c7add452725a"
+              LastKnownName="Cargar propiedad"
+              LastKnownLocation="Diagrams.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2ccee99e-f944-4002-97c8-b13e47b94e74"
+        name="Cerrar vídeo"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="f44433d4-11af-42ab-88a8-a7f99e287211">
+            <useCaseMoniker
+              Id="b2f5bbfa-945e-4a69-8c4e-1d7e54493ebd"
+              LastKnownName="Añadir vídeo"
+              LastKnownLocation="Diagrams.uml" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

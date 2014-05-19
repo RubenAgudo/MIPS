@@ -64,10 +64,9 @@ namespace TFG
 		private void doc_Hiding(object sender, CancelEventArgs e)
 		{
 			LayoutAnchorable doc = (LayoutAnchorable)sender;
-			if (sender is UC_ChartContainer)
+			if (doc.Content is UC_ChartContainer)
 			{
-				UC_DataVisualizer content = (UC_DataVisualizer)doc.Content;
-				GraphicActions.getMyGraphicActions().remove(content);
+				GraphicActions.getMyGraphicActions().remove((UC_ChartContainer)doc.Content);
 			}
 			else
 			{

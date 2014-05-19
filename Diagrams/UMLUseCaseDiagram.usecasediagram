@@ -1,26 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="3577235c-0f45-42d9-9900-736aa9f208b0" name="UMLUseCaseDiagram" linkedPackageId="af7463d5-daa0-42ae-a1af-594d6025502a" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
-  <profileInstances>
-    <packageHasProfileInstances Id="71251729-67c3-44cf-9544-e79842c151ff">
-      <profileInstance Id="dcc18d7b-d1f1-47ea-a007-7be465d07b5d" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="add5129d-fd61-45f7-8481-78bf28e7fe5d">
-      <profileInstance Id="d0edc578-0bef-44a8-ad37-a72797e154d0" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+  <ownedCommentsInternal>
+    <comment Id="9e1aa4af-aaa8-47d4-a971-cb1ad61d094a">
+      <elementDefinition Id="491061a8-e1bd-4afc-a283-1e48385bb7c8" />
+      <body>Si se ha cargado alguna propiedad</body>
+      <annotatedElements>
+        <useCaseMoniker Id="ee02c8bf-d036-4db3-aecc-e1d2008e354a" LastKnownName="Guardar Rango" />
+        <useCaseMoniker Id="e2474146-0f8d-4925-8663-fbe8a8a96453" LastKnownName="Cerrar propiedad" />
+        <useCaseMoniker Id="c368ce4f-7663-4d91-a07c-d52d8197fdb8" LastKnownName="Cerrar observación" />
+        <useCaseMoniker Id="44316bb7-1de5-457c-b763-f4afd5063f2f" LastKnownName="Seleccionar rango" />
+      </annotatedElements>
+    </comment>
+    <comment Id="844ed1a8-44d3-44a4-b342-43b2468ed952">
+      <elementDefinition Id="80b10220-4b46-4068-9995-2126d4b32c29" />
+      <body>Si se ha cargado algún vídeo</body>
+      <annotatedElements>
+        <useCaseMoniker Id="4dd2e672-12fb-42dc-b87d-a3381032219c" LastKnownName="Cerrar vídeo" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <packagedElements>
     <useCaseModelRootHasTypes>
       <actor Id="7258a782-3185-4914-a5eb-38eb0b1b1e84" name="User" isAbstract="false" isLeaf="false">
         <elementDefinition Id="78a47a2d-9557-4a15-a445-a5a129d7fd21" />
         <targetEnds>
           <association Id="609c2e6f-1f5e-4f88-8414-49eac3ab4929" isDerived="false" sourceEndRoleName="User" targetEndRoleName="LoadXML" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="1599ef3c-1516-4914-8f24-e472d1866d73" LastKnownName="LoadXML" />
+            <useCaseMoniker Id="1599ef3c-1516-4914-8f24-e472d1866d73" LastKnownName="Cargar XML" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="90128fc8-84fb-4b45-b12b-e57edea027ed" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -36,7 +41,7 @@
             <elementDefinition Id="b0929e1b-3539-487d-bdce-01f179c1d2a7" />
           </association>
           <association Id="6bfdcfaf-834f-43c9-b27d-fb887ee74726" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Load Property" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Load Property" />
+            <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Cargar propiedad" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="543d98a2-c6f6-426b-8354-4b1658a3b952" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -52,7 +57,7 @@
             <elementDefinition Id="c547ee8b-c90e-4a14-8e4d-6548545fb107" />
           </association>
           <association Id="002ad0b4-7f41-407d-8520-75cb3f9a3ce6" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Load Observation" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="f48b8e79-8da2-4e9d-a2d7-5cff8e58ebba" LastKnownName="Load Observation" />
+            <useCaseMoniker Id="f48b8e79-8da2-4e9d-a2d7-5cff8e58ebba" LastKnownName="Cargar observación" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="4c812c42-301e-42de-affa-dd20721b3d71" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -67,68 +72,186 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="478ae48a-6b42-4fe9-ba4b-59f6ebee1600" />
           </association>
-          <association Id="fb541348-2342-422b-8070-c1469e0e391d" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Save Step" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="231c0f5e-566e-4473-9c4e-cf78c5810cd3" LastKnownName="Save Step" />
+          <association Id="130a7e62-1cfa-4446-aef8-76996c2894d4" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Seleccionar rango" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="44316bb7-1de5-457c-b763-f4afd5063f2f" LastKnownName="Seleccionar rango" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="b4e1c663-6c93-4018-8a4d-702bb1c581f0" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="f3d784cf-e087-4fb8-8827-b79aea903938" />
+                <memberEnd Id="79315028-7905-4efd-9266-7b79b7edf8f5" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cac7d302-af92-469d-a55c-07a643cc68ce" />
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="63a1a000-9b95-407c-b6d2-80c6a2b6db7c" name="Save Step" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="423e4130-e4e4-4506-af32-2e81277b7de4" />
+                <memberEnd Id="838017ea-ea70-493b-8312-44ef5cdbb407" name="Seleccionar rango" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2c9aaf5d-75ef-49dc-a1f3-c0268ffbe653" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
-            <elementDefinition Id="d4ab39a3-075b-4142-9f41-b4d563dd1f05" />
+            <elementDefinition Id="4bdd0ff6-5ebd-4a7d-94f6-642ff001c15e" />
           </association>
-          <association Id="afc8cd6b-278d-489c-b677-febe30249507" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Save Situation" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="c778bcde-5897-4bf3-8c5f-0c635037afae" LastKnownName="Save Situation" />
+          <association Id="d9560e3f-733a-486e-9da3-d216e62616f9" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Guardar Rango" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ee02c8bf-d036-4db3-aecc-e1d2008e354a" LastKnownName="Guardar Rango" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="2b28dc1c-cba0-438f-9f41-e76fd2f9f2cc" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="c9731004-f4dc-4d0b-9010-dbf06721fcc7" />
+                <memberEnd Id="a83fc41f-4d68-4e47-a02a-9840577e9d6b" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4757beba-6672-4409-9cba-e6216002a539" />
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="62340a82-0613-47c4-a62e-31e3841c97d2" name="Save Situation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="d0bbdcc0-df4a-4744-bd2a-b41408217f97" />
+                <memberEnd Id="9cff2393-9a1c-4d2e-83cf-500a224b482c" name="Guardar Rango" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="dd5079e1-b12c-443f-b50c-806a7000b60d" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
-            <elementDefinition Id="23f25b31-adb2-467f-8ab0-fc232e95feb8" />
+            <elementDefinition Id="ed1018c9-131b-4dca-98ad-808b8567067d" />
+          </association>
+          <association Id="adfc95ad-a760-41dc-ab5a-f78b4a39df11" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Cerrar observación" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="c368ce4f-7663-4d91-a07c-d52d8197fdb8" LastKnownName="Cerrar observación" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2031f75d-9a3d-45a6-99dc-bd1f22721fc9" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="8bf2d109-d65c-46fa-a0b7-a51a3c3e4f8a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="40c02327-489a-48c5-873d-c040b999638a" name="Cerrar observación" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ccc3fd4a-a23f-47aa-b0fc-be065257501e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="10bb7fa9-3d5d-42b9-bd03-6ffee62fb53e" />
+          </association>
+          <association Id="587b12ae-2e2f-4f02-a19b-537f97a5e39b" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Añadir vídeo" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6ab529fb-5b7c-4add-b23b-d78d5cfc25be" LastKnownName="Añadir vídeo" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f504a111-8e05-43b7-a63c-799d6b70df6e" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5b07e423-8b16-4039-9884-de38112dfa7b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bbf407bc-195a-4916-bb5b-d1dcd4c5dab9" name="Añadir vídeo" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="84ff430f-51f0-4fef-b369-44e6e6e874fd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c1424515-8bf8-43c2-b473-231efe2106f5" />
+          </association>
+          <association Id="88915ea7-f8f8-4092-930d-1cdc7d08ac5d" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Cerrar propiedad" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e2474146-0f8d-4925-8663-fbe8a8a96453" LastKnownName="Cerrar propiedad" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="394c4c3f-180a-43fe-992d-0ce409a25c55" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="97701ab6-3938-49df-95c7-6b267368f4e9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="90f97d4f-ab67-4b43-81ea-83496c7b850e" name="Cerrar propiedad" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="81f5de35-7f08-4f3a-96f2-ec9ad680fade" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8806d260-bd10-49bc-a923-ce521d73b0ba" />
           </association>
         </targetEnds>
       </actor>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="1599ef3c-1516-4914-8f24-e472d1866d73" name="LoadXML" isAbstract="false" isLeaf="false">
+      <useCase Id="1599ef3c-1516-4914-8f24-e472d1866d73" name="Cargar XML" isAbstract="false" isLeaf="false">
         <elementDefinition Id="17cf30f7-0ef3-4b70-89a3-003329f393cf" />
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" name="Load Property" isAbstract="false" isLeaf="false">
+      <useCase Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" name="Cargar propiedad" isAbstract="false" isLeaf="false">
         <elementDefinition Id="3174a52d-fd43-4405-849c-c7add452725a" />
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="f48b8e79-8da2-4e9d-a2d7-5cff8e58ebba" name="Load Observation" isAbstract="false" isLeaf="false">
+      <useCase Id="f48b8e79-8da2-4e9d-a2d7-5cff8e58ebba" name="Cargar observación" isAbstract="false" isLeaf="false">
         <elementDefinition Id="24eb06d5-4042-4144-98a0-105abcf320a5" />
+        <additions>
+          <include Id="3fff3222-511b-484e-a72f-3d43e4d8a6ee">
+            <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Cargar propiedad" />
+            <elementDefinition Id="7a2a8980-c7c4-43ae-adc1-182d60cbc677" />
+          </include>
+        </additions>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="231c0f5e-566e-4473-9c4e-cf78c5810cd3" name="Save Step" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="6d17a254-c6d3-4113-844d-6a51a7968b17" />
+      <useCase Id="ee02c8bf-d036-4db3-aecc-e1d2008e354a" name="Guardar Rango" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8725b85f-798a-4159-839d-7e4e598dc64f" />
+        <suppliersInternal>
+          <dependency Id="eb05b43c-5eec-4c00-823a-67a09f3eb5d9">
+            <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Cargar propiedad" />
+            <elementDefinition Id="f0c96921-d4cc-432d-a6ba-809c06764f05" />
+          </dependency>
+        </suppliersInternal>
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="c778bcde-5897-4bf3-8c5f-0c635037afae" name="Save Situation" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="ad9d0a4f-3d61-4bac-9149-7052e10bbf38" />
+      <useCase Id="6ab529fb-5b7c-4add-b23b-d78d5cfc25be" name="Añadir vídeo" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b2f5bbfa-945e-4a69-8c4e-1d7e54493ebd" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="44316bb7-1de5-457c-b763-f4afd5063f2f" name="Seleccionar rango" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="13029cf2-0d54-424f-a646-d1de51b7864e" />
+        <suppliersInternal>
+          <dependency Id="7e1c9619-fbe4-4cc8-977e-44b584200056">
+            <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Cargar propiedad" />
+            <elementDefinition Id="826d5b4c-cc38-49d4-aaae-aefe24b1083e" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c368ce4f-7663-4d91-a07c-d52d8197fdb8" name="Cerrar observación" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="beecbb05-f482-455f-aa7d-7e3828f1c9d3" />
+        <suppliersInternal>
+          <dependency Id="cce037f0-128a-4098-b623-257d7ad8776e">
+            <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Cargar propiedad" />
+            <elementDefinition Id="64a7fcbd-9902-4bc8-801e-80a1b298f660" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e2474146-0f8d-4925-8663-fbe8a8a96453" name="Cerrar propiedad" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a1743512-5eb0-49a5-94ef-ea5330d33c43" />
+        <suppliersInternal>
+          <dependency Id="f37fcc74-09a8-4cb1-8c60-17713c6c6099">
+            <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Cargar propiedad" />
+            <elementDefinition Id="4aa1e837-c4f2-4fc7-be38-8f7a52ca5266" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="4dd2e672-12fb-42dc-b87d-a3381032219c" name="Cerrar vídeo" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2ccee99e-f944-4002-97c8-b13e47b94e74" />
+        <suppliersInternal>
+          <dependency Id="71e584dc-da36-432c-ba3e-2934d16544e9">
+            <useCaseMoniker Id="6ab529fb-5b7c-4add-b23b-d78d5cfc25be" LastKnownName="Añadir vídeo" />
+            <elementDefinition Id="f44433d4-11af-42ab-88a8-a7f99e287211" />
+          </dependency>
+        </suppliersInternal>
       </useCase>
     </useCaseModelRootHasTypes>
   </packagedElements>
   <package Id="af7463d5-daa0-42ae-a1af-594d6025502a" name="Diagrams">
     <elementDefinition Id="1e73c008-fec4-42bf-bb8d-4d6441d95c3a" />
+    <profileInstances>
+      <packageHasProfileInstances Id="71251729-67c3-44cf-9544-e79842c151ff">
+        <profileInstance Id="dcc18d7b-d1f1-47ea-a007-7be465d07b5d" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="add5129d-fd61-45f7-8481-78bf28e7fe5d">
+        <profileInstance Id="d0edc578-0bef-44a8-ad37-a72797e154d0" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </useCaseModelRoot>
