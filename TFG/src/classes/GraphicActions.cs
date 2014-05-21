@@ -1,11 +1,7 @@
-﻿using OxyPlot;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using System.Linq;
 using TFG.src.ui.userControls;
 using System;
-using TFG.src.ViewModels;
 
 namespace TFG.src.classes
 {
