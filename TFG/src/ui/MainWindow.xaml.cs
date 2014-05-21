@@ -155,7 +155,6 @@ namespace TFG
 				{
 					double[] startEnd = GraphicActions.getMyGraphicActions().getSelectedRange();
 					UC_DataVisualizer dataVisualizer = new UC_DataVisualizer(viewModel, startEnd[0], startEnd[1]);
-					GraphicActions.getMyGraphicActions().addLast(dataVisualizer);
 					GraphicActions.getMyGraphicActions().addToContainer(observacion, dataVisualizer);
 				}
 			}
