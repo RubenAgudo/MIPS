@@ -6,7 +6,7 @@
   <ownedCommentsInternal>
     <comment
       Id="491061a8-e1bd-4afc-a283-1e48385bb7c8">
-      <body>Si se ha cargado alguna propiedad</body>
+      <body>Si se ha cargado alguna propiedad y el usuario pincha en el botón</body>
       <annotatedElements>
         <useCaseMoniker
           Id="a1743512-5eb0-49a5-94ef-ea5330d33c43"
@@ -15,10 +15,6 @@
         <useCaseMoniker
           Id="beecbb05-f482-455f-aa7d-7e3828f1c9d3"
           LastKnownName="Cerrar observación"
-          LastKnownLocation="Diagrams.uml" />
-        <useCaseMoniker
-          Id="13029cf2-0d54-424f-a646-d1de51b7864e"
-          LastKnownName="Seleccionar rango"
           LastKnownLocation="Diagrams.uml" />
       </annotatedElements>
     </comment>
@@ -33,6 +29,16 @@
         <useCaseMoniker
           Id="3174a52d-fd43-4405-849c-c7add452725a"
           LastKnownName="Cargar propiedad"
+          LastKnownLocation="Diagrams.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="f2a18d0a-76d2-4644-bc4b-943bac21efcb">
+      <body>Si se ha cargado alguna propiedad y el usuario pincha y arrastra sobre un visualizador de datos</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="13029cf2-0d54-424f-a646-d1de51b7864e"
+          LastKnownName="Seleccionar rango"
           LastKnownLocation="Diagrams.uml" />
       </annotatedElements>
     </comment>

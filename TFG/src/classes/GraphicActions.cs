@@ -104,17 +104,17 @@ namespace TFG.src.classes
 		}
 
 		/// <summary>
-		/// Updates all the UC_DataVisualizers with the modifiedCharts RangeSelection
+		/// Updates all the UC_DataVisualizers with the given range selection
 		/// </summary>
-		/// <param name="modifiedChart">The UC_DataVisualizer that raised the PropertyChanged event</param>
-		internal void updateSelections(UC_DataVisualizer modifiedChart)
+		/// <param name="rangeToSyncWith">The range to be synced with</param>
+		internal void updateSelections(double[] rangeToSyncWith)
 		{
 
 			UC_ChartContainer aChartContainer;
 			foreach (string key in chartContainers.Keys)
 			{
 				chartContainers.TryGetValue(key, out aChartContainer);
-				aChartContainer.updateSelections(modifiedChart.getRangeSelection());
+				aChartContainer.updateSelections(rangeToSyncWith);
 			}
 			
 		}

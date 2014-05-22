@@ -71,7 +71,7 @@ namespace TFG.src.ui.userControls
 			if (e.PropertyName == "RangeSelection")
 			{
 				UC_DataVisualizer modifiedChart = (UC_DataVisualizer)sender;
-				GraphicActions.getMyGraphicActions().updateSelections(modifiedChart);
+				GraphicActions.getMyGraphicActions().updateSelections(modifiedChart.getRangeSelection());
 			}
 		}
 

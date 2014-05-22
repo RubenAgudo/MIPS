@@ -3,11 +3,10 @@
   <ownedCommentsInternal>
     <comment Id="9e1aa4af-aaa8-47d4-a971-cb1ad61d094a">
       <elementDefinition Id="491061a8-e1bd-4afc-a283-1e48385bb7c8" />
-      <body>Si se ha cargado alguna propiedad</body>
+      <body>Si se ha cargado alguna propiedad y el usuario pincha en el botón</body>
       <annotatedElements>
         <useCaseMoniker Id="e2474146-0f8d-4925-8663-fbe8a8a96453" LastKnownName="Cerrar propiedad" />
         <useCaseMoniker Id="c368ce4f-7663-4d91-a07c-d52d8197fdb8" LastKnownName="Cerrar observación" />
-        <useCaseMoniker Id="44316bb7-1de5-457c-b763-f4afd5063f2f" LastKnownName="Seleccionar rango" />
       </annotatedElements>
     </comment>
     <comment Id="cd584173-806c-4c69-ac3e-d6893a6a8f93">
@@ -15,6 +14,13 @@
       <body>Si se ha cargado el XML y se pincha en un elemento del arbol de propiedades</body>
       <annotatedElements>
         <useCaseMoniker Id="79519a4b-d0cb-496e-a96b-e5c805c962a7" LastKnownName="Cargar propiedad" />
+      </annotatedElements>
+    </comment>
+    <comment Id="23e481e7-7c2a-4130-9d59-60721ef09912">
+      <elementDefinition Id="f2a18d0a-76d2-4644-bc4b-943bac21efcb" />
+      <body>Si se ha cargado alguna propiedad y el usuario pincha y arrastra sobre un visualizador de datos</body>
+      <annotatedElements>
+        <useCaseMoniker Id="44316bb7-1de5-457c-b763-f4afd5063f2f" LastKnownName="Seleccionar rango" />
       </annotatedElements>
     </comment>
   </ownedCommentsInternal>
