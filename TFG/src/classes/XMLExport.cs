@@ -10,13 +10,11 @@ namespace TFG.src.classes
 {
 	public class XMLExport : XMLValidation
 	{
-		private SaveFileDialog dlg;
 		private static XMLExport myXMLExport;
 		private LinkedList<XElement> intervalsXML;
 		private LinkedList<double[]> intervals;
 
 		private XMLExport() {
-			dlg = new SaveFileDialog();
 			intervalsXML = new LinkedList<XElement>();
 			intervals = new LinkedList<double[]>();
 		}
@@ -61,26 +59,26 @@ namespace TFG.src.classes
 				double storedStart = interval[0];
 				double storedEnd = interval[1];
 
-				if(start < storedStart &&
-					end > storedStart)
+				if(start <= storedStart &&
+					end >= storedStart)
 				{
 					return true;
 				}
 
-				if(start > storedStart &&
-					end < storedEnd)
+				if(start >= storedStart &&
+					end <= storedEnd)
 				{
 					return true;
 				}
 
-				if(start < storedEnd &&
-					end > storedEnd)
+				if(start <= storedEnd &&
+					end >= storedEnd)
 				{
 					return true;
 				}
 				
-				if(start < storedStart &&
-					end > storedEnd)
+				if(start <= storedStart &&
+					end >= storedEnd)
 				{
 					return true;
 				}
@@ -88,9 +86,10 @@ namespace TFG.src.classes
 			return false;
 		}
 
-		public bool saveData()
+		public bool saveData(string rootElement)
 		{
-			dlg.FileName = "Step " + System.DateTime.Today.Ticks; // Default file name
+			SaveFileDialog dlg = new SaveFileDialog();
+			dlg.FileName = rootElement + " " + System.DateTime.Today.Ticks; // Default file name
 			dlg.DefaultExt = ".xml"; // Default file extension
 			dlg.Filter = "XML documents (.xml)|*.xml"; // Filter files by extension
 
@@ -106,7 +105,7 @@ namespace TFG.src.classes
 
 				Console.WriteLine(intervalsXML.ToString());
 
-				XElement step = new XElement("paso");
+				XElement step = new XElement(rootElement);
 				XAttribute stepName = new XAttribute("name", dlg.SafeFileName);
 				step.Add(stepName);
 

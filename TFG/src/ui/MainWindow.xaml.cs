@@ -205,9 +205,9 @@ namespace TFG
 			}
 		}
 
-		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
+		private void saveInterval()
 		{
-			mnitSaveRange.IsEnabled = false;
+			mnitSave.IsEnabled = false;
 			BackgroundWorker worker = new BackgroundWorker();
 			worker.DoWork += worker_DoWorkSaveInterval;
 			worker.RunWorkerCompleted += worker_RunWorkerCompletedSaveInterval;
@@ -217,7 +217,7 @@ namespace TFG
 
 		void worker_RunWorkerCompletedSaveInterval(object sender, RunWorkerCompletedEventArgs e)
 		{
-			mnitSaveRange.IsEnabled = true;
+			mnitSave.IsEnabled = true;
 		}
 
 		private void worker_DoWorkSaveInterval(object sender, DoWorkEventArgs e)
@@ -230,19 +230,11 @@ namespace TFG
 			}
 			else
 			{
-				MessageBoxResult msgAddInterval = MessageBox.Show("Do you want to add more intervals later?",
-					"Add more intervals?",
-					MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-
 				if (!XMLExport.getMyXMLExport().createInterval(selectedRange[0], selectedRange[1]))
 				{
 					MessageBoxResult msg = MessageBox.Show("Selected interval overlaps! Aborting creation of new interval",
 						"Interval NOT saved", MessageBoxButton.OK, MessageBoxImage.Warning);
 				}
-
-				if (msgAddInterval == MessageBoxResult.No) { XMLExport.getMyXMLExport().saveData(); }
-
 			}
 		}
 
@@ -269,6 +261,35 @@ namespace TFG
 			{
 				Console.WriteLine(ex2.StackTrace);
 			}
+		}
+
+		private void mnitSaveStep_Click(object sender, RoutedEventArgs e)
+		{
+			BackgroundWorker worker = new BackgroundWorker();
+			worker.DoWork += new DoWorkEventHandler(
+				delegate(object send, DoWorkEventArgs eventArgs)
+				{
+					XMLExport.getMyXMLExport().saveData("Step");
+				}
+			);
+			worker.RunWorkerAsync();
+		}
+
+		private void mnitSaveSituation_Click(object sender, RoutedEventArgs e)
+		{
+			BackgroundWorker worker = new BackgroundWorker();
+			worker.DoWork += new DoWorkEventHandler(
+				delegate(object send, DoWorkEventArgs eventArgs)
+				{
+					XMLExport.getMyXMLExport().saveData("Situation");
+				}
+			);
+			worker.RunWorkerAsync();
+		}
+
+		private void mnitCreateInterval_Click(object sender, RoutedEventArgs e)
+		{
+			saveInterval();
 		}
 
     }
