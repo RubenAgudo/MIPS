@@ -123,5 +123,14 @@ namespace TFG.src.classes
 			}
 			return false;
 		}
+
+		/// <summary>
+		/// Clears the saved data
+		/// </summary>
+		internal void clear()
+		{
+			intervals.Clear();
+			intervalsXML.Clear();
+		}
 	}
 }

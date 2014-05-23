@@ -82,10 +82,7 @@ namespace TFG
 
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
-			mainPanel.Children.Clear();
-			GraphicActions.getMyGraphicActions().clear();
-			videoContainer = null;
-
+			ClearData();
 			
 			try
 			{
@@ -121,6 +118,14 @@ namespace TFG
 				Console.WriteLine(ex.StackTrace);
 				MessageBoxResult msg = MessageBox.Show("Select a XML file");
 			}
+		}
+
+		private void ClearData()
+		{
+			mainPanel.Children.Clear();
+			GraphicActions.getMyGraphicActions().clear();
+			XMLExport.getMyXMLExport().clear();
+			videoContainer = null;
 		}
 
 		/// <summary>
