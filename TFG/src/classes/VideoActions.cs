@@ -14,14 +14,14 @@ namespace TFG.src.classes
 	/// </summary>
     public class VideoActions
     {
-        private LinkedList<UC_VideoPlayer> videos;
+        private SortedSet<UC_VideoPlayer> videos;
 		private static VideoActions myVideoActions;
 		private double startReference;
 		private UC_VideoPlayer referenceVideo;
 
         private VideoActions() 
         {
-            videos = new LinkedList<UC_VideoPlayer>();
+            videos = new SortedSet<UC_VideoPlayer>();
         }
 
 		/// <summary>
@@ -75,11 +75,11 @@ namespace TFG.src.classes
 		/// Adds the UC_VideoPlayer to the loaded videos
 		/// </summary>
 		/// <param name="video">The UC_VideoPlayer to be added</param>
-        public void addVideo(UC_VideoPlayer video)
-        {
+		public bool addVideo(UC_VideoPlayer video)
+		{
 			video.PropertyChanged += video_PropertyChanged;
-            videos.AddLast(video);
-        }
+			return videos.Add(video);
+		}
 
 		/// <summary>
 		/// Event that handles where the video should begin and which video has to be taken as

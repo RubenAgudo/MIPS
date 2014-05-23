@@ -16,16 +16,14 @@ namespace TFG.src.ui.userControls
     /// </summary>
     public partial class UC_ChartContainer : UserControl, IContainer
     {
-		private HashSet<string> loaded;
-		private LinkedList<UC_DataVisualizer> datavisualizers;
+		private SortedSet<UC_DataVisualizer> datavisualizers;
 
 		public string Observation { get; private set; }
 
         public UC_ChartContainer(string observation)
         {
             InitializeComponent();
-			loaded = new HashSet<string>();
-			datavisualizers = new LinkedList<UC_DataVisualizer>();
+			datavisualizers = new SortedSet<UC_DataVisualizer>();
 			Observation = observation;
         }
 
@@ -38,21 +36,17 @@ namespace TFG.src.ui.userControls
 
             if (mainPanelChartContainer != null)
             {
-				if(!loaded.Contains(Title))
+				UC_DataVisualizer datav = (UC_DataVisualizer)objectToAdd;
+				if(datavisualizers.Add(datav))
 				{
-					UC_DataVisualizer datav = (UC_DataVisualizer)objectToAdd;
 					datav.PropertyChanged += datav_PropertyChanged;
 					LayoutAnchorable doc = new LayoutAnchorable();
-					loaded.Add(Title);
 					doc.Hiding += doc_Hiding;
 					doc.CanHide = true;
 					doc.CanClose = true;
 					doc.Title = Title;
 					doc.Content = datav;
 					mainPanelChartContainer.Children.Add(doc);
-					datavisualizers.AddLast(datav);
-
-
 				}
             }
             else
@@ -80,7 +74,6 @@ namespace TFG.src.ui.userControls
 			LayoutAnchorable doc = (LayoutAnchorable)sender;
 			UC_DataVisualizer content = (UC_DataVisualizer)doc.Content;
 			datavisualizers.Remove(content);
-			loaded.Remove(content.Property);
 		}
 
 		/// <summary>
@@ -110,7 +103,7 @@ namespace TFG.src.ui.userControls
 		{
 			if (datavisualizers.Count > 0)
 			{
-				UC_DataVisualizer datav = datavisualizers.First.Value;
+				UC_DataVisualizer datav = datavisualizers.First();
 				double[] selection = datav.getRangeSelection();
 				if (selection[0] != selection[1])
 				{

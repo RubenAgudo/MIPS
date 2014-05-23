@@ -13,7 +13,8 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_DataVisualizer.xaml
     /// </summary>
-	public partial class UC_DataVisualizer : UserControl, INotifyPropertyChanged, IEquatable<UC_DataVisualizer>
+	public partial class UC_DataVisualizer : UserControl, 
+		INotifyPropertyChanged, IEquatable<UC_DataVisualizer>, IComparable<UC_DataVisualizer>
     {
 		private RectangleAnnotation Progress;
 		private AbstractDataVisualizerViewModel viewModel;
@@ -173,6 +174,11 @@ namespace TFG.src.ui.userControls
 		{
 			//dos datavisualizers son iguales si tienen la misma propiedad y observacion
 			return this.Property == other.Property && this.Observation == other.Observation;
+		}
+
+		public int CompareTo(UC_DataVisualizer other)
+		{
+			return Property.CompareTo(other.Property);
 		}
 	}
 }

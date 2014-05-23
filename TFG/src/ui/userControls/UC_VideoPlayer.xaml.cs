@@ -10,7 +10,8 @@ namespace TFG.src.ui.userControls
     /// <summary>
     /// Lógica de interacción para UC_VideoPlayer.xaml
     /// </summary>
-	public partial class UC_VideoPlayer : UserControl, INotifyPropertyChanged
+	public partial class UC_VideoPlayer : UserControl, INotifyPropertyChanged, 
+		IComparable<UC_VideoPlayer>, IEquatable<UC_VideoPlayer>
     {
 		private double startHere;
         private bool isDragging;
@@ -189,5 +190,15 @@ namespace TFG.src.ui.userControls
 			myMediaElement.IsMuted = !myMediaElement.IsMuted;
 		}
 
+
+		public int CompareTo(UC_VideoPlayer other)
+		{
+			return this.VideoName.CompareTo(other.VideoName);
+		}
+
+		public bool Equals(UC_VideoPlayer other)
+		{
+			return this.VideoName.Equals(other.VideoName);
+		}
 	}
 }

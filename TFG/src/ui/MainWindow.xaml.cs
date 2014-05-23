@@ -252,8 +252,9 @@ namespace TFG
 				foreach (string path in paths)
 				{
 					UC_VideoPlayer video = new UC_VideoPlayer(path);
-					VideoActions.getMyVideoActions().addVideo(video);
-					videoContainer.addToAnchorablePane(video, video.VideoName);
+					if(VideoActions.getMyVideoActions().addVideo(video)) {
+						videoContainer.addToAnchorablePane(video, video.VideoName);
+					}
 				}
 
 			}
