@@ -77,16 +77,6 @@ namespace TFG.src.ui.userControls
         }
         #endregion
 
-        /// <summary>
-        /// Set the video to the specified position. It's used for syncing all the videos.
-        /// </summary>
-        /// <param name="position"></param>
-        public void sync(TimeSpan position)
-        {            
-            myMediaElement.Position = position;
-            
-        }
-
 
         /// <summary>
         /// Gets or sets position.

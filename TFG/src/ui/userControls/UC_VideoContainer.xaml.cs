@@ -62,6 +62,7 @@ namespace TFG.src.ui.userControls
 			if (mainPanelVideoContainer != null)
 			{
 				LayoutAnchorable doc = new LayoutAnchorable();
+				doc.Hiding += doc_Hiding;
 				doc.CanHide = false;
 				doc.CanClose = true;
 				doc.Title = Title;
@@ -74,5 +75,12 @@ namespace TFG.src.ui.userControls
 				throw new NotImplementedException();
 			}
 		}
+
+		void doc_Hiding(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			LayoutAnchorable doc = (LayoutAnchorable)sender;
+			VideoActions.getMyVideoActions().removeVideo((UC_VideoPlayer)doc.Content);
+		}
+
 	}
 }

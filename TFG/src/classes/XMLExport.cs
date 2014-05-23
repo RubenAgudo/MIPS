@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Xml.Linq;
 using TFG.Properties;
@@ -32,20 +33,18 @@ namespace TFG.src.classes
 		/// <summary>
 		/// Creates a new interval.
 		/// 
-		/// Checks if the given interval overlaps, and saves to disk if necessary
+		/// Checks if the given interval overlaps, and saves to the collection of intervals if necessary
 		/// </summary>
 		/// <param name="start"></param>
 		/// <param name="end"></param>
-		/// <param name="saveToDisk"></param>
 		/// <returns>True if a new interval was created, false otherwise</returns>
 		public bool createInterval(double start, double end)
 		{
-			if (overlaps(start, end)) { return false;	}
-	
+			if (overlaps(start, end)) { return false; }
+
 			XElement anInterval = GraphicActions.getMyGraphicActions().getDataForXML(start, end);
 			intervalsXML.AddLast(anInterval);
 			intervals.AddLast(new double[] { start, end });
-			
 			return true;
 		}
 

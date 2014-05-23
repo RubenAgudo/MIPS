@@ -164,5 +164,10 @@ namespace TFG.src.classes
 		{
 			videos.Clear();
 		}
+
+		internal bool removeVideo(UC_VideoPlayer video)
+		{
+			return videos.Remove(video);
+		}
 	}
 }

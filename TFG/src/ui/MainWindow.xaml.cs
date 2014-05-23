@@ -131,8 +131,8 @@ namespace TFG
 		private void observationsAndProperties_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
 			LinkedList<AbstractDataVisualizerViewModel> viewModels;
-			TreeViewItem anItem = (TreeViewItem) observationsAndProperties.SelectedItem;
-			
+			TreeViewItem anItem = (TreeViewItem)observationsAndProperties.SelectedItem;
+
 			if (anItem == null) { return; }
 
 			bool createNewChartContainer = LoadDataFromXML(anItem, out viewModels);
@@ -140,7 +140,7 @@ namespace TFG
 			foreach (AbstractDataVisualizerViewModel viewModel in viewModels)
 			{
 				string observacion = viewModel.Observation;
-				
+
 				if (createNewChartContainer)
 				{
 					createNewChartContainer = false;
@@ -159,6 +159,7 @@ namespace TFG
 				}
 			}
 		}
+
 
 		/// <summary>
 		/// This method loads the data from the xml, and returns if a new container must be created.
@@ -206,28 +207,43 @@ namespace TFG
 
 		private void mnitSaveRange_Click(object sender, RoutedEventArgs e)
 		{
+			mnitSaveRange.IsEnabled = false;
+			BackgroundWorker worker = new BackgroundWorker();
+			worker.DoWork += worker_DoWorkSaveInterval;
+			worker.RunWorkerCompleted += worker_RunWorkerCompletedSaveInterval;
+			worker.RunWorkerAsync();
+			
+		}
+
+		void worker_RunWorkerCompletedSaveInterval(object sender, RunWorkerCompletedEventArgs e)
+		{
+			mnitSaveRange.IsEnabled = true;
+		}
+
+		private void worker_DoWorkSaveInterval(object sender, DoWorkEventArgs e)
+		{
 			double[] selectedRange = GraphicActions.getMyGraphicActions().getSelectedRange();
 			if (selectedRange[0] == selectedRange[1])
 			{
-				MessageBoxResult msg = MessageBox.Show("You must select a range", "No range selected", 
+				MessageBoxResult msg = MessageBox.Show("You must select a range", "No range selected",
 					MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
 			else
 			{
-				MessageBoxResult msgAddInterval = MessageBox.Show("Do you want to add more intervals later?", 
+				MessageBoxResult msgAddInterval = MessageBox.Show("Do you want to add more intervals later?",
 					"Add more intervals?",
 					MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-				if ( !XMLExport.getMyXMLExport().createInterval(selectedRange[0], selectedRange[1]))
+
+				if (!XMLExport.getMyXMLExport().createInterval(selectedRange[0], selectedRange[1]))
 				{
-					MessageBoxResult msg = MessageBox.Show("Selected interval overlaps! Aborting creation of new interval", 
+					MessageBoxResult msg = MessageBox.Show("Selected interval overlaps! Aborting creation of new interval",
 						"Interval NOT saved", MessageBoxButton.OK, MessageBoxImage.Warning);
 				}
-				
+
 				if (msgAddInterval == MessageBoxResult.No) { XMLExport.getMyXMLExport().saveData(); }
 
 			}
-			
 		}
 
 		private void loadVideos()

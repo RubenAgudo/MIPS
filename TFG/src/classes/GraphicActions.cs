@@ -120,8 +120,11 @@ namespace TFG.src.classes
 		}
 
 		/// <summary>
-		/// Return the data currently loaded into an XML tree, that represents an interval
+		/// Return the data currently loaded into an XML tree, that represents an interval between
+		/// start and end
 		/// </summary>
+		/// <param name="start">The start of the interval</param>
+		/// <param name="end">The end of the interval</param>
 		/// <returns>The root XElement containing all the children</returns>
 		internal XElement getDataForXML(double start, double end)
 		{
