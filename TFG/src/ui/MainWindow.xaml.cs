@@ -235,6 +235,11 @@ namespace TFG
 					MessageBoxResult msg = MessageBox.Show("Selected interval overlaps! Aborting creation of new interval",
 						"Interval NOT saved", MessageBoxButton.OK, MessageBoxImage.Warning);
 				}
+				else
+				{
+					MessageBoxResult msg = MessageBox.Show("Interval saved succesfully!",
+						"Interval saved", MessageBoxButton.OK, MessageBoxImage.Information);
+				}
 			}
 		}
 
