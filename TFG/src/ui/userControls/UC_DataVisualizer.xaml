@@ -9,9 +9,9 @@
              d:DesignHeight="300" d:DesignWidth="300" >
 	<Grid >
 
-		<oxy:Plot x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
+		<oxy:PlotView x:Name="oxyplot" HorizontalContentAlignment="Stretch" 
 					VerticalContentAlignment="Stretch" IsManipulationEnabled="True" >
-		</oxy:Plot>
+		</oxy:PlotView>
 	</Grid>
 
 </UserControl>

@@ -166,24 +166,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="diagrams\%28CargarXML%29MainWindow_mnitLoadXML_Click.sequencediagram.layout">
-      <DependentUpon>%28CargarXML%29MainWindow_mnitLoadXML_Click.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="diagrams\%28GuardarRango%29MainWindow_mnitSaveRange_Click.sequencediagram.layout">
-      <DependentUpon>%28GuardarRango%29MainWindow_mnitSaveRange_Click.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="diagrams\%28AñadirVideo%29MainWindow_mnitAddVideo_Click.sequencediagram.layout">
-      <DependentUpon>%28AñadirVideo%29MainWindow_mnitAddVideo_Click.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="diagrams\RangeSelection\GraphicActions_dataVisualizer_PropertyChanged.sequencediagram.layout">
-      <DependentUpon>GraphicActions_dataVisualizer_PropertyChanged.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="diagrams\%28CargarPropiedad-Observacion%29MainWindow_observationsAndProperties_MouseDoubleClick.sequencediagram.layout">
-      <DependentUpon>%28CargarPropiedad-Observacion%29MainWindow_observationsAndProperties_MouseDoubleClick.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="diagrams\%28cerrarObservacion%29MainWindow_doc_Hiding.sequencediagram.layout">
-      <DependentUpon>%28cerrarObservacion%29MainWindow_doc_Hiding.sequencediagram</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -194,16 +176,7 @@
     <EmbeddedResource Include="diagrams\RangeSelection\UC_DataVisualizer_Model_MouseMove.sequencediagram.layout">
       <DependentUpon>UC_DataVisualizer_Model_MouseMove.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="diagrams\%28cerrarPropiedad%29UC_ChartContainer_doc_Hiding.sequencediagram.layout">
-      <DependentUpon>%28cerrarPropiedad%29UC_ChartContainer_doc_Hiding.sequencediagram</DependentUpon>
-    </EmbeddedResource>
     <None Include="diagrams\ClassDiagram1.cd" />
-    <None Include="diagrams\%28CargarXML%29MainWindow_mnitLoadXML_Click.sequencediagram" />
-    <None Include="diagrams\%28GuardarRango%29MainWindow_mnitSaveRange_Click.sequencediagram" />
-    <None Include="diagrams\%28AñadirVideo%29MainWindow_mnitAddVideo_Click.sequencediagram" />
-    <None Include="diagrams\RangeSelection\GraphicActions_dataVisualizer_PropertyChanged.sequencediagram" />
-    <None Include="diagrams\%28CargarPropiedad-Observacion%29MainWindow_observationsAndProperties_MouseDoubleClick.sequencediagram" />
-    <None Include="diagrams\%28cerrarObservacion%29MainWindow_doc_Hiding.sequencediagram" />
     <None Include="src\schemas\ObservationModelData.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -220,7 +193,6 @@
     <AppDesigner Include="Properties\" />
     <None Include="diagrams\RangeSelection\UC_DataVisualizer_Model_MouseDown.sequencediagram" />
     <None Include="diagrams\RangeSelection\UC_DataVisualizer_Model_MouseMove.sequencediagram" />
-    <None Include="diagrams\%28cerrarPropiedad%29UC_ChartContainer_doc_Hiding.sequencediagram" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
