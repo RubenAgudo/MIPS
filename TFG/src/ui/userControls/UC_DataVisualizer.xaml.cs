@@ -98,14 +98,10 @@ namespace TFG.src.ui.userControls
 		
 
 		/// <summary>
-		/// Method that selects the DataContext based on which button clicked the user
+		/// Method fired when the click is released
 		/// </summary>
-		/// <exception cref="NotImplementedException">
-		/// if the option is not any of the consts in the AbstractDataVisualizerViewModel
-		/// an exception is raised.
-		/// </exception>
-		/// <param name="chartType">The constant</param>
-
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void Model_MouseUp(object sender, OxyMouseEventArgs e)
         {
 			startx = double.NaN;

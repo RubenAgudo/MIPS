@@ -75,7 +75,7 @@ namespace TFG.src.classes
 		/// </summary>
 		/// <param name="points">The points to be added to the DataVisualizerViewModel</param>
 		/// <param name="labels">The labels in case it's a Discrete property</param>
-		/// <param name="EsContinuo">The value indicating if the property is continous</param>
+		/// <param name="propType">The value indicating if the property is continous</param>
 		/// <param name="title">The property name to set as the title of the chart</param>
 		/// <param name="observation">The observation name</param>
 		/// <returns>An AbstractDataVisualizerViewModel that must be downcasted to use it correctly</returns>
@@ -99,7 +99,7 @@ namespace TFG.src.classes
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="EsContinuo"></param>
+		/// <param name="propType"></param>
 		/// <param name="data"></param>
 		/// <param name="labels"></param>
 		/// <returns></returns>
