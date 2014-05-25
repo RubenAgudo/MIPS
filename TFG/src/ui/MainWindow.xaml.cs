@@ -83,7 +83,7 @@ namespace TFG
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
 			ClearData();
-			
+			observationsAndProperties.Items.Clear();
 			try
 			{
 				string pathToXML = XMLLoader.openXML();
