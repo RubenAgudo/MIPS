@@ -10,6 +10,7 @@ namespace TFG.src.classes
 {
 	public class XMLExport : XMLValidation
 	{
+		private static object myLock = new object();
 		private static XMLExport myXMLExport;
 		private LinkedList<XElement> intervalsXML;
 		private LinkedList<double[]> intervals;
@@ -23,7 +24,13 @@ namespace TFG.src.classes
 		{
 			if (myXMLExport == null)
 			{
-				myXMLExport = new XMLExport();
+				lock (myLock)
+				{
+					if (myXMLExport == null)
+					{
+						myXMLExport = new XMLExport();
+					}
+				}
 			}
 			return myXMLExport;
 		}
