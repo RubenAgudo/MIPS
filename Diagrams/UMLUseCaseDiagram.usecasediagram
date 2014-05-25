@@ -46,7 +46,7 @@
             <elementDefinition Id="b0929e1b-3539-487d-bdce-01f179c1d2a7" />
           </association>
           <association Id="d9560e3f-733a-486e-9da3-d216e62616f9" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Guardar Rango" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="ee02c8bf-d036-4db3-aecc-e1d2008e354a" LastKnownName="Guardar Rango" />
+            <useCaseMoniker Id="ee02c8bf-d036-4db3-aecc-e1d2008e354a" LastKnownName="Crear intervalo" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="a83fc41f-4d68-4e47-a02a-9840577e9d6b" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -77,6 +77,38 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="c1424515-8bf8-43c2-b473-231efe2106f5" />
           </association>
+          <association Id="19e6344d-fb2d-4186-b2e1-1ae7384c53c8" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Guardar paso" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="7daa004e-7e69-4cf2-84aa-12afd58a8653" LastKnownName="Guardar paso" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a8591976-9244-4a7d-a78d-0a3d3203e13f" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2e2a8bb1-6776-4743-9a8d-cad96ab6d153" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1d0163b9-90e6-472e-9fe2-cdba9df41266" name="Guardar paso" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="21f4d8f5-5663-4a77-a7ec-8c882525f82a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="18891316-6d15-4965-a4cf-a39b12f5ff49" />
+          </association>
+          <association Id="34cccb67-8c46-4eab-ac15-6a6934294132" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Guardar situación" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="71e6d03a-93a3-4ed0-a916-70dcb46bb151" LastKnownName="Guardar situación" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d1bdf94e-d654-42a3-8a31-1fbbf4eb567d" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="148ed8e7-3343-430d-a4f1-ec23de03d7d6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="61cf53a8-da29-462e-a704-25030227b083" name="Guardar situación" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2776bc1f-e494-40f2-a1e1-3e8bfc2f4afc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f6d545b1-fea2-46cd-9c9d-68e17b5b6b1d" />
+          </association>
         </targetEnds>
       </actor>
     </useCaseModelRootHasTypes>
@@ -97,7 +129,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="ee02c8bf-d036-4db3-aecc-e1d2008e354a" name="Guardar Rango" isAbstract="false" isLeaf="false">
+      <useCase Id="ee02c8bf-d036-4db3-aecc-e1d2008e354a" name="Crear intervalo" isAbstract="false" isLeaf="false">
         <elementDefinition Id="8725b85f-798a-4159-839d-7e4e598dc64f" />
       </useCase>
     </useCaseModelRootHasTypes>
@@ -137,6 +169,16 @@
             <elementDefinition Id="02ce45e0-b270-4c62-939b-a6327033765c" />
           </extend>
         </extendedCases>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="7daa004e-7e69-4cf2-84aa-12afd58a8653" name="Guardar paso" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="161e438e-a6cd-4f92-b2e9-f21dce5812b4" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="71e6d03a-93a3-4ed0-a916-70dcb46bb151" name="Guardar situación" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="07504b70-0a1f-4ebb-be70-1da7f9c3671a" />
       </useCase>
     </useCaseModelRootHasTypes>
   </packagedElements>

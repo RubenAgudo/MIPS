@@ -191,7 +191,7 @@
             isAbstract="false">
             <useCaseMoniker
               Id="8725b85f-798a-4159-839d-7e4e598dc64f"
-              LastKnownName="Guardar Rango"
+              LastKnownName="Crear intervalo"
               LastKnownLocation="Diagrams.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -250,6 +250,84 @@
                 <memberEnd
                   Id="84ff430f-51f0-4fef-b369-44e6e6e874fd"
                   name="Añadir vídeo"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="18891316-6d15-4965-a4cf-a39b12f5ff49"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Guardar paso"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="161e438e-a6cd-4f92-b2e9-f21dce5812b4"
+              LastKnownName="Guardar paso"
+              LastKnownLocation="Diagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2e2a8bb1-6776-4743-9a8d-cad96ab6d153"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="21f4d8f5-5663-4a77-a7ec-8c882525f82a"
+                  name="Guardar paso"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f6d545b1-fea2-46cd-9c9d-68e17b5b6b1d"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Guardar situación"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="07504b70-0a1f-4ebb-be70-1da7f9c3671a"
+              LastKnownName="Guardar situación"
+              LastKnownLocation="Diagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="148ed8e7-3343-430d-a4f1-ec23de03d7d6"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2776bc1f-e494-40f2-a1e1-3e8bfc2f4afc"
+                  name="Guardar situación"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -330,7 +408,7 @@
     <packageHasNamedElement>
       <useCase
         Id="8725b85f-798a-4159-839d-7e4e598dc64f"
-        name="Guardar Rango"
+        name="Crear intervalo"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -408,6 +486,20 @@
           </dependency>
         </suppliersInternal>
       </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="161e438e-a6cd-4f92-b2e9-f21dce5812b4"
+        name="Guardar paso"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="07504b70-0a1f-4ebb-be70-1da7f9c3671a"
+        name="Guardar situación"
+        isAbstract="false"
+        isLeaf="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
