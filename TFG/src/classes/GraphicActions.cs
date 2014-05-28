@@ -12,6 +12,7 @@ namespace TFG.src.classes
 	/// </summary>
     public class GraphicActions
     {
+		private static object myLock = new object();
 		private Dictionary<string, UC_ChartContainer> chartContainers;
 		private static GraphicActions myGraphicActions;
 		private static int PROCESSOR_COUNT;
@@ -30,7 +31,13 @@ namespace TFG.src.classes
 		{
 			if (myGraphicActions == null)
 			{
-				myGraphicActions = new GraphicActions();
+				lock (myLock)
+				{
+					if (myGraphicActions == null)
+					{
+						myGraphicActions = new GraphicActions();
+					}
+				}
 			}
 
 			return myGraphicActions;
