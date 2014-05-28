@@ -199,7 +199,6 @@
     <EmbeddedResource Include="diagrams\SaveStep\XMLExport_saveData.sequencediagram.layout">
       <DependentUpon>XMLExport_saveData.sequencediagram</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="diagrams\RangeSelection\UC_DataVisualizer_Model_MouseDown.sequencediagram.layout">
       <DependentUpon>UC_DataVisualizer_Model_MouseDown.sequencediagram</DependentUpon>
     </EmbeddedResource>
@@ -219,9 +218,14 @@
     <None Include="diagrams\SaveStep\MainWindow_observationsAndProperties_MouseDoubleClick.sequencediagram" />
     <None Include="diagrams\SaveStep\XMLExport_saveData.sequencediagram" />
     <None Include="diagrams\ClassDiagram1.cd" />
-
     <None Include="diagrams\RangeSelection\UC_DataVisualizer_Model_MouseDown.sequencediagram" />
     <None Include="diagrams\RangeSelection\UC_ChartContainer_datav_PropertyChanged.sequencediagram" />
+    <None Include="src\schemas\ObservationModelData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="src\schemas\saveData.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -5,7 +5,7 @@
 <xs:schema id="ObservationModelData"
     elementFormDefault="qualified"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:element name="data" type="dataType" />
+	<xs:element name="data" type="dataType"  />
 
 	<!--Complex type that describes the root node "data". It consists of a list of observations and 2
 	attributes, the Model that belongs to, and the length of every instant, in seconds-->
@@ -17,8 +17,8 @@
 			
 		</xs:sequence>
 		
-		<xs:attribute name="EspObservation" type="xs:string" />
-		<xs:attribute name="instantLength" type="xs:double"/>
+		<xs:attribute name="EspObservation" type="xs:string" use="required" />
+		<xs:attribute name="instantLength" type="xs:double" use="required"/>
 		
 	</xs:complexType>
 	
@@ -32,7 +32,7 @@
 			
 		</xs:sequence>
 
-		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="name" type="xs:string" use="required"/>
 		
 	</xs:complexType>
 	
@@ -45,7 +45,7 @@
 			<xs:element name="instant" type="instantType" minOccurs="1" maxOccurs="unbounded"/>
 			
 		</xs:sequence>
-		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="name" type="xs:string" use="required" />
 		<xs:attribute name="type" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:int">
@@ -60,8 +60,8 @@
 	associated to that instant-->
 	<xs:complexType name="instantType">
 
-		<xs:attribute name="ins" type="xs:double" />
-		<xs:attribute name ="value" type="xs:string" />
+		<xs:attribute name="ins" type="xs:double" use="required" />
+		<xs:attribute name ="value" type="xs:string" use="required" />
 		
 	</xs:complexType>
 </xs:schema>
