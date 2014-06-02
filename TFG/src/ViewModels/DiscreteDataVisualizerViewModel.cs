@@ -11,29 +11,29 @@ namespace TFG.src.ViewModels
 		public DiscreteDataVisualizerViewModel(List<DataPoint> points, 
 			List<string> labels, string property, string observation, int propType) : base(property, observation, propType)
 		{
-			Model = createModel(points, labels);
 			Labels = labels;
+			Model = createModel(points);
 		}
 
 		public List<string> Labels { get; private set; }
 
-		private PlotModel createModel(List<DataPoint> points, List<string> labels)
+		protected override PlotModel createModel(List<DataPoint> points)
 		{
-			var plotModel1 = new PlotModel();
-			var functionSeries1 = new StairStepSeries();
-			var categoryAxis2 = new CategoryAxis();
+			var plotModel = new PlotModel();
+			var functionSeries = new StairStepSeries();
+			var categoryAxis = new CategoryAxis();
 
-			categoryAxis2.Position = AxisPosition.Left;
-			categoryAxis2.AxislineStyle = LineStyle.Solid;
-			categoryAxis2.MinorStep = 1;
-			categoryAxis2.TickStyle = TickStyle.None;
-			categoryAxis2.Labels.AddRange(labels);
-			plotModel1.Axes.Add(categoryAxis2);
-			functionSeries1.Points.AddRange(points);
-			plotModel1.Series.Add(functionSeries1);
-			plotModel1.Title = Title;
-			Points = functionSeries1.Points;
-			return plotModel1;
+			categoryAxis.Position = AxisPosition.Left;
+			categoryAxis.AxislineStyle = LineStyle.Solid;
+			categoryAxis.MinorStep = 1;
+			categoryAxis.TickStyle = TickStyle.None;
+			categoryAxis.Labels.AddRange(Labels);
+			plotModel.Axes.Add(categoryAxis);
+			functionSeries.Points.AddRange(points);
+			plotModel.Series.Add(functionSeries);
+			plotModel.Title = Title;
+			Points = functionSeries.Points;
+			return plotModel;
 		}
 
 	}

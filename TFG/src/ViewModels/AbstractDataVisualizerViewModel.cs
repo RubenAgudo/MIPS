@@ -40,5 +40,7 @@ namespace TFG.src.ViewModels
 		}
 
 		public int Type { get; protected set; }
+
+		protected abstract PlotModel createModel(List<DataPoint> points);
 	}
 }

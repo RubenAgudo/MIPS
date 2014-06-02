@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	
+	<xs:element name="paso" type="pasoType" />
+
+	<xs:complexType name="pasoType" >
+
+		<xs:sequence>
+
+			<xs:element name="intervalo" minOccurs="1" maxOccurs="unbounded" type="intervaloType" />
+			
+		</xs:sequence>
+		
+		<xs:attribute name="name" type="xs:string"/>
+	
+	</xs:complexType>
+
+	<xs:complexType name="intervaloType" >
+		<xs:sequence>
+
+			<xs:element name="instante" minOccurs="1" maxOccurs="unbounded" type="instanteType"/>
+			
+		</xs:sequence>
+		
+		<xs:attribute name="inicio" type="xs:double"/>
+		<xs:attribute name="fin" type="xs:double"/>
+	
+	</xs:complexType>
+
+	<xs:complexType name="instanteType">
+
+		<xs:sequence>
+
+			<xs:element name="observacion" minOccurs="1" maxOccurs="unbounded" type="observacionType" />
+			
+		</xs:sequence>
+		<xs:attribute name="instante" type="xs:double"/>
+	</xs:complexType>
+
+	<xs:complexType name="observacionType">
+
+		<xs:sequence>
+
+			<xs:element name="inputData" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+			<xs:element name ="propiedad" minOccurs="1" maxOccurs="unbounded" type ="propiedadType" />
+			
+		</xs:sequence>
+		<xs:attribute name="nombreObservacion" type="xs:string"/>
+	</xs:complexType>
+	
+	<xs:complexType name="propiedadType">
+		
+		<xs:sequence>
+			
+			<xs:element name="data" minOccurs="1" maxOccurs="unbounded"/>
+			
+		</xs:sequence>
+		<xs:attribute name="nombrePropiedad" type="xs:string"/>
+		<xs:attribute name="tipo" type="xs:string"/>
+	</xs:complexType>
+	
+</xs:schema>

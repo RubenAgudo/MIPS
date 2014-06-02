@@ -13,15 +13,15 @@ namespace TFG.src.ViewModels
 			Model = createModel(points);
 		}
 
-		private PlotModel createModel(List<DataPoint> points)
+		protected override PlotModel createModel(List<DataPoint> points)
 		{
-			var plotModel1 = new PlotModel();
-			var functionSeries1 = new FunctionSeries();
-			functionSeries1.Points.AddRange(points);
-			plotModel1.Series.Add(functionSeries1);
-			plotModel1.Title = Title;
-			Points = functionSeries1.Points;
-			return plotModel1;
+			var plotModel = new PlotModel();
+			var functionSeries = new FunctionSeries();
+			functionSeries.Points.AddRange(points);
+			plotModel.Series.Add(functionSeries);
+			plotModel.Title = Title;
+			Points = functionSeries.Points;
+			return plotModel;
 		}
 	}
 }
