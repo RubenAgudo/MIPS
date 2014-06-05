@@ -16,7 +16,7 @@
 				</MenuItem>
 				<MenuItem Header="Add video" Name="mnitAddVideo" Click="mnitAddVideo_Click" />
 				<MenuItem Header="Create interval" Name="mnitCreateInterval" Click="mnitCreateInterval_Click" />
- 				<MenuItem Header="Save selected range" Name="mnitSave">
+ 				<MenuItem Header="Save" Name="mnitSave">
 					<MenuItem Header="Step" Name="mnitSaveStep" Click="mnitSaveStep_Click"/>
 					<MenuItem Header="Situation" Name="mnitSaveSituation" Click="mnitSaveSituation_Click"/>
 				</MenuItem>
