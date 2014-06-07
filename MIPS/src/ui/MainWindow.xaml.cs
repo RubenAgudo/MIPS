@@ -71,6 +71,7 @@ namespace TFG
 			else
 			{
 				VideoActions.getMyVideoActions().clear();
+				videoContainer = null;
 			}
 			
 		}

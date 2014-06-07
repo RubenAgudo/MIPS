@@ -63,7 +63,7 @@ namespace TFG.src.ui.userControls
 			{
 				LayoutAnchorable doc = new LayoutAnchorable();
 				doc.Hiding += doc_Hiding;
-				doc.CanHide = false;
+				doc.CanHide = true;
 				doc.CanClose = true;
 				doc.Title = Title;
 				doc.Content = objectToAdd;
@@ -79,7 +79,9 @@ namespace TFG.src.ui.userControls
 		void doc_Hiding(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			LayoutAnchorable doc = (LayoutAnchorable)sender;
-			VideoActions.getMyVideoActions().removeVideo((UC_VideoPlayer)doc.Content);
+			UC_VideoPlayer thePlayer = (UC_VideoPlayer)doc.Content;
+			bool result = VideoActions.getMyVideoActions().removeVideo(thePlayer);
+			Console.WriteLine(result);
 		}
 
 	}

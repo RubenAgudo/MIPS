@@ -162,11 +162,16 @@ namespace TFG.src.classes
 
 		internal void clear()
 		{
+			foreach (UC_VideoPlayer video in videos)
+			{
+				video.stop();
+			}
 			videos.Clear();
 		}
 
 		internal bool removeVideo(UC_VideoPlayer video)
 		{
+			video.stop();
 			return videos.Remove(video);
 		}
 	}
