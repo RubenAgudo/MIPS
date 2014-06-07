@@ -135,7 +135,7 @@ namespace TFG.src.classes
 		/// <returns>The root XElement containing all the children</returns>
 		internal XElement getDataForXML(double start, double end)
 		{
-			XElement intervalo = new XElement("intervalo");
+			XElement intervalo = new XElement("interval");
 			XAttribute intervalStart = new XAttribute("start", start);
 			XAttribute intervalEnd = new XAttribute("end", end);
 
@@ -143,8 +143,8 @@ namespace TFG.src.classes
 			foreach (string key in chartContainers.Keys)
 			{
 				//creamos la observacion y su atributo con el nombre
-				XElement observation = new XElement("observacion");
-				XAttribute nombreObservacion = new XAttribute("nombreObservacion", key);
+				XElement observation = new XElement("observation");
+				XAttribute nombreObservacion = new XAttribute("name", key);
 
 				UC_ChartContainer aChartContainer;
 				if (chartContainers.TryGetValue(key, out aChartContainer))

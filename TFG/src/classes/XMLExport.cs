@@ -125,6 +125,7 @@ namespace TFG.src.classes
 				sw.Close();
 				//Despues de guardar, limpiamos los intervalos
 				intervalsXML.Clear();
+				intervals.Clear();
 				return Validate(filename, Settings.Default.pathToXsdSave);
 				
 			}

@@ -127,9 +127,9 @@ namespace TFG.src.ui.userControls
 			{
 
 				//creamos una propiedad con los atributos tipo y nombrepropiedad
-				XElement property = new XElement("propiedad");
-				XAttribute tipo = new XAttribute("tipo", datav.PropertyType);
-				XAttribute nombrePropiedad = new XAttribute("nombrePropiedad", datav.Property);
+				XElement property = new XElement("property");
+				XAttribute tipo = new XAttribute("type", datav.PropertyType);
+				XAttribute nombrePropiedad = new XAttribute("name", datav.Property);
 
 				//obtenemos todos los datapoints que esten en el rango seleccionado
 				IEnumerable<DataPoint> list =
@@ -140,24 +140,32 @@ namespace TFG.src.ui.userControls
 				//Para cada datapoint
 				foreach (DataPoint datapoint in list)
 				{
+
+
 					//creamos el elemento y obtenemos su valor Y
-					XElement datap = null;
+					XAttribute datap = null;
 					switch (datav.PropertyType)
 					{
 						case AbstractDataVisualizerViewModel.CONTINOUS:
-							datap = new XElement("data", datapoint.Y);
+							datap = new XAttribute("value", datapoint.Y);
 							break;
 						case AbstractDataVisualizerViewModel.DISCRETE:
-							datap = new XElement("data", (datapoint.Y >= 0) ? datav.Labels[(int)datapoint.Y] : "no value");
+							datap = new XAttribute("value", (datapoint.Y >= 0) ? datav.Labels[(int)datapoint.Y] : "no value");
 							break;
 					}
-					//creamos el atributo instante con el valor X (tiempo) y lo añadimos
-					XAttribute instante = new XAttribute("instante", datapoint.X);
-					datap.Add(instante);
 
-					//añadimos a la propiedad todos los datapoints
-					property.Add(datap);
+					XAttribute ins = new XAttribute("ins", datapoint.X);
+
+					//creamos el elemento instante
+					XElement instante = new XElement("instant");
+
+					instante.Add(datap);
+					instante.Add(ins);
+
+					//añadimos a la propiedad todos los instantes
+					property.Add(instante);
 				}
+
 				//añadimos a la propiedad sus atributos
 				property.Add(tipo);
 				property.Add(nombrePropiedad);
