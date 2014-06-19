@@ -26,14 +26,30 @@
                                        DockPanel.Dock="Bottom">
                 
                 <avalonDock:LayoutRoot>
+					
 
 					<avalonDock:LayoutPanel Orientation="Horizontal">
 
-						<avalonDock:LayoutAnchorablePane x:Name="mainPanel">
-								
-								
-								
-						</avalonDock:LayoutAnchorablePane>
+						<avalonDock:LayoutDocumentPane >
+
+							<avalonDock:LayoutDocument Title="Containers" CanClose="False">
+
+								<avalonDock:DockingManager x:Name="containersManager">
+
+									<avalonDock:LayoutRoot>
+
+										<avalonDock:LayoutPanel x:Name="containersPanel" Orientation="Horizontal">
+
+											
+										</avalonDock:LayoutPanel>
+										
+									</avalonDock:LayoutRoot>
+
+								</avalonDock:DockingManager>
+
+							</avalonDock:LayoutDocument>
+
+						</avalonDock:LayoutDocumentPane>
 						
 					</avalonDock:LayoutPanel>
 

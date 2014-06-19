@@ -44,20 +44,13 @@ namespace TFG
         public void addToAnchorablePane(UserControl objectToAdd, string Title)
         {
 			
-			if (mainPanel != null)
-			{
-				LayoutAnchorable doc = new LayoutAnchorable();
-				doc.Hiding += doc_Hiding;
-				doc.CanHide = true;
-				doc.CanClose = true;
-				doc.Title = Title;
-				doc.Content = objectToAdd;
-				mainPanel.Children.Add(doc);
-			}
-			else
-			{
-				throw new NotImplementedException();
-			}
+			LayoutAnchorable doc = new LayoutAnchorable();
+			doc.Hiding += doc_Hiding;
+			doc.CanHide = true;
+			doc.CanClose = true;
+			doc.Title = Title;
+			doc.Content = objectToAdd;
+			doc.AddToLayout(containersManager, AnchorableShowStrategy.Right);
             
         }
 
@@ -84,7 +77,6 @@ namespace TFG
 		private void mnitLoadXML_Click(object sender, RoutedEventArgs e)
 		{
 			ClearData();
-			observationsAndProperties.Items.Clear();
 			try
 			{
 				string pathToXML = XMLLoader.openXML();
@@ -123,9 +115,11 @@ namespace TFG
 
 		private void ClearData()
 		{
-			mainPanel.Children.Clear();
+			containersPanel.Children.Clear();
+			observationsAndProperties.Items.Clear();
 			GraphicActions.getMyGraphicActions().clear();
 			XMLExport.getMyXMLExport().clear();
+			VideoActions.getMyVideoActions().clear();
 			videoContainer = null;
 		}
 
