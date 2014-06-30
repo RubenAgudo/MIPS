@@ -275,15 +275,7 @@ namespace TFG
 			worker.DoWork += new DoWorkEventHandler(
 				delegate(object send, DoWorkEventArgs eventArgs)
 				{
-					bool result = XMLExport.getMyXMLExport().saveData("step");
-					eventArgs.Result = result;
-				}
-			);
-
-			worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-				delegate(object send, RunWorkerCompletedEventArgs eventArgs)
-				{
-					MessageBoxResult result = MessageBox.Show(((bool)eventArgs.Result) ? "validated" : "not validated");
+					XMLExport.getMyXMLExport().saveData("step");
 				}
 			);
 
@@ -296,15 +288,7 @@ namespace TFG
 			worker.DoWork += new DoWorkEventHandler(
 				delegate(object send, DoWorkEventArgs eventArgs)
 				{
-					bool result = XMLExport.getMyXMLExport().saveData("situation");
-					eventArgs.Result = result;
-				}
-			);
-
-			worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-				delegate(object send, RunWorkerCompletedEventArgs eventArgs)
-				{
-					MessageBoxResult result = MessageBox.Show(((bool)eventArgs.Result) ? "validated" : "not validated");
+					XMLExport.getMyXMLExport().saveData("situation");
 				}
 			);
 
