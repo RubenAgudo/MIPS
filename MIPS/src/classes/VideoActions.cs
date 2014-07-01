@@ -1,10 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using TFG.src.exceptions;
-using TFG.src.ui.userControls;
+using MIPS.src.exceptions;
+using MIPS.src.ui.userControls;
 
-namespace TFG.src.classes
+namespace MIPS.src.classes
 {
 	/// <summary>
 	/// Author: Ruben Agudo Santos

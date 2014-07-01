@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TFG.src.exceptions
+namespace MIPS.src.exceptions
 {
     public class FileNotSelectedException : Exception
     {

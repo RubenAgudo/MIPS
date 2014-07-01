@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Xml.Linq;
-using TFG.Properties;
+using MIPS.Properties;
 
-namespace TFG.src.classes
+namespace MIPS.src.classes
 {
 	public class XMLExport : XMLValidation
 	{

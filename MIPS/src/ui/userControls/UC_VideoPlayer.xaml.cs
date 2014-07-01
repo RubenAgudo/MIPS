@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 
 
-namespace TFG.src.ui.userControls
+namespace MIPS.src.ui.userControls
 {
     /// <summary>
     /// Lógica de interacción para UC_VideoPlayer.xaml

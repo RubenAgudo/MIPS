@@ -2,7 +2,7 @@
 using OxyPlot.Series;
 using System.Collections.Generic;
 
-namespace TFG.src.ViewModels
+namespace MIPS.src.ViewModels
 {
 	public class ContinousDataVisualizerViewModel : AbstractDataVisualizerViewModel
 	{

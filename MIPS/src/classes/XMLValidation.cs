@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
-namespace TFG.src.classes
+namespace MIPS.src.classes
 {
 	/// <summary>
 	/// Abstract class that gives the functionality yo check if an XML validates

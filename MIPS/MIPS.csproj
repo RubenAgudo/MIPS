@@ -110,6 +110,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="src\classes\XMLExport.cs" />
     <Compile Include="src\classes\XMLLoader.cs" />
     <Compile Include="src\classes\GraphicActions.cs" />
@@ -160,16 +165,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <EmbeddedResource Include="diagrams\MainWindow_mnitLoadXML_Click.sequencediagram.layout">
       <DependentUpon>MainWindow_mnitLoadXML_Click.sequencediagram</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +198,7 @@
     <EmbeddedResource Include="diagrams\RangeSelection\UC_ChartContainer_datav_PropertyChanged.sequencediagram.layout">
       <DependentUpon>UC_ChartContainer_datav_PropertyChanged.sequencediagram</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\MainWindow_mnitLoadXML_Click.sequencediagram" />
     <None Include="diagrams\MainWindow_observationsAndProperties_MouseDoubleClick.sequencediagram" />
@@ -216,6 +212,10 @@
     <None Include="diagrams\ClassDiagram1.cd" />
     <None Include="diagrams\RangeSelection\UC_DataVisualizer_Model_MouseDown.sequencediagram" />
     <None Include="diagrams\RangeSelection\UC_ChartContainer_datav_PropertyChanged.sequencediagram" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="src\schemas\ObservationModelData.xsd">
       <SubType>Designer</SubType>
     </None>

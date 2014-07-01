@@ -7,18 +7,19 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
-using TFG.src.classes;
-using TFG.src.exceptions;
-using TFG.src.ui.userControls;
-using TFG.src.ViewModels;
+using MIPS.src.classes;
+using MIPS.src.exceptions;
+using MIPS.src.ui.userControls;
+using MIPS.src.ViewModels;
+using MIPS.Properties;
 using Xceed.Wpf.AvalonDock.Layout;
 
-namespace TFG
+namespace MIPS
 {
     /// <summary>
     /// Lógica de interacción para MainWindow2.xaml
     /// </summary>
-    public partial class MainWindow : Window, TFG.src.interfaces.IContainer
+    public partial class MainWindow : Window, MIPS.src.interfaces.IContainer
     {
 		private XMLLoader xmlLoader;
 		private UC_VideoContainer videoContainer;
@@ -31,7 +32,7 @@ namespace TFG
            
 
 			timer = new DispatcherTimer();
-			timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+			timer.Interval = new TimeSpan(0, 0, 0, 0, Settings.Default.millisecondsToSyncWithVideo);
 			timer.Tick += timer_Tick;
 			timer.Start();
 			

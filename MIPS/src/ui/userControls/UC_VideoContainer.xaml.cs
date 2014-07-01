@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using TFG.src.classes;
-using TFG.src.interfaces;
+using MIPS.src.classes;
+using MIPS.src.interfaces;
 using Xceed.Wpf.AvalonDock.Layout;
 
-namespace TFG.src.ui.userControls
+namespace MIPS.src.ui.userControls
 {
     /// <summary>
     /// Lógica de interacción para UC_VideoContainer.xaml

@@ -6,11 +6,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using TFG.Properties;
-using TFG.src.exceptions;
-using TFG.src.ViewModels;
+using MIPS.Properties;
+using MIPS.src.exceptions;
+using MIPS.src.ViewModels;
 
-namespace TFG.src.classes
+namespace MIPS.src.classes
 {
 	/// <summary>
 	/// Author: Ruben Agudo Santos

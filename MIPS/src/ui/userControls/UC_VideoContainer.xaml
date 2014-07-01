@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TFG.src.ui.userControls.UC_VideoContainer"
+﻿<UserControl x:Class="MIPS.src.ui.userControls.UC_VideoContainer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Controls;
-using TFG.src.ViewModels;
+using MIPS.src.ViewModels;
 
 
-namespace TFG.src.ui.userControls
+namespace MIPS.src.ui.userControls
 {
 
     /// <summary>

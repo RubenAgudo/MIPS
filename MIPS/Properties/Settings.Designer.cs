@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TFG.Properties {
+namespace MIPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -56,6 +56,18 @@ namespace TFG.Properties {
             }
             set {
                 this["pathToXsdSave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int millisecondsToSyncWithVideo {
+            get {
+                return ((int)(this["millisecondsToSyncWithVideo"]));
+            }
+            set {
+                this["millisecondsToSyncWithVideo"] = value;
             }
         }
     }

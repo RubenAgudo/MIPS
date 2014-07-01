@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Linq;
-using TFG.src.classes;
-using TFG.src.interfaces;
-using TFG.src.ViewModels;
+using MIPS.src.classes;
+using MIPS.src.interfaces;
+using MIPS.src.ViewModels;
 using Xceed.Wpf.AvalonDock.Layout;
 using System.Xml.Linq;
 
-namespace TFG.src.ui.userControls
+namespace MIPS.src.ui.userControls
 {
     /// <summary>
     /// Lógica de interacción para GraphicsContainer.xaml

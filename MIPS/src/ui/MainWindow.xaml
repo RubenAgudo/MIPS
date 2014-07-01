@@ -1,4 +1,4 @@
-﻿<Window x:Class="TFG.MainWindow"
+﻿<Window x:Class="MIPS.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Workbench" Height="507" Width="854" 

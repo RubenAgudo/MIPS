@@ -1,7 +1,7 @@
 ﻿using OxyPlot;
 using System.Collections.Generic;
 
-namespace TFG.src.ViewModels
+namespace MIPS.src.ViewModels
 {
 	abstract public class AbstractDataVisualizerViewModel
 	{

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace TFG.src.interfaces
+namespace MIPS.src.interfaces
 {
 	interface IContainer
 	{

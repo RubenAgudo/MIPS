@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using TFG.src.ui.userControls;
+using MIPS.src.ui.userControls;
 using System;
 
-namespace TFG.src.classes
+namespace MIPS.src.classes
 {
 	/// <summary>
 	/// Author: Ruben Agudo Santos
