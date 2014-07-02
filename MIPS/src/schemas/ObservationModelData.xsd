@@ -60,7 +60,7 @@
 	associated to that instant-->
 	<xs:complexType name="instantType">
 
-		<xs:attribute name="ins" type="xs:double" use="required" />
+		<xs:attribute name="ins" type="xs:string" use="required" />
 		<xs:attribute name ="value" type="xs:string" use="required" />
 		
 	</xs:complexType>

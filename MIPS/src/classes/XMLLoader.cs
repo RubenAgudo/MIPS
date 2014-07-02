@@ -50,7 +50,7 @@ namespace MIPS.src.classes
 			{
 				IEnumerable<XElement> data =
 					from da in prop.Descendants("instant")
-					orderby (double)da.Attribute("ins") ascending
+					orderby double.Parse(da.Attribute("ins").Value) ascending
 					select da;
 
 				int propType = int.Parse(prop.Attribute("type").Value);
@@ -107,12 +107,12 @@ namespace MIPS.src.classes
 			Dictionary<string, double> labels)
 		{
 			ICollection<DataPoint> pointCollection = new LinkedList<DataPoint>();
-			int instantLength = getInstantLength();
+			double instantLength = getInstantLength();
 			double lastX = double.MinValue;
 			bool isFirst = true;
 			foreach (XElement instant in data)
 			{
-				double x = Double.Parse(instant.Attribute("ins").Value);
+				double x = double.Parse(instant.Attribute("ins").Value);
 				if (isFirst)
 				{
 					lastX = x;
@@ -141,7 +141,8 @@ namespace MIPS.src.classes
 				}
 				else
 				{
-					y = Double.Parse(instant.Attribute("value").Value);
+					Console.WriteLine(instant.Attribute("value").Value);
+					y = double.Parse(instant.Attribute("value").Value);
 				}
 
 				pointCollection.Add(new DataPoint(x, y));
@@ -152,10 +153,14 @@ namespace MIPS.src.classes
 			return pointCollection;
 		}
 
-		private int getInstantLength()
+		private double getInstantLength()
 		{
 			XAttribute instantLength = xml.Attribute("instantLength");
-			return int.Parse(instantLength.Value);
+			Console.WriteLine(instantLength.Value);
+			Console.WriteLine(double.Parse(instantLength.Value));
+			Console.WriteLine(double.Parse("0,4"));
+			Console.WriteLine(double.Parse("0.4"));
+			return double.Parse(instantLength.Value);
 		}
 
 		/// <summary>

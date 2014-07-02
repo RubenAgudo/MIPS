@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using MIPS.Properties;
 
 
 namespace MIPS.src.ui.userControls
@@ -52,7 +53,7 @@ namespace MIPS.src.ui.userControls
 			VideoName = uriPath.Segments[uriPath.Segments.Length - 1];
             myMediaElement.Source = uriPath;
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Interval = TimeSpan.FromMilliseconds(Settings.Default.millisecondsToSyncWithVideo);
             timer.Tick += new EventHandler(timer_Tick);
             isDragging = false;
         }
@@ -62,7 +63,7 @@ namespace MIPS.src.ui.userControls
         internal void pause()
         {
             myMediaElement.Pause();
-            timer.Stop();
+            //timer.Stop();
         }
 
         internal void play()
@@ -74,7 +75,7 @@ namespace MIPS.src.ui.userControls
         internal void stop()
         {
             myMediaElement.Stop();
-            timer.Stop();
+            //timer.Stop();
         }
         #endregion
 
